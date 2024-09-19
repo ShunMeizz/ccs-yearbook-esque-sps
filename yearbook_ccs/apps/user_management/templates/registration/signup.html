@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container">
+  <h1>HELLO THERE!</h1>
+  <h3>SIGN UP</h3>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="error-message">{{ form.non_field_errors }}</div>
+
+    <div class="input-group">
+      <label for="{{ form.username.id_for_label }}">Username:</label>
+      {{ form.username }}
+      <div class="error-message">{{ form.username.errors }}</div>
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.email.id_for_label }}">Email:</label>
+      {{ form.email }}
+      <div class="error-message">{{ form.email.errors }}</div>
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+      {{ form.first_name }}
+      <div class="error-message">{{ form.first_name.errors }}</div>
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+      {{ form.last_name }}
+      <div class="error-message">{{ form.last_name.errors }}</div>
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.password1.id_for_label }}">Password:</label>
+      {{ form.password1 }}
+      <div class="error-message">{{ form.password1.errors }}</div>
+    </div>
+
+    <div class="input-group">
+      <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+      {{ form.password2 }}
+      <div class="error-message">{{ form.password2.errors }}</div>
+    </div>
+
+    <button type="submit" class="signup-btn">SIGN UP</button>
+  </form>
+
+  {% if error %}
+  <p class="error-message">{{ error }}</p>
+  {% endif %}
+
+  <p class="login-text">
+    Already have an account? <a href="{% url 'login' %}">Login here</a>.
+  </p>
+</div>
+{% endblock content %}
