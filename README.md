@@ -9,8 +9,11 @@
 5. Profile Filtering
 6. Administrative Management
 
-### [Gantt Chart](https://docs.google.com/spreadsheets/d/1dgcrYwHk6Z3L8fpoq2Di0B3ZduTi4T2ZaZ-mwRFIVsQ/edit?usp=sharing)
+### Gantt Chart
+  Access it [here](https://docs.google.com/spreadsheets/d/1dgcrYwHk6Z3L8fpoq2Di0B3ZduTi4T2ZaZ-mwRFIVsQ/edit?usp=sharing).
 
-### [ERD](https://online.visual-paradigm.com/share.jsp?id=323735373834392d34)    
-
-### [UI/UX](https://www.figma.com/design/TuTkacP5TMmgnySRN4Dovl/CCS-Yearbook-esque-Student-Profile-System-UI%2FUX?node-id=0-1&t=XOkLihFBqrn1mJAC-1)
+### ERD
+  Access it [here](https://online.visual-paradigm.com/share.jsp?id=323735373834392d34).    
+  
+### UI/UX
+  Access it [here](https://www.figma.com/design/TuTkacP5TMmgnySRN4Dovl/CCS-Yearbook-esque-Student-Profile-System-UI%2FUX?node-id=0-1&t=XOkLihFBqrn1mJAC-1).
