@@ -1,21 +1,9 @@
-/* Form Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  margin: 0;
-  padding: 0;
+.container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 120px);
-}
-
-.container {
   text-align: center;
-  width: 100%;
-  max-width: 400px;
-  margin: 20px;
 }
 
 h1,
@@ -28,29 +16,36 @@ form {
   padding: 30px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 300px;
+  margin-bottom: 20px;
 }
 
 .input-group {
-  display: flex;
-  flex-direction: column;
+  display: table;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .input-group label {
+  display: table-cell;
   font-size: 13px;
-  margin-bottom: 5px;
+  width: 35%;
+  text-align: left;
+  padding-left: 15px;
+  vertical-align: middle;
 }
 
 .input-group input {
-  padding: 10px;
+  display: table-cell;
+  width: 80%;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 button {
-  background-color: #007bff;
+  background-color: #333;
   color: white;
   padding: 10px;
   margin-top: 10px;
@@ -61,25 +56,18 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #555;
 }
 
-.signup-text {
+p {
   margin-top: 10px;
 }
 
-.signup-text a {
+p a {
   color: #007bff;
   text-decoration: none;
 }
 
-.signup-text a:hover {
+p a:hover {
   text-decoration: underline;
-}
-
-.error-message {
-  color: red;
-  text-align: center;
-  font-size: 12px;
-  margin: 5px 0;
 }

@@ -1,28 +1,23 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
+{% endblock extra_styles %} {% block content %}
 <div class="container">
   <h1>WELCOME BACK!</h1>
   <h3>LOG IN</h3>
   <form method="POST">
     {% csrf_token %}
-    <div class="error-message">{{ form.non_field_errors }}</div>
-
     <div class="input-group">
       <label for="{{ form.username.id_for_label }}">Username:</label>
       {{ form.username }}
-      <div class="error-message">{{ form.username.errors }}</div>
     </div>
 
     <div class="input-group">
       <label for="{{ form.password.id_for_label }}">Password:</label>
       {{ form.password }}
-      <div class="error-message">{{ form.password.errors }}</div>
     </div>
 
     <button type="submit" class="login-btn">LOG IN</button>
   </form>
-
-  <p class="signup-text">
-    Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>.
-  </p>
+  <p>Don't have an account <a href="{% url 'signup' %}">Sign up here</a>.</p>
 </div>
-{% endblock content %}
+{% endblock %}

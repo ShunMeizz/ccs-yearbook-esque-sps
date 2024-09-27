@@ -1,0 +1,39 @@
+def account_activation(request, uidb64, token):
+    User = get_user_model()  # Use get_user_model() for flexibility
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+
+        messages.success(request, "Thank you for email confirmation. Now you can log in.")
+        return redirect('login')
+    else:
+        messages.error(request, "Activation link is invalid!")
+    
+    return redirect('signup')
+
+# Function to send email to proceed in setting up profile
+def acc_verified_email(request, user, to_email):
+    mail_subject = "Account Verified!"
+    message = render_to_string("email_messages/setup_message.html", {
+        'user': user,
+        'domain': get_current_site(request).domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user),
+        "protocol": 'https' if request.is_secure() else 'http',
+    })
+    email = EmailMessage(mail_subject, message, to=[to_email])
+
+    
+    if email.send():
+        messages.success(
+            request, 
+            format_html('Dear <b>{}</b>, please check your email inbox at <b>{}</b> for your account status update. <b>Note:</b> Check your spam folder.', user, to_email)
+        )
+    else:
+        messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
