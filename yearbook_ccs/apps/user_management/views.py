@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage
 from django.utils.html import format_html
 
 from .models import UserAccount
-from .forms import SignUpForm
+from .forms import SignUpForm, LogInForm
 from .tokens import profile_token
 
 import os
@@ -94,8 +94,7 @@ def signup_view(request):
 def login_view(request): 
     #if request.user.is_authenticated:
      #   return redirect('home')
-
-    form = AuthenticationForm(request=request, data=request.POST or None)
+    form = LogInForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
             user = authenticate(
