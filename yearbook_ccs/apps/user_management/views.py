@@ -71,14 +71,7 @@ def signup_view(request):
             user = form.save(commit=False)
             user.is_active = False  # Deactivate the user until admin approval
             user.save()
-
-             # Create UserAccount instance without setting verified status
-            UserAccount.objects.create(
-                user=user,
-                id_front=form.cleaned_data['id_front'],
-                id_back=form.cleaned_data['id_back'],
-                is_acc_verified=False 
-            )
+            
             messages.success(request, "Thank you for signing up! Your account is under review by our admins.")
             #activate_email(request, user, form.cleaned_data.get('email'))  
             return redirect('login')

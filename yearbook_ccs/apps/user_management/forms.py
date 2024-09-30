@@ -4,65 +4,30 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import UserAccount
 
-"""class SignUpForm(UserCreationForm):
-    id_front = forms.FileField(required=True)
-    id_back = forms.FileField(required=True)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        
-        # Customizing the widgets for each field
-        self.fields['username'].widget.attrs.update({
-            'class': 'form-input',
-            'required': True,
-            'placeholder': 'John Doe',
-            'maxlength': '16',
-            'minlength': '6',
-        })
-        
-        self.fields['email'].widget.attrs.update({
-            'class': 'form-input',
-            'required': True,
-            'placeholder': 'JohnDoe@mail.com',
-        })
-        
-        self.fields['first_name'].widget.attrs.update({
-            'class': 'form-input',
-            'required': True,
-            'placeholder': 'John',
-        })
-        
-        self.fields['last_name'].widget.attrs.update({
-            'class': 'form-input',
-            'required': True,
-            'placeholder': 'Doe',
-        })
-        
-        self.fields['password1'].widget.attrs.update({
-            'class': 'form-input',
-            'required': True,
-            'placeholder': 'Password',
-            'maxlength': '22',
-            'minlength': '8',
-        })
-        
-        self.fields['password2'].widget.attrs.update({
-            'class': 'form-input',
-            'required': True,
-            'placeholder': 'Confirm Password',
-            'maxlength': '22',
-            'minlength': '8',
-        })
-
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'id_front', 'id_back']
-"""
 
 class SignUpForm(forms.ModelForm):
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
+    
     class Meta:
         model = UserAccount
         fields = "__all__"
+        widgets = {
+            'id_front': forms.ClearableFileInput(attrs={'placeholder': 'ID Front'}),
+            'id_back': forms.ClearableFileInput(attrs={'placeholder': 'ID Back'}),
+            'photo_w_id': forms.ClearableFileInput(attrs={'placeholder': 'Photo with ID'}),
+            'school_id_number': forms.TextInput(attrs={'placeholder': 'School ID Number'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            if field not in ['confirm_password']:
+                self.fields[field].widget.attrs['placeholder'] = field.capitalize()
+
 
 class LogInForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))

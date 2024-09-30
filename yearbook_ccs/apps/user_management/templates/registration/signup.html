@@ -23,15 +23,20 @@
             <label for="{{ form.id_back.id_for_label }}">ID Back:</label>
             {{ form.id_back }}
           </div>
+          <div class="input-group">
+            <label for="{{ form.photo_w_id.id_for_label }}"
+              >Photo with ID:</label
+            >
+            {{ form.photo_w_id }}
+          </div>
         </div>
 
         <div class="form-content">
-          <div class="input-group">{{ form.username }}</div>
+          <div class="input-group">{{ form.school_id_number }}</div>
           <div class="input-group">{{ form.email }}</div>
-          <div class="input-group">{{ form.first_name }}</div>
-          <div class="input-group">{{ form.last_name }}</div>
-          <div class="input-group">{{ form.password1 }}</div>
-          <div class="input-group">{{ form.password2 }}</div>
+          <div class="input-group">{{ form.username }}</div>
+          <div class="input-group">{{ form.password }}</div>
+          <div class="input-group">{{ form.confirm_password }}</div>
           <button type="submit">SIGNUP</button>
           <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
         </div>
