@@ -71,8 +71,9 @@ def signup_view(request):
             user = form.save(commit=False)
             user.is_active = False  # Deactivate the user until admin approval
             user.save()
-            
+
             messages.success(request, "Thank you for signing up! Your account is under review by our admins.")
+            print(request.FILES)
             #activate_email(request, user, form.cleaned_data.get('email'))  
             return redirect('login')
         else:
