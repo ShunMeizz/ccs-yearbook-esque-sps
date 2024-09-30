@@ -2,7 +2,9 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-class SignUpForm(UserCreationForm):
+from .models import UserAccount
+
+"""class SignUpForm(UserCreationForm):
     id_front = forms.FileField(required=True)
     id_back = forms.FileField(required=True)
 
@@ -55,6 +57,12 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2', 'id_front', 'id_back']
+"""
+
+class SignUpForm(forms.ModelForm):
+    class Meta:
+        model = UserAccount
+        fields = "__all__"
 
 class LogInForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
