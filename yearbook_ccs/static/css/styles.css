@@ -51,28 +51,10 @@ header nav ul li a:hover {
   text-decoration: underline;
 }
 
-.coolvetica {
-  font-family: coolvetica, sans-serif;
-  font-style: normal;
-  font-weight: 100;
-}
-
-.navbar-white{
-  background-color: #F8F8F8;
-}
-
-.navbar-orange{
-  background-color: #FF912C;
-}
-
-.navbar-black{
-  background-color: #292929;
-}
-
 /* Main Content */
 main {
   flex-grow: 1;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 /* Home Section */
