@@ -1,0 +1,97 @@
+body {
+    background-image: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+main {
+    display: flex;
+}
+
+@media (max-width: 700px) {
+    .pmain-div {
+      flex-direction: column;
+    }
+}
+
+h1 {
+    font-family: "Fatpen", cursive;
+    color: #E26901;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
+}
+
+/* box designs */
+.orange-box {
+    position: absolute;
+    width: 420px;
+    height: 35vh;
+    background-color: #FFC875;
+    transform: rotate(-23deg);
+    z-index: -1;
+    left: -320px;
+}
+
+.lightorange-box {
+    background-color: #F6DDB8;
+    position: absolute;
+    width: 420px;
+    height: 35vh;
+    transform: rotate(15deg);
+    z-index: -1;
+    right: -300px;
+    bottom: -20px;
+}
+
+
+/* profile div containers */
+.pmain-div {
+    display: flex;
+    flex-grow:1;
+}
+
+.pmain-div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+#left-profile-div {
+    width: 35%;
+}
+
+/* profile pic in left-profile-div */
+.profile-pic-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+    width: 250px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-pic-div > img {
+    height: 225px;
+    width: 225px;
+    margin-top: 15px;
+}
+
+
+/* form inputs */
+.input-group {
+    display: table;
+    width: 100%;
+    margin-bottom: 8px;
+}
+  
+.input-group input {
+    display: table-cell;
+    width: 100%;
+    padding: 6px;
+    border: 1.5px solid #ffc875;
+    border-radius: 8px;
+    box-sizing: border-box;
+}

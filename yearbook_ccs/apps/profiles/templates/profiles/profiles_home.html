@@ -1,5 +1,25 @@
-{% extends 'base.html' %} {% block title %}Profiles Home{% endblock %} {% block
-content %}
-<h1>Profiles Home</h1>
-<p>Welcome to the profiles section!</p>
+{% extends 'base.html' %} 
+{% load static %} {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/profile_styles.css' %}" />
+{% endblock extra_styles %}
+{% block title %}Profile{% endblock %} 
+{% block content %}
+<div class="orange-box"></div>
+<div class="lightorange-box"></div>
+<div class="pmain-div">
+    <div id="left-profile-div">
+        <h1>PROFILE</h1>
+        <div class="profile-pic-div">
+            <!-- <img src="{{ profile.pic }}"> -->
+            <img src="{% static 'images/default_graduate.png' %}" alt="" />
+            <!-- <form method="post">
+                {% csrf_token %}
+                <div class="input-group">{{ userform.username }}</div>
+            </form> -->
+        </div>
+    </div>
+    <div id="right-profile-div">
+        seconddiv
+    </div>
+</div>
 {% endblock %}
