@@ -1,13 +1,6 @@
-<!--Hello {{ user }}! Your account is verified. Please click on the link below to
-setup your profile: [SETUP PROFILE]({{ protocol }}://{{ domain
-}}/setup_profile/{{ uid }}/{{ token }})-->
-
 {% autoescape off %} Hello {{ user }}! Your account is verified. Please click on
-the link below to setup your profile:
-<a
-  href="{{ protocol }}://{{ domain
-}}/setup_profile/{{ uid }}/{{ token }}"
+the link below to set up your profile:
+<a href="{{ protocol }}://{{ domain }}/setup_profile/{{ uid }}/{{ token }}"
+  >Set up your profile</a
 >
-  SETUP PROFILE
-</a>
 {% endautoescape %}
