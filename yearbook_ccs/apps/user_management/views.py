@@ -48,7 +48,7 @@ def acc_verified_email(request, user, to_email):
         "protocol": 'https' if request.is_secure() else 'http',
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
-
+    email.content_subtype = "html"
     
     user.is_active = True
     user.save()
