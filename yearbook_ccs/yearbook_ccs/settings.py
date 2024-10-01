@@ -130,6 +130,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # global static files
     BASE_DIR / "apps/user_management/static",  
+    BASE_DIR / "apps/admin_management/static", 
+    BASE_DIR / "apps/blog/static", 
+    BASE_DIR / "apps/profiles/static", 
 ]
 
 # newly added - to display images in django admin
@@ -154,3 +157,5 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
+
+AUTH_USER_MODEL = 'user_management.UserAccount'
