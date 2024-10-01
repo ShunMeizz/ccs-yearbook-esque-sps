@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     linkedin_link = models.TextField(max_length=250, null=True) 
     github_link = models.TextField(max_length=250, null=True)
     instagram_link = models.TextField(max_length=250, null=True)
-
+    is_hide = models.BooleanField(null=True)
     def __str__(self):
         return self.first_name
 

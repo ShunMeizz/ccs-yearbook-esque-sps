@@ -1,15 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 # Create your models here.
 
-class AbstractUser(models.Model):
-    username = models.CharField(max_length=50, default="default-username")
-    password = models.CharField(max_length=50,default="default-password")
 
-    class Meta:
-        abstract = True
 
 class UserAccount(AbstractUser):
+    first_name = None
+    last_name = None
     email = models.EmailField(null=True)
     school_id_number = models.CharField(max_length=50, null=True)
     id_front = models.ImageField(upload_to='media/id_images/front', null=True, blank=True)
@@ -17,6 +14,8 @@ class UserAccount(AbstractUser):
     photo_w_id = models.ImageField(upload_to='media/id_images/photo', null=True, blank = True)
     is_acc_verified = models.BooleanField(default=False)
 
+
+    REQUIRED_FIELDS = ['email']
     def __str__(self):
         return self.email if self.email else "No Email"
 

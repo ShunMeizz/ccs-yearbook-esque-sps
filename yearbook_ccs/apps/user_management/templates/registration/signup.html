@@ -30,10 +30,9 @@
               {{ form.photo_w_id }}
             </div>     
           <div class="input-group">{{ form.school_id_number }}</div>
-          <div class="input-group">{{ form.email }}</div>
-          <div class="input-group">{{ form.username }}</div>
-          <div class="input-group">{{ form.password }}</div>
-          <div class="input-group">{{ form.confirm_password }}</div>
+          <div class="input-group">{{ form.email }}</div>         <div class="input-group">{{ form.username }}</div>
+          <div class="input-group">{{ form.password1 }}</div>
+          <div class="input-group">{{ form.password2 }}</div>
           <button type="submit">SIGNUP</button>
           <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
         </div>

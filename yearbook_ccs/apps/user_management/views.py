@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
@@ -17,20 +17,31 @@ from .tokens import profile_token
 import os
 from uuid import uuid4
 
-#def id_path_and_rename(path):
-#    def wrapper(instance, filename):
-#        ext = filename.split('.')[-1]
-#        if instance.pk:
-#            filename = '{}.{}'.format(instance.pk, ext)
-#        else:
-#            filename = '{}.{}'.format(uuid4().hex, ext)
-#        return os.path.join(path, filename)
-#    return wrapper
-# Function to send email to proceed in setting up profile
+AuthUser = get_user_model()
+
+# def account_activation(request, uidb64, token):
+#     User = get_user_model()  # Use get_user_model() for flexibility
+#     try:
+#         uid = force_str(urlsafe_base64_decode(uidb64))
+#         user = User.objects.get(pk=uid)
+#     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+#         user = None
+    
+#     if user is not None and account_activation_token.check_token(user, token):
+#         user.is_active = True
+#         user.save()
+
+#         messages.success(request, "Thank you for email confirmation. Now you can log in.")
+#         return redirect('login')
+#     else:
+#         messages.error(request, "Activation link is invalid!")
+    
+#     return redirect('signup')
+
 def acc_verified_email(request, user, to_email):
     mail_subject = "Account Verified!"
     message = render_to_string("email_messages/acc_verified_message.html", {
-        'user': user,
+        'user': user.username,
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': profile_token.make_token(user),
@@ -39,6 +50,9 @@ def acc_verified_email(request, user, to_email):
     email = EmailMessage(mail_subject, message, to=[to_email])
 
     
+    user.is_active = True
+    user.save()
+
     if email.send():
         messages.success(
             request, 
@@ -50,7 +64,7 @@ def acc_verified_email(request, user, to_email):
 def acc_not_verified_email(request, user, to_email):
     mail_subject = "Fail to create an account"
     message = render_to_string("email_messages/acc_not_verified_message.html", {
-        'user': user,
+        'user': user.username,
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
 
@@ -63,8 +77,6 @@ def acc_not_verified_email(request, user, to_email):
         messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
 
 def signup_view(request):
-   # if request.user.is_authenticated:
-     #   return redirect('home')
     if request.method == "POST":
         form = SignUpForm(request.POST, request.FILES)
         if form.is_valid():
@@ -74,7 +86,6 @@ def signup_view(request):
 
             messages.success(request, "Thank you for signing up! Your account is under review by our admins.")
             print(request.FILES)
-            #activate_email(request, user, form.cleaned_data.get('email'))  
             return redirect('login')
         else:
             for error in list(form.errors.values()):
@@ -86,18 +97,19 @@ def signup_view(request):
 
 
 def login_view(request): 
-    #if request.user.is_authenticated:
-     #   return redirect('home')
-    form = LogInForm(request.POST or None)
+    form = LogInForm(data=request.POST)
     if request.method == "POST":
+        print("Before valid")
         if form.is_valid():
-            user = authenticate(
-                username=form.cleaned_data["username"],
-                password=form.cleaned_data["password"],
-            )
+            print("After valid")
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            print(f"Attempting to authenticate user: {username}")
+        
+            user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, f"Hello {user.first_name}! You have been logged in")
+                messages.success(request, f"Hello {user.username}! You have been logged in")
                 return redirect('home')
             else:
                 print("Authentication failed: User not found") 
@@ -109,8 +121,6 @@ def login_view(request):
     return render(request, 'registration/login.html', {'form': form})
 
 
-
-
 @login_required
 def logout_view(request):
     logout(request)  # Log out the user
@@ -120,5 +130,5 @@ def logout_view(request):
 @login_required
 def home_view(request):
     return render(request, "home.html", {
-        "name": f"{request.user.first_name} {request.user.last_name}"
+        "name": f"{request.user.username}"
     })
