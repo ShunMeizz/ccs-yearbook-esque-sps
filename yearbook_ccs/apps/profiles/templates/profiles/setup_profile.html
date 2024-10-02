@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+{% load static %} {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/profile_styles.css' %}" />
+{% endblock extra_styles %}
+{% block title %}Profile{% endblock %} 
+{% block content %}
+<div class="orange-box"></div>
+<div class="lightorange-box"></div>
+<div class="pmain-div" style="flex-direction: column;">
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="input-group">
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit">SUBMIT</button>
+    </form>
+</div>
+{% endblock %}

@@ -10,13 +10,12 @@
     <div id="left-profile-div">
         <h1>PROFILE</h1>
         <div class="profile-pic-div">
-            <!-- <img src="{{ profile.pic }}"> -->
-            <img src="{% static 'images/default_graduate.png' %}" alt="" />
+            <img src="{{ profile.profile_pic }}" alt="User Profile Picture" />
             
             <div class="input-group" style="margin-top: 0;">
                 <label for="username">Username / Display Name</label>
                 <div class="input-group-container">
-                    <input type="text" name="username" disabled placeholder="Username" id="profile-username"></input>
+                    <input type="text" name="username" disabled placeholder="Username" id="profile-username">{{ username }}</input>
                     <button id="btn-edit-username">🖉</button>
                 </div>
             </div>
@@ -28,48 +27,45 @@
         <button type="button" id="btn-edit-social-link">EDIT SOCIAL LINK</button>
     </div>
     <div id="right-profile-div">
-        <div class="input-group-container">
-            <div class="input-group">
-                <label for="firstname">First Name</label>
-                <input name="firstname" id="firstname" type="text" placeholder="First Name"></input>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-group-container">
+                <div class="input-group">
+                    {{ update_pform.first_name }}
+                </div>
+                <div class="input-group">
+                    {{ update_pform.last_name }}
+                </div>
+            </div>
+            <div class="input-group-container">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input name="email" id="email" type="text" placeholder="Email"></input>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input name="password" id="password" type="text" placeholder="Password"></input>
+                </div>
+            </div>
+            <div class="input-group-container">
+                <div class="input-group">
+                    {{ update_pform.program }}
+                </div>
+                <div class="input-group">
+                    {{ update_pform.batch_year }}
+                </div>
             </div>
             <div class="input-group">
-                <label for="lastname">Last Name</label>
-                <input name="lastname" id="lastname" type="text" placeholder="Last Name"></input>
-            </div>
-        </div>
-        <div class="input-group-container">
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input name="email" id="email" type="text" placeholder="Email"></input>
+                {{ update_pform.quote }}
             </div>
             <div class="input-group">
-                <label for="password">Password</label>
-                <input name="password" id="password" type="text" placeholder="Password"></input>
+                {{ update_pform.hobbies }}
             </div>
-        </div>
-        <div class="input-group-container">
-            <div class="input-group">
-                <label for="program">Program</label>
-                <input name="program" id="program" type="text" placeholder="Program"></input>
+            <div class="button-group-container">
+                <button type="button" id="btn-update-profile" style="background-color: #E26901;">UPDATE PROFILE</button>
+                <button type="button" id="btn-cancel-update" style="background-color: red;">CANCEL</button>
             </div>
-            <div class="input-group">
-                <label for="year">Batch Year</label>
-                <input name="year" id="year" type="text" placeholder="Year"></input>
-            </div>
-        </div>
-        <div class="input-group">
-            <label for="quote">Favorite Quote</label>
-            <input type="text" id="quote" name="quote" placeholder="Favorite Quote"></input>
-        </div>
-        <div class="input-group">
-            <label for="hobbies">Hobbies</label>
-            <textarea rows="4" id="hobbies" type="text" name="hobbies" placeholder="Hobbies"></textarea>
-        </div>
-        <div class="button-group-container">
-            <button type="button" id="btn-update-profile" style="background-color: #E26901;">UPDATE PROFILE</button>
-            <button type="button" id="btn-cancel-update" style="background-color: red;">CANCEL</button>
-        </div>
+        </form>
     </div>
 </div>
 {% endblock %}
