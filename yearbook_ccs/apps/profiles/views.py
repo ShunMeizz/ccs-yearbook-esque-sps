@@ -5,6 +5,7 @@ from django.utils.encoding import force_str
 from django.contrib import messages
 
 from ..user_management.tokens import profile_token
+
 # Create your views here.
 def profiles_home(request):
     return render(request, 'profiles/profiles_home.html')
@@ -22,8 +23,8 @@ def setup_profile_view(request, uidb64, token):
         user.is_active = True
         user.save()
 
-        messages.success(request, "Thank you for email confirmation. Now you can set up your profile.")
-        return redirect('profile')
+        messages.success(request, "Thank you for pressing the link. Now you can set up your profile.")
+        return redirect('profile_home') # TODO : change link for setting up profile
     else:
         messages.error(request, "Link is invalid!")
     
