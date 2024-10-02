@@ -40,17 +40,20 @@ def setup_profile_view(request, uidb64, token):
         user.save()
 
         messages.success(request, "Thank you for pressing the link. Now you can set up your profile.")
-        return redirect('setup_profile_2') # TODO : change link for setting up profile
+        return redirect('setup_profile_2', uidb64 = uidb64) # TODO : change link for setting up profile
     else:
         messages.error(request, "Link is invalid!")
     
     return redirect('signup')
 
-def setup_profile_2_view(request):
+def setup_profile_2_view(request, uidb64):
+    User = get_user_model()
+    uid = force_str(urlsafe_base64_decode(uidb64))
+    user = User.objects.get(pk=uid)
     if (request.method == "POST"):
         form = ProfileCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            user = UserAccount.objects.get(id = request.user.id )
+            # user = UserAccount.objects.get(id = request.user.id )
             profile = form.save(commit=False)
             profile.user_account = user
             profile.save()
