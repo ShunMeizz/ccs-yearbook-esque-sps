@@ -28,6 +28,15 @@
     6px 6px 0 #FF912C;
 }
 
+.col-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.bar {
+    height: 30px;
+}
+
 .neg-10 {
     transform: rotate(-7deg);
 }
@@ -56,31 +65,75 @@
 .size-50 {
     font-size: 50px;
 }
-  
-.bg-white{
-    background-color: #F8F8F8;
-  }
 
-.bg-light-yellow{
-    background-color: #F6DDB8;
+.size-24 {
+    font-size: 24px;
 }
-  
-.bg-orange{
-    background-color: #FF912C;
+
+.size-18 {
+    font-size: 18;
 }
-  
+
 .bg-black{
     background-color: #292929;
-  }
-  
-.black{
+}
+
+.black {
     color:#292929;
+}
+
+.bg-dark-gray {
+    background-color:#473F3B;
+}
+
+.dark-gray {
+    color:#473F3B;
+}
+
+.bg-light-gray {
+    background-color: #ECECEC;
+}
+
+.light-gray {
+    color: #ECECEC;
+}
+
+.bg-white{
+    background-color: #F8F8F8;
 }
 
 .white{
     color:#F8F8F8;
 }
+  
+.bg-orange{
+    background-color: #FF912C;
+}
 
-.orange{
+.orange {
     color:#FF912C;
+}
+
+.bg-light-orange {
+    background-color:#FF912C;
+}
+
+.light-orange {
+    color:#FF912C;
+}
+
+.bg-yellow {
+    background-color:#FFC875;
+}
+
+.yellow {
+    color:#FFC875;
+}
+
+.bg-light-yellow{
+    background-color: #F6DDB8;
+}
+
+.light-yellow {
+    color:#F6DDB8;
 }

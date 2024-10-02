@@ -3,7 +3,18 @@
     flex-shrink: 0;
     background: #FF912C;
     box-shadow: 0px 4px 10px 5px rgba(0, 0, 0, 0.25);
-}   
+}
+
+.blog-banner {
+    width: 700px;
+    height: 200px;
+    transform: rotate(-4deg);
+    flex-shrink: 0;
+}
+
+.blog-margin {
+    margin: 100px;
+}
 
 .tape{
     width: 500px;
@@ -17,14 +28,6 @@
     height: 90px;
     flex-shrink: 0;
     background-color:#FF912C;;
-}
-
-.blog-section{
-    height: 1136px;
-    flex-shrink: 0;
-    background: #FFC875;
-    box-shadow: 0px 10px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 100px;
 }
 
 .temp-profile{
@@ -59,4 +62,12 @@
     display: flex;
     flex-direction: row;
     justify-content:space-around;
+}
+
+.margin-30 {
+    margin: 30px;
+}
+
+.margin-20 {
+    margin: 20px;
 }
