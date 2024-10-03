@@ -7,10 +7,11 @@
 <div class="orange-box"></div>
 <div class="lightorange-box"></div>
 <div class="pmain-div" style="flex-direction: column;">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
             <div class="input-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
             </div>
         {% endfor %}

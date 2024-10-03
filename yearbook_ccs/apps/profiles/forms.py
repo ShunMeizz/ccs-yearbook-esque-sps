@@ -5,7 +5,7 @@ from datetime import datetime
 class ProfileCreationForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ["first_name", "last_name", "program", "batch_year", "quote",
+        fields = ["first_name", "last_name","profile_pic", "program", "batch_year", "quote",
                   "hobbies", "facebook_link", "linkedin_link", "github_link", "instagram_link"]
         labels = {
             "first_name": "First Name",

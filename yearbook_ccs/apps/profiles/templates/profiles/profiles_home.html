@@ -10,12 +10,12 @@
     <div id="left-profile-div">
         <h1>PROFILE</h1>
         <div class="profile-pic-div">
-            <img src="{{ profile.profile_pic }}" alt="User Profile Picture" />
+            <img src="{{ profile.profile_pic.url }}" alt="{{user.username}} profile" />
             
             <div class="input-group" style="margin-top: 0;">
                 <label for="username">Username / Display Name</label>
                 <div class="input-group-container">
-                    <input type="text" name="username" disabled placeholder="Username" id="profile-username">{{ username }}</input>
+                    <input type="text" name="username" id="profile-username" value="{{ user.username }}" disabled></input>
                     <button id="btn-edit-username">🖉</button>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
 from django.contrib import messages
@@ -11,7 +11,6 @@ from ..user_management.models import UserAccount
 
 # Create your views here.
 def profiles_home(request):
-    print(request)
     profile = UserProfile.objects.get(user_account = request.user)
     if (request.method == "POST"):
         update_profile_form = ProfileCreationForm(request.POST, request.FILES)
@@ -39,21 +38,20 @@ def setup_profile_view(request, uidb64, token):
         user.is_active = True
         user.save()
 
+        login(request, user) #automatically logs in user to sign up
         messages.success(request, "Thank you for pressing the link. Now you can set up your profile.")
-        return redirect('setup_profile_2', uidb64 = uidb64) # TODO : change link for setting up profile
+        return redirect('setup_profile_2')
     else:
         messages.error(request, "Link is invalid!")
     
     return redirect('signup')
 
-def setup_profile_2_view(request, uidb64):
+def setup_profile_2_view(request):
     User = get_user_model()
-    uid = force_str(urlsafe_base64_decode(uidb64))
-    user = User.objects.get(pk=uid)
+    user = User.objects.get(pk=request.user.id)
     if (request.method == "POST"):
         form = ProfileCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            # user = UserAccount.objects.get(id = request.user.id )
             profile = form.save(commit=False)
             profile.user_account = user
             profile.save()
