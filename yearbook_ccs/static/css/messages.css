@@ -33,3 +33,16 @@
 .close:hover {
   color: red;
 }
+
+
+.messages {
+  width: 100%;
+  position: absolute;
+  margin-top: 50px;
+  z-index: 5;
+}
+
+.messages > ul {
+  padding-inline-start: 0;
+  padding: 15px;
+}
