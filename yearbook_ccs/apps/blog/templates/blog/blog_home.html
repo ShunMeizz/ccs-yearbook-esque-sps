@@ -49,7 +49,10 @@
                     {% csrf_token %}
                     <div>
                         {{post.id}}
-                        <button type="submit" value="{{post.id}}">Delete</button>
+                        {{post.title}}
+                        <!-- <img src="{{post.media.url}}"> -->
+                        <input type="hidden" name="post_id" value="{{ post.id }}">
+                        <button type="submit">Delete</button>
                     </div>
                 </form>
             {% endfor %}
