@@ -17,38 +17,70 @@
 
     <div class="bar bg-black"></div>
 
-    <form method="post">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Submit">
-    </form>
-
-    <div class="bg-white home-padding">
-        <div class="blog-post">
-            <div class="coolvetica margin-20 size-18">
-                shanley_sebial
+    <div class="bg-white home-padding col-layout">
+        <div class="center col-layout">
+            
+            <div class="blog-post margin-20 p-4">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div>
+                     {{form.title}}
+                    </div>
+                    <div>
+                        {{form.content}}
+                    </div>
+                    <div>
+                        {{form.media}}
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+                {{blog.user.username}}
             </div>
-            <div>
-                <img src="{% static 'images/test.png' %}">
-            </div>
-            <div class="margin-20">
-                <div class="coolvetica size-18">
-                    TITLETILETILETIELTIEL
-                </div>
-                <div>
-                    Lorem ipsum dolor sit amet consectetur. Augue sapien odio eget venenatis tempus euismod viverra faucibus volutpat. 
-                    Pharetra ullamcorper tempus aenean eget ut penatibus. Habitant massa accumsan tellus mauris nec suspendisse eu lectus. Sit elementum elementum integer quis.
-    
-                    Scelerisque nulla at et pellentesque elementum nec. Turpis auctor porta rutrum ac bibendum id. 
-                    At amet diam fermentum faucibus est erat quisque quam. Mauris vel habitant eu sit. Pellentesque tempor sociis sed tellus dis. Eget augue tristique diam enim id est mattis leo. Fermentum pellentesque sed in platea nec vulputate id tincidunt lorem.
-                </div>
-                <hr>
-                <div>
-                    View all comments
-                </div>
-            </div>
+            
         </div>
+
+        <div class="blog-post margin-20 p-4">
+            <input type="text" placeholder="What's on your mind?">
+        </div>
+
+        {% block blog_posts %}
+            {% for post in posts %}
+                <form method="post", action="{% url 'delete_post' %}">
+                    {% csrf_token %}
+                    <div>
+                        {{post.id}}
+                        <button type="submit" value="{{post.id}}">Delete</button>
+                    </div>
+                </form>
+            {% endfor %}
+        {% endblock %}
+
     </div>
 </div>
 
 {% endblock %}
+
+<!-- <div class="blog-post">
+    <div class="coolvetica margin-20 size-18">
+        shanley_sebial
+    </div>
+    <div>
+        <img src="{% static 'images/test.png' %}">
+    </div>
+    
+    <div class="margin-20">
+        <div class="coolvetica size-18">
+            TITLETILETILETIELTIEL
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur. Augue sapien odio eget venenatis tempus euismod viverra faucibus volutpat. 
+            Pharetra ullamcorper tempus aenean eget ut penatibus. Habitant massa accumsan tellus mauris nec suspendisse eu lectus. Sit elementum elementum integer quis.
+
+            Scelerisque nulla at et pellentesque elementum nec. Turpis auctor porta rutrum ac bibendum id. 
+            At amet diam fermentum faucibus est erat quisque quam. Mauris vel habitant eu sit. Pellentesque tempor sociis sed tellus dis. Eget augue tristique diam enim id est mattis leo. Fermentum pellentesque sed in platea nec vulputate id tincidunt lorem.
+        </div>
+        <hr>
+        <div>
+            View all comments
+        </div>
+    </div> -->

@@ -1,22 +1,30 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Blog
 
 from .forms import BlogForm
 
-# Create your views here.
+@login_required
 def blog_home(request):
-    return render(request, 'blog/blog_home.html')
-
-def blog_post(request):
-    return render(request,"blog_post.html")
-
-def get_blog(request):
+    posts = get_post()
     if request.method == "POST":
-        form = BlogForm(request.POST)
+        form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            post_msg = form.cleaned_data["post_msg"]
-            return HttpResponseRedirect("/thanks/")
+            blog = form.save(commit=False)
+            blog.user_id = request.user.id
+            blog.save()
+            return render(request,"blog/blog_home.html", {'form':form,'blog':blog,'posts':posts})
     else:
-        form = BlogForm()
-        return render(request, 'blog/blog_home.html', {'form': form})
+        form = BlogForm() 
+    return render(request,"blog/blog_home.html", {'form':form,'posts':posts})
+
+def get_post():
+    posts = Blog.objects.all()
+    return posts
+
+# def delete_post(request):
+#     if request.method == "POST":
+
+#     # Blog.objects.filter(id=id).delete()
+#     # print(id,"is deleted")
+#     return redirect('blog_home')
