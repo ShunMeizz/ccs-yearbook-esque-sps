@@ -1,14 +1,18 @@
 {% extends 'base.html' %} {% load static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
 
-{% endblock extra_styles %} {% block content %}
+{% endblock extra_styles %} 
 
-<div class="form-header">
+{% block before-main %}
+<div class="form-header" style="margin-top: 20px;">
   <div class="ribbon-container"></div>
   <div class="orange-box"></div>
   <div class="light-box"></div>
   <h1>WELCOME BACK!</h1>
 </div>
+{% endblock %}
+
+{% block content %}
 <div class="id-card">
   <div class="id-orange-header"></div>
   <div class="outer-wrapper">

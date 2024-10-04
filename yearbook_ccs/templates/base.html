@@ -28,8 +28,10 @@
       </ul>
     </div>
     {% endif %}
-
+    
+    {% block before-main %}{% endblock %}
     <main>{% block content %} {% endblock %}</main>
+    {% block after-main %}{% endblock %}
 
     {% include 'footer.html' %}
     <script src="{% static 'js/messages.js' %}"></script>
