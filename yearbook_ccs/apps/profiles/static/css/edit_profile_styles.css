@@ -20,7 +20,7 @@ main {
     }
 }
 
-h1, #profile-username {
+.headline, #profile-username {
     font-family: "Fatpen", cursive;
     color: #E26901;
     letter-spacing: 2px;
@@ -29,7 +29,7 @@ h1, #profile-username {
 }
 
 /* box designs */
-.orange-box {
+.darkorange-box {
     position: absolute;
     width: 420px;
     height: 35vh;
@@ -99,53 +99,5 @@ h1, #profile-username {
 }
 
 #btn-edit-username {
-    border-color: transparent;
-}
-
-button {
-    border-radius: 30px;
-    border: 3px solid #E26901;
-    background: transparent;
-    padding: 10px;
-}
-/* form inputs */
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-
-.input-group-container {
-    display: flex;
-    width: 100% ;
-    gap: 10px;
-}
-  
-input, textarea {
-    display: table-cell;
-    padding: 6px;
-    border: 1.5px solid #ffc875;
-    border-radius: 8px;
-    box-sizing: border-box;
-}
-
-label {
-    color: #E26901;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.button-group-container {
-    display: flex;
-    justify-content: flex-end;
-    gap:15px;
-    width: 100%;
-}
-
-.button-group-container > button {
-    color: white;
     border-color: transparent;
 }

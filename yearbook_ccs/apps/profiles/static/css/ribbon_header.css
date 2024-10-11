@@ -1,0 +1,47 @@
+.ribbon-container {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+}
+
+.orange-box, .light-box {
+    position: absolute;
+    margin-bottom: 10px;
+    width: 100rem;
+    height: 65px;
+    transform-origin: center;
+}
+
+.orange-box {
+    transform: rotate(2.5deg);
+    background-color: #ffbb53;
+    z-index: 1;
+}
+
+.light-box {
+    transform: rotate(-1.5deg);
+    background-color: #F6DDB8;
+    z-index: 1;
+}
+
+h1 {
+    margin: 0;
+    font-family: "Fatpen", cursive;
+    text-align: center;
+    /* -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #FF912C; */
+    z-index: 2;
+    text-shadow: 
+        5px 5px 0 #FF912C,  /* Right and down */
+        -5px 5px 0 #FF912C,  /* Left and down */
+        5px -5px 0 #FF912C, /* Right and up */
+        -5px -5px 0 #FF912C, /* Left and up */
+        5px 0 0 #FF912C,    /* Right */
+        -5px 0 0 #FF912C,    /* Left */
+        0 5px 0 #FF912C,    /* Down */
+        0 -5px 0 #FF912C;
+}

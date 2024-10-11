@@ -19,9 +19,13 @@ class UserProfile(models.Model):
     quote = models.TextField(max_length=250, null=True, blank =True)
     hobbies = models.TextField(blank=True, null=True)
     facebook_link = models.TextField(max_length=250, null=True,blank=True)
+    facebook_link_hidden = models.BooleanField(null=True, default=True)
     linkedin_link = models.TextField(max_length=250, null=True, blank=True) 
+    linkedin_link_hidden = models.BooleanField(null=True, default=True)
     github_link = models.TextField(max_length=250, null=True, blank=True)
+    github_link_hidden = models.BooleanField(null=True, default=True)
     instagram_link = models.TextField(max_length=250, null=True, blank=True)
+    instagram_link_hidden = models.BooleanField(null=True, default=True)
     is_hide = models.BooleanField(null=True, default=False)
 
     def __str__(self):

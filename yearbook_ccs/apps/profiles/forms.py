@@ -6,19 +6,21 @@ class ProfileCreationForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ["first_name", "last_name","profile_pic", "program", "batch_year", "quote",
-                  "hobbies", "facebook_link", "linkedin_link", "github_link", "instagram_link"]
+                  "hobbies", "facebook_link", "linkedin_link", "github_link", "instagram_link",
+                  "facebook_link_hidden", "linkedin_link_hidden", 
+                  "instagram_link_hidden", "github_link_hidden"]
         labels = {
             "first_name": "First Name",
             "last_name": 'Last Name', 
             "profile_pic": "Profile Picture",
             "program": "Program", 
+            "batch_year": "Expected Graduation Year",
             "quote": 'Favorite Quote',
             "hobbies": 'Hobbies', 
             "facebook_link":  'Facebook',
             "linkedin_link": 'LinkedIn',
             "github_link": "GitHub",
             "instagram_link": 'Instagram',
-       
         }
         widgets = {
             "first_name": forms.TextInput(attrs={'placeholder': "First Name", 'required': 'true'}),
@@ -32,4 +34,8 @@ class ProfileCreationForm(forms.ModelForm):
             "linkedin_link": forms.TextInput(attrs={'placeholder': 'LinkedIn link'}),
             "github_link": forms.TextInput(attrs={'placeholder': 'GitHub link'}),
             "instagram_link": forms.TextInput(attrs={'placeholder': 'Instagram link'}),
+            "facebook_link_hidden": forms.CheckboxInput(),
+            "linkedin_link_hidden": forms.CheckboxInput(),
+            "instagram_link_hidden": forms.CheckboxInput(),
+            "github_link_hidden": forms.CheckboxInput()
         }

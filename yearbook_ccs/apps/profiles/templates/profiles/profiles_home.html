@@ -1,14 +1,15 @@
 {% extends 'base.html' %} 
 {% load static %} {% block extra_styles %}
-<link rel="stylesheet" href="{% static 'css/profile_styles.css' %}" />
+<link rel="stylesheet" href="{% static 'css/profile_form_styles.css' %}" />
+<link rel="stylesheet" href="{% static 'css/edit_profile_styles.css' %}" />
 {% endblock extra_styles %}
 {% block title %}Profile{% endblock %} 
 {% block content %}
-<div class="orange-box"></div>
+<div class="darkorange-box"></div>
 <div class="lightorange-box"></div>
 <div class="pmain-div">
     <div id="left-profile-div">
-        <h1>PROFILE</h1>
+        <h1 class="headline">PROFILE</h1>
         <div class="profile-pic-div">
             <img src="{{ profile.profile_pic.url }}" alt="{{user.username}} profile" />
             
@@ -24,7 +25,7 @@
                 <div class="input-group">{{ userform.username }}</div>
             </form> -->
         </div>
-        <button type="button" id="btn-edit-social-link">EDIT SOCIAL LINK</button>
+        <button type="button" id="btn-edit-social-link">EDIT SOCIAL LINKS</button>
     </div>
     <div id="right-profile-div">
         <form method="POST">
