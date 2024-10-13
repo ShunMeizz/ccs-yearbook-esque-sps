@@ -31,6 +31,10 @@ body {
         flex-direction: column;
         gap:10px;
     }
+
+    .form-content-group {
+        flex-direction: column;
+    }
 }
 
 input, select, textarea {
@@ -43,7 +47,7 @@ input, select, textarea {
     background: #E7E5E5;
 }
 
-input::placeholder, textarea::placeholder {
+.floating-form-group > input::placeholder,.floating-form-group > textarea::placeholder {
 	opacity: 0;
 }
 
@@ -55,6 +59,20 @@ textarea {
 
 select {
     flex-grow: 1;
+}
+
+.update-form-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap:5px;
+}
+
+.update-form-content > label{
+    color:#FF912C;
+    font-size: normal;
 }
 
 label {
@@ -105,6 +123,12 @@ textarea:focus + label, textarea:not(:placeholder-shown) + label{
     color: #f8f8f8;
 }
 
+.orange-btn {
+    border: 3px solid #FF912C;
+    background: #FF912C;
+    color: #f8f8f8;
+}
+
 .button-group-container {
     display: flex;
     justify-content: flex-end;
@@ -137,4 +161,13 @@ textarea:focus + label, textarea:not(:placeholder-shown) + label{
     border: 3px solid #FF912C;
     background: #F8F8F8;
     color:#FF912C;
+}
+
+.dark-orange-btn {
+    background: #E26901;
+    color: #F8F8F8;
+}
+
+.black-btn {
+    background: #473F3B;
 }

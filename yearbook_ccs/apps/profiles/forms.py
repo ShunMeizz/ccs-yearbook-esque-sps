@@ -25,10 +25,10 @@ class ProfileCreationForm(forms.ModelForm):
         widgets = {
             "first_name": forms.TextInput(attrs={'placeholder': "First Name", 'required': 'true'}),
             "last_name": forms.TextInput(attrs={'placeholder': 'Last Name', 'required': 'true'}),
-            "profile_pic": forms.ClearableFileInput(attrs={'placeholder': "Profile Picture", 'required': 'true'}),
+            "profile_pic": forms.FileInput(attrs={'placeholder': "Profile Picture", 'required': 'true'}),
             "program" : forms.Select(attrs={"class":'dropdown'}),
             "batch_year": forms.Select(attrs={'class': 'dropdown'}),
-            "quote": forms.TextInput(attrs={'placeholder': 'Favorite Quote'}),
+            "quote": forms.Textarea(attrs={'placeholder': 'Favorite Quote', 'rows':2}),
             "hobbies": forms.Textarea(attrs={'placeholder': 'Hobbies', 'rows': 5}),
             "facebook_link": forms.TextInput(attrs={'placeholder': 'Facebook link'}),
             "linkedin_link": forms.TextInput(attrs={'placeholder': 'LinkedIn link'}),

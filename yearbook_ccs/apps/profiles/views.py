@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model, login
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
@@ -11,17 +11,19 @@ from ..user_management.models import UserAccount
 
 # Create your views here.
 def profiles_home(request):
-    profile = UserProfile.objects.get(user_account = request.user)
+    profile = get_object_or_404(UserProfile, user_account = request.user)
+
+    if not profile:
+        return redirect('login')
+
     if (request.method == "POST"):
-        update_profile_form = ProfileCreationForm(request.POST, request.FILES)
-        if update_profile_form.is_valid():
-            profile = form.save(commit=False)
-            profile.user_account = request.user
-            profile.save()
+        form = ProfileCreationForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
 
             return redirect('profile_home')
     else:
-        form = ProfileCreationForm()
+        form = ProfileCreationForm(instance=profile)
             
     return render(request, 'profiles/profiles_home.html', {'update_pform': form, 'profile': profile})
 
