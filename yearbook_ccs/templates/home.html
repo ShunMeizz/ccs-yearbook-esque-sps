@@ -1,5 +1,12 @@
 {% extends 'base.html' %} {% block title %}Home - Yearbook CCS{% endblock %}
 {%block content %}
+
 <h1>Welcome to the Website {{ name }}</h1>
 <p>This is the homepage!</p>
+<!--Logout should be performed via POST request-->
+<form method="POST" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <button type="submit">Logout</button>
+</form>
+
 {% endblock %}

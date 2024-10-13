@@ -1,17 +1,39 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Yearbook CCS{% endblock %}</title>
+    <!--Styles for the entire app-->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fatpen&display=swap"
+      rel="stylesheet"
+    />
+    <!--Extra styles in specific templates-->
+    {% block extra_styles %}{% endblock extra_styles %}
   </head>
   <body>
-    {% include 'header.html' %}
-
+    {% include 'header.html' %} {% if messages %}
+    <div class="messages">
+      <ul>
+        {% for message in messages %}
+        <li class="alert {{ message.tags }}">
+          {{ message }}
+          <span class="close">&times;</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    
+    {% block before-main %}{% endblock %}
     <main>{% block content %} {% endblock %}</main>
+    {% block after-main %}{% endblock %}
 
     {% include 'footer.html' %}
+    <script src="{% static 'js/messages.js' %}"></script>
   </body>
 </html>

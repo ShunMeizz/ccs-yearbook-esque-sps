@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import UserAccount
+from imagekit.admin import AdminThumbnail
 
-# Register your models here.
+admin.site.register(UserAccount)

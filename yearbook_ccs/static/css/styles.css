@@ -7,12 +7,16 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-image: linear-gradient(rgba(71, 63, 59, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(71, 63, 59, 0.3) 1px, transparent 1px);
+  background-size: 60px 45px;
+  overflow-x: hidden;
 }
 
 /* Header */
 header {
-  background-color: #333;
-  color: white;
+  background-color: #ff912c;
+  color: #292929;
   padding: 10px 20px;
 }
 
@@ -23,7 +27,7 @@ header .navbar {
 }
 
 header .logo a {
-  color: white;
+  color: #292929;
   text-decoration: none;
   font-size: 24px;
 }
@@ -40,7 +44,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-  color: white;
+  color: #292929;
   text-decoration: none;
 }
 
