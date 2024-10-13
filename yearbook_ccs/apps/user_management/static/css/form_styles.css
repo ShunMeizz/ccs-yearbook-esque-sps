@@ -1,85 +1,171 @@
-/* Form Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  margin: 0;
-  padding: 0;
+.id-card {
+  width: 65%;
+  height: auto;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.36) 0px 1px 4px;
+}
+.form-header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 120px);
-}
-
-.container {
   text-align: center;
   width: 100%;
-  max-width: 400px;
-  margin: 20px;
 }
 
-h1,
-h3 {
+.ribbon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.orange-box, .light-box {
+  position: absolute;
   margin-bottom: 10px;
+  width: 105vw;
+  height: 65px;
+  transform-origin: center;
 }
 
-form {
+.orange-box {
+  transform: rotate(2.5deg);
+  background-color: #ffbb53;
+  z-index: 1;
+}
+
+.light-box {
+  transform: rotate(-1.5deg);
+  background-color: #F6DDB8;
+  z-index: 1;
+}
+
+.form-header > h1 {
+  margin: 0;
+  font-family: "Fatpen", cursive;
+  color: #F8F8F8;
+  text-align: center;
+  /* -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #FF912C; */
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 100px;
+  z-index: 2;
+  text-shadow: 
+    5px 5px 0 #FF912C,  /* Right and down */
+    -5px 5px 0 #FF912C,  /* Left and down */
+    5px -5px 0 #FF912C, /* Right and up */
+    -5px -5px 0 #FF912C, /* Left and up */
+    5px 0 0 #FF912C,    /* Right */
+    -5px 0 0 #FF912C,    /* Left */
+    0 5px 0 #FF912C,    /* Down */
+    0 -5px 0 #FF912C;
+}
+
+.id-orange-header {
+  display: flex;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: #ff912c;
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+}
+.outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1.5px solid black;
+  border-left: 1.5px solid black;
+  border-right: 1.5px solid black;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: #fff;
+}
+@media (max-width: 865px) {
+  .form-container {
+    flex-direction: column;
+  }
+}
+
+img {
+  flex: 1;
+  padding: 20px;
+  margin-left: 0, auto;
+  max-width: 35%;
+  height: auto;
+}
+.images-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 0, auto;
+}
+.form-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 5px;
 }
 
 .input-group {
-  display: flex;
-  flex-direction: column;
+  display: table;
   width: 100%;
-  margin-bottom: 15px;
-}
-
-.input-group label {
-  font-size: 13px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .input-group input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  display: table-cell;
+  width: 100%;
+  padding: 6px;
+  border: 1.5px solid #ffc875;
+  border-radius: 8px;
   box-sizing: border-box;
 }
 
 button {
-  background-color: #007bff;
+  background-color: #ffbb53;
   color: white;
   padding: 10px;
   margin-top: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 30px;
   cursor: pointer;
   width: 100%;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #ffad31;
 }
 
-.signup-text {
+p {
   margin-top: 10px;
-}
-
-.signup-text a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.signup-text a:hover {
-  text-decoration: underline;
-}
-
-.error-message {
-  color: red;
   text-align: center;
   font-size: 12px;
-  margin: 5px 0;
+}
+
+p a {
+  color: #e26901;
+}
+
+p a:hover {
+  text-decoration: underline;
 }
