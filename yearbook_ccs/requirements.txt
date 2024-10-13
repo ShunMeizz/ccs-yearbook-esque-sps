@@ -1,3 +1,0 @@
-six - for the tokens.py under user_management apps
-python-dotenv - to access envi variables
-django-imagekit  
