@@ -1,33 +1,28 @@
-{% extends 'base.html' %} {% load static %} {% block extra_styles %}
-<link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
-
-{% endblock extra_styles %} 
-
-{% block before-main %}
-<div class="form-header" style="margin-top: 20px;">
-  <div class="ribbon-container"></div>
-  <div class="orange-box"></div>
-  <div class="light-box"></div>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container">
   <h1>WELCOME BACK!</h1>
-</div>
-{% endblock %}
+  <h3>LOG IN</h3>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="error-message">{{ form.non_field_errors }}</div>
 
-{% block content %}
-<div class="id-card">
-  <div class="id-orange-header"></div>
-  <div class="outer-wrapper">
-    <div class="form-container">
-      <img src="{% static 'images/default_graduate.png' %}" alt="" />
-      <div class="form-content">
-        <form method="POST">
-          {% csrf_token %}
-          <div class="input-group">{{ form.username }}</div>
-          <div class="input-group">{{ form.password }}</div>
-          <button type="submit">LOGIN</button>
-          <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
-        </form>
-      </div>
+    <div class="input-group">
+      <label for="{{ form.username.id_for_label }}">Username:</label>
+      {{ form.username }}
+      <div class="error-message">{{ form.username.errors }}</div>
     </div>
-  </div>
+
+    <div class="input-group">
+      <label for="{{ form.password.id_for_label }}">Password:</label>
+      {{ form.password }}
+      <div class="error-message">{{ form.password.errors }}</div>
+    </div>
+
+    <button type="submit" class="login-btn">LOG IN</button>
+  </form>
+
+  <p class="signup-text">
+    Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>.
+  </p>
 </div>
-{% endblock %}
+{% endblock content %}

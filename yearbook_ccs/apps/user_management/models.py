@@ -1,23 +1,54 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
-# Create your models here.
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
+class SignUpForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Customizing the widgets for each field
+        self.fields['username'].widget.attrs.update({
+            'class': 'form-input',
+            'required': True,
+            'placeholder': 'John Doe',
+            'maxlength': '16',
+            'minlength': '6',
+        })
+        
+        self.fields['email'].widget.attrs.update({
+            'class': 'form-input',
+            'required': True,
+            'placeholder': 'JohnDoe@mail.com',
+        })
+        
+        self.fields['first_name'].widget.attrs.update({
+            'class': 'form-input',
+            'required': True,
+            'placeholder': 'John',
+        })
+        
+        self.fields['last_name'].widget.attrs.update({
+            'class': 'form-input',
+            'required': True,
+            'placeholder': 'Doe',
+        })
+        
+        self.fields['password1'].widget.attrs.update({
+            'class': 'form-input',
+            'required': True,
+            'placeholder': 'Password',
+            'maxlength': '22',
+            'minlength': '8',
+        })
+        
+        self.fields['password2'].widget.attrs.update({
+            'class': 'form-input',
+            'required': True,
+            'placeholder': 'Confirm Password',
+            'maxlength': '22',
+            'minlength': '8',
+        })
 
-
-class UserAccount(AbstractUser):
-    first_name = None
-    last_name = None
-    email = models.EmailField(null=True)
-    school_id_number = models.CharField(max_length=50, null=True)
-    id_front = models.ImageField(upload_to='media/id_images/front', null=True, blank=True)
-    id_back = models.ImageField(upload_to='media/id_images/back', null=True, blank=True)
-    photo_w_id = models.ImageField(upload_to='media/id_images/photo', null=True, blank = True)
-    is_acc_verified = models.BooleanField(default=False)
-
-
-    REQUIRED_FIELDS = ['email']
-    def __str__(self):
-        return self.email if self.email else "No Email"
-
-
-
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
