@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static %} {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
+
+{% endblock extra_styles %} {% block before-main %}
+<h1>BATCH PAGE!</h1>
+{% endblock %} {% block content %}
+<h1>Profiles in {{ user_profile.program }} - {{ user_profile.batch_year }}</h1>
+
+<div class="profile-list">
+  {% for profile in filtered_profiles %}
+  <div class="profile-card">
+    <img
+      src="{{ profile.profile_pic.url }}"
+      alt="{{ profile.first_name }}'s profile picture"
+    />
+    <h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
+    <p>Quote: {{ profile.quote }}</p>
+    <p>Hobbies: {{ profile.hobbies }}</p>
+    <p>Batch Year: {{ profile.batch_year }}</p>
+  </div>
+  {% empty %}
+  <p>No profiles found for this batch.</p>
+  {% endfor %}
+</div>
+{% endblock %}
