@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Blog
 
@@ -19,12 +19,11 @@ def blog_home(request):
     return render(request,"blog/blog_home.html", {'form':form,'posts':posts})
 
 def get_post():
-    posts = Blog.objects.all()
-    return posts
+    return Blog.objects.all()
 
-# def delete_post(request):
-#     if request.method == "POST":
-
-#     # Blog.objects.filter(id=id).delete()
-#     # print(id,"is deleted")
-#     return redirect('blog_home')
+def delete_post(request):
+    if request.method == "POST":
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Blog,id=post_id)
+        post.delete()
+    return redirect('blog_home')

@@ -15,3 +15,7 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.user.email
+    
+    # def test(query):
+    #     return Blog.objects.filter(query)
+    
