@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.profiles',
     'apps.user_management',
     'apps.admin_management',
+    'apps.batch',
 ]
 
 #SITE_ID = 1 #newly add
@@ -133,6 +134,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "apps/admin_management/static", 
     BASE_DIR / "apps/blog/static", 
     BASE_DIR / "apps/profiles/static", 
+    BASE_DIR / "apps/batch/static", 
 ]
 
 # newly added - to display images in django admin
