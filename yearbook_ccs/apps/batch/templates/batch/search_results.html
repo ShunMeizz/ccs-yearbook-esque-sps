@@ -3,9 +3,9 @@
 {% endblock extra_styles %} {% block content %}
 <h2>Search Results for "{{ query }}"</h2>
 
-<div class="profile-list">
+<div class="profile-list d-flex flex-wrap justify-content-center gap-4 p-4">
   {% for profile in profiles %}
-  <div class="profile-circle">
+  <div class="profile-circle text-center">
     <img
       src="{{ profile.profile_pic.url }}"
       alt="{{ profile.first_name }}'s profile picture"

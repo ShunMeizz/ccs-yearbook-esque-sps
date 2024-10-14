@@ -1,60 +1,93 @@
 .batch-cover {
-  height: 30vh;
-  background-color: #007bff;
+  height: 40vh;
+  background: linear-gradient(45deg, #ffc875, #f6ddb8);
   color: white;
+  width: 100%;
+  padding: 0;
+}
+
+.batch-cover h2 {
+  margin: 0;
+  font-family: "Fatpen", cursive;
+  color: #e26901;
+  text-align: center;
+  font-size: clamp(24px, 5vw + 15px, 40px);
+  font-weight: 400;
+  z-index: 2;
+  text-shadow: 5px 5px 0 #fff, -5px 5px 0 #fff, 5px -5px 0 #fff,
+    -5px -5px 0 #fff, 5px 0 0 #fff, -5px 0 0 #fff, 0 5px 0 #fff, 0 -5px 0 #fff;
+}
+.title-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 30px; /* Adjust spacing between elements */
   position: relative;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
-.search-bar {
-  margin: 10px 0;
+.batch-title {
+  margin: 0;
+  font-family: "Fatpen", cursive;
+  color: black;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  z-index: 2;
+  text-shadow: 5px 5px 0 #fff, -5px 5px 0 #fff, 5px -5px 0 #fff,
+    -5px -5px 0 #fff, 5px 0 0 #fff, -5px 0 0 #fff, 0 5px 0 #fff, 0 -5px 0 #fff,
+    8px 8px 3px rgba(0, 0, 0, 0.2);
 }
 
-.filter-container {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 20px;
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: #ffc875;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.right-circle {
+  background-color: #e26901;
+}
+
+.orange-rectangle-design {
+  background-color: #e26901;
+  height: 10px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.search-filter input {
+  width: 200px;
 }
 
 .profile-list {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .profile-circle {
   max-width: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
 
 .profile-circle img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  display: block;
-  margin-bottom: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: white;
   padding: 5px;
 }
 
 .profile-name {
-  font-weight: bold;
+  font-weight: 500;
   margin: 0;
-  font-size: 15px;
 }
 
 .profile-quote {
   font-style: italic;
-  margin: 0;
-  color: #555;
-  font-size: 12px;
+  font-size: 13px;
 }

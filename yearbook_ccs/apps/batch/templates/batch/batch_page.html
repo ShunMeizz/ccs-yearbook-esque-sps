@@ -3,51 +3,79 @@
 
 {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/batch_page.css' %}" />
+<link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet"
+/>
 {% endblock extra_styles %}
 
 {% block content %}
-<div class="batch-cover">
-  <h2>
-    Profiles in {{ user_profile.batch_program }} - {{ user_profile.batch_year }}
+<div class="batch-cover container-fluid d-flex flex-column justify-content-center position-relative">
+  <h2 class="text-center">
+    {% if user_profile.program == 'BSCS' %}
+      Bachelor of Computer Science
+    {% else %}
+      Bachelor of Information Technology
+    {% endif %}
   </h2>
+  <div class="orange-rectangle-design"></div>
 
-  <!-- Search Bar -->
-  <div class="search-bar">
-    <form method="GET" action="{% url 'search_profile' %}">
-      <input type="text" name="search" placeholder="Search by Name" />
-      <button type="submit">Search</button>
+  <!-- Search and Filter -->
+  <div class="search-filter position-absolute top-0 end-0 m-3 d-flex align-items-center">
+    <form method="GET" action="{% url 'search_profile' %}" class="me-2">
+      <input type="text" class="form-control" name="search" placeholder="Search by Name" />
+    </form>
+
+    <form method="GET" action="{% url 'batch_page' %}" class="d-flex align-items-center">
+      <div class="dropdown me-2">
+        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Filter
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <select name="year" class="form-select">
+              <option value="">Batch Year</option>
+              {% for year in all_batch_years %}
+              <option value="{{ year }}" {% if year == request.GET.year %}selected{% endif %}>
+                {{ year }}
+              </option>
+              {% endfor %}
+            </select>
+          </li>
+          <li>
+            <select name="program" class="form-select">
+              <option value="">Program</option>
+              {% for program in available_programs %}
+              <option value="{{ program }}" {% if program == request.GET.program %}selected{% endif %}>
+                {{ program }}
+              </option>
+              {% endfor %}
+            </select>
+          </li>
+          <li class="text-center">
+            <button type="submit" class="btn btn-light btn-sm">Apply Filters</button>
+          </li>
+        </ul>
+      </div>
+      
     </form>
   </div>
-
-  <!-- Filter Form -->
-  <form method="GET" action="{% url 'batch_page' %}">
-    <div class="filter-container">
-      <select name="year" onchange="this.form.submit()">
-        <option value="">Select Batch Year</option>
-        {% for year in all_batch_years %}
-        <option value="{{ year }}" {% if year == request.GET.year %}selected{% endif %}>
-          {{ year }}
-        </option>
-        {% endfor %}
-      </select>
-
-      <select name="program" onchange="this.form.submit()">
-        <option value="">Select Program</option>
-        {% for program in available_programs %}
-        <option value="{{ program }}" {% if program == request.GET.program %}selected{% endif %}>
-          {{ program }}
-        </option>
-        {% endfor %}
-      </select>
-    </div>
-  </form>
 </div>
 
+<div class="title-container">
+  <div class="circle"></div>
+  <div class="circle right-circle"></div>
+  <h2 class="batch-title">BATCH {{ user_profile.batch_year }}</h2>
+  <div class="circle"></div>
+  <div class="circle right-circle"></div>
+</div>
 <!-- Profile List -->
-<div class="profile-list">
+<div class="profile-list d-flex flex-wrap justify-content-center gap-4 p-4">
+  
   {% for profile in filtered_profiles %}
-  <div class="profile-circle">
-    <img src="{{ profile.profile_pic.url }}" alt="{{ profile.first_name }}'s profile picture" />
+  <div class="profile-circle text-center">
+    <img src="{{ profile.profile_pic.url }}" 
+         alt="{{ profile.first_name }}'s profile picture" />
     <div class="profile-circle-details">
       <p class="profile-name">{{ profile.first_name }} {{ profile.last_name }}</p>
       <p class="profile-quote">"{{ profile.quote }}"</p>
@@ -57,4 +85,8 @@
   <p>No profiles found for this batch.</p>
   {% endfor %}
 </div>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 {% endblock %}
