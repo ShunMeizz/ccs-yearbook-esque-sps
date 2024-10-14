@@ -1,0 +1,49 @@
+.id-card {
+    width: 65%;
+    height: auto;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.36) 0px 1px 4px;
+}
+
+  .id-orange-header {
+    display: flex;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #ff912c;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .outer-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: #fff;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1.5px solid black;
+    border-left: 1.5px solid black;
+    border-right: 1.5px solid black;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #fff;
+    padding: 20px;
+  }

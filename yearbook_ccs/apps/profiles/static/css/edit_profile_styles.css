@@ -1,0 +1,92 @@
+body {
+    min-width: 400px;
+    background-image: none;
+    overflow-x: hidden;
+}
+
+main {
+    display: flex;
+}
+
+@media (max-width: 1000px) {
+    .pmain-div {
+      flex-direction: column;
+      justify-content: center;
+      align-content: flex-start;
+    }
+
+    #left-profile-div {
+        width: auto;
+    }
+}
+
+.headline, #profile-username {
+    font-family: "Fatpen", cursive;
+    color: #E26901;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
+}
+
+/* box designs */
+.darkorange-box {
+    position: absolute;
+    width: 420px;
+    height: 35vh;
+    background-color: #FFC875;
+    transform: rotate(-23deg);
+    z-index: -1;
+    left: -320px;
+}
+
+.lightorange-box {
+    background-color: #F6DDB8;
+    position: absolute;
+    width: 420px;
+    height: 35vh;
+    transform: rotate(15deg);
+    z-index: -1;
+    right: -300px;
+    bottom: -20px;
+}
+
+
+/* profile div containers */
+.pmain-div {
+    display: flex;
+    flex-grow:1;
+}
+
+.pmain-div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 15px;
+}
+
+#left-profile-div{
+    min-width: 35%;
+}
+
+#right-profile-div {
+    min-width: 65%;
+    flex-direction: column;
+    justify-content: baseline;
+}
+
+/* profile pic in left-profile-div */
+.profile-pic-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    padding: 15px;
+    gap: 15px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-pic-div > img {
+    width: 100%;
+}
