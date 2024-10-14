@@ -1,6 +1,16 @@
-{% for post in pending %}
-    <div>
-        {{post.title}}
-        {{post.content}}
-    </div>
-{% endfor %}
+{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
+
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
+{% endblock extra_styles %}
+
+{% block blog_content %}
+    {% for post in pending %}
+        <div>
+            {{post.title}}
+            {{post.content}}
+        </div>
+    {% endfor %}
+
+{% endblock %}

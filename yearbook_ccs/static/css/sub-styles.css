@@ -54,6 +54,10 @@
     font-family: fatpen;
 }
 
+.inter {
+    font-family: Inter, sans-serif;
+}
+
 .size-100 {
     font-size: 100px;
 }

@@ -1,27 +1,15 @@
-{% extends 'base.html' %} {% block title %}Blog Home{% endblock %} 
+{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
 
 {% load static %}
 {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
 {% endblock extra_styles %}
 
-{% block content %}
-<div>
-    <div class="blog-margin center">
-        <div class="blog-banner bg-orange center outline-white"> 
-            <div class="label size-100">
-                BLOGS
-            </div>
-        </div>
+
+{% block blog_content %}
+    <div>
+        <a href="{% url 'pending' %}">View pending posts</a>
     </div>
-
-    <div class="bar bg-black"></div>
-
-    <div class="bg-white home-padding col-layout">
-
-        <div>
-            <a href="{% url 'pending' %}">View pending posts</a>
-        </div>
     
         <!-- MODAL -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,7 +43,7 @@
     </div>
 
     <!-- input field -->
-    <div class="blog-post no-highlight blog-input mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div class="blog-post no-highlight blog-input mt-4 mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 80 80" fill="none">
                 <circle cx="40" cy="40" r="40" fill="#FF8384"/>
@@ -68,20 +56,42 @@
         Sorted by Latest
     </div>
 
+    
+    <!-- TEMPLATE -->
+
     <div>
         {% block blog_posts %}
             {% for post in posts %}
                 <form method="post", action="{% url 'delete_post' %}">
                     {% csrf_token %}
                     <div>
-                        {{user.username}}
-                        {{post.title}}
-                        {{post.content}}
-                        {% if post.media.url and post.media %}
-                            <img src="{{post.media.url}}">
-                        {% endif %}
-                        <input type="hidden" name="post_id" value="{{ post.id }}">
-                        <button type="submit">Delete</button>
+                        <div class="blog-post mt-4">
+                            <div class="coolvetica margin-20 size-18">
+                                {{user.username}}
+                            </div>
+                            
+                            {% if post.media.url and post.media %}
+                                <div class="image-container">
+                                    <img class="blog-image" src="{{post.media.url}}">
+                                </div>
+                            {% endif %}
+                            
+                            <div class="margin-20">
+                                <div class="coolvetica size-24 font-weight-bold mb-3">
+                                    {{post.title}}
+                                </div>
+                                <div class="inter size-18">
+                                    {{post.content}}
+                                <hr>
+                                <div>
+                                    View all comments
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <button type="submit">Delete</button>
+                        </div>
                     </div>
                 </form>
             {% endfor %}
@@ -93,28 +103,3 @@
 </div>
 
 {% endblock %}
-
-<!-- <div class="blog-post">
-    <div class="coolvetica margin-20 size-18">
-        shanley_sebial
-    </div>
-    <div>
-        <img src="{% static 'images/test.png' %}">
-    </div>
-    
-    <div class="margin-20">
-        <div class="coolvetica size-18">
-            TITLETILETILETIELTIEL
-        </div>
-        <div>
-            Lorem ipsum dolor sit amet consectetur. Augue sapien odio eget venenatis tempus euismod viverra faucibus volutpat. 
-            Pharetra ullamcorper tempus aenean eget ut penatibus. Habitant massa accumsan tellus mauris nec suspendisse eu lectus. Sit elementum elementum integer quis.
-
-            Scelerisque nulla at et pellentesque elementum nec. Turpis auctor porta rutrum ac bibendum id. 
-            At amet diam fermentum faucibus est erat quisque quam. Mauris vel habitant eu sit. Pellentesque tempor sociis sed tellus dis. Eget augue tristique diam enim id est mattis leo. Fermentum pellentesque sed in platea nec vulputate id tincidunt lorem.
-        </div>
-        <hr>
-        <div>
-            View all comments
-        </div>
-    </div> -->

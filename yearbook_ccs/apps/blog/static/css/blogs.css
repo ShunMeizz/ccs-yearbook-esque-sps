@@ -24,3 +24,14 @@
     border-radius: 10px;
     width: 300px; /*hard-coded ass shit*/
 }
+
+.image-container {
+    overflow:hidden;
+    width:100%;
+}
+
+.blog-image {
+    object-fit: cover;
+    width:100%;
+    aspect-ratio: 16/9;
+}

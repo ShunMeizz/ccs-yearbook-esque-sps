@@ -21,8 +21,15 @@ def blog_home(request):
         form = BlogForm() 
     return render(request,"blog/blog_home.html", {'form':form,'posts':posts,'user':user})
 
+# TEMP TO SHOW ALL BLOGS WITHOUT FILTER FROM ISAPPROVED. 
+# TO BE DELETED AFTER ISAPPROVED FILTERS ARE WORKING AND DONE
 def get_post():
     return Blog.objects.all()
+
+# TO USE FOR BLOGPAGE
+def approved_post(request):
+    approved = Blog.objects.filter(isApproved=1)
+    return render(request,"blog/blog_approved.html",{'approved':approved})
 
 def intermediary(request):
     return render(request, "blog/test.html")
