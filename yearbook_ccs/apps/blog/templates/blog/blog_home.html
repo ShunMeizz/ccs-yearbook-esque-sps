@@ -55,55 +55,9 @@
         Sorted by Latest
     </div>
 
-    
-    <!-- TEMPLATE -->
-
     <div>
-        {% block blog_posts %}
-            {% for post in posts %}
-                <form method="post" action="{% url 'delete_post' post.user_id %}">
-                    {% csrf_token %}
-                    <div>
-                        <div class="blog-post mt-4">
-                            <div class="margin-20 coolvetica size-18 d-flex justify-content-between">
-                                <div>
-                                    {{post.user.username}}
-                                </div>
-                                <div>
-                                    {{post.date|naturaltime}}
-                                </div>
-                            </div>
-
-                            {% if post.media.url and post.media %}
-                                <div class="image-container">
-                                    <img class="blog-image" src="{{post.media.url}}">
-                                </div>
-                            {% endif %}
-                            
-                            <div class="margin-20">
-                                <div class="coolvetica size-24 font-weight-bold mb-3">
-                                    {{post.title}}
-                                </div>
-                                <div class="inter size-18">
-                                    {{post.content}}
-                                <hr>
-                                <div>
-                                    View all comments
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            {% if request.user.id == post.user_id %}
-                                <input type="hidden" name="post_id" value="{{ post.id }}">
-                                <button type="submit">Delete</button>
-                            {% endif %}
-                        </div>
-                    </div>
-                </form>
-            {% endfor %}
-        {% endblock %}
+        {% include 'blog/blog_post.html' with blogs=posts %}
     </div>
-
 
     </div>
 </div>

@@ -24,7 +24,7 @@ def blog_home(request):
 def get_post():
     return Blog.objects.all().order_by("-date")
 
-# TO USE FOR BLOGPAGE
+# TO USE FOR FINISHED BLOGPAGE
 # def approved_post(request):
 #     approved = Blog.objects.filter(isApproved=1)
 #     return render(request,"blog/blog_pending.html",{'approved':approved})
@@ -33,15 +33,8 @@ def intermediary(request):
     return render(request, "blog/test.html")
 
 def pending_post(request):
-    pending = Blog.objects.filter(isApproved=-1)
+    pending = Blog.objects.filter(isApproved=-1, user=request.user)
     return render(request,"blog/blog_pending.html",{'pending':pending})
-
-# def delete_post(request, user_id):
-#     if request.method == "POST":
-#         post_id = request.POST.get('post_id')
-#         post = get_object_or_404(Blog,id=post_id)
-#         # post.delete()
-#         return redirect('blog_home')
 
 def delete_post(request, user_id):
     if request.method == "POST":

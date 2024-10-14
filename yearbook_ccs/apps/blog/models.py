@@ -20,7 +20,9 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.user.email
-    
-    # def test(query):
-    #     return Blog.objects.filter(query)
-    
+
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(UserAccount,on_delete=models.CASCADE,null=True,blank=True)
+    comment = models.CharField(max_length=150,null=False,blank=False)
+    date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
