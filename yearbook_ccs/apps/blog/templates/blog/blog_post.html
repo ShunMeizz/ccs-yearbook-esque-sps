@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
+{% extends 'blog/blog_home.html' %}{% block title %}Blog{% endblock %} 
 
 {% load static %}
 {% block extra_styles %}
@@ -6,14 +6,10 @@
 {% endblock extra_styles %}
 {% load humanize %}
 
-{% block blog_content %}
-<div>
-    <div class="coolvetica size-50 d-flex justify-content-center">
-        PENDING POSTS
-    </div>
-    {% block blog_post %}
-        {% for post in pending %}
-            {% if post.user_id == request.user.id %}
+<!-- #LATER GRRRRRRRRRRRRRR -->
+
+{% block blog_post %}
+        {% for post in posts %}
             <form method="post" action="{% url 'delete_post' post.user_id %}">
                 {% csrf_token %}
                 <div>
@@ -26,13 +22,13 @@
                                 {{post.date|naturaltime}}
                             </div>
                         </div>
-                        
+
                         {% if post.media.url and post.media %}
                             <div class="image-container">
                                 <img class="blog-image" src="{{post.media.url}}">
                             </div>
                         {% endif %}
-                        
+                            
                         <div class="margin-20">
                             <div class="coolvetica size-24 font-weight-bold mb-3">
                                 {{post.title}}
@@ -53,9 +49,5 @@
                     </div>
                 </div>
             </form>
-            {% endif %}
         {% endfor %}
-    {% endblock %}
-</div>
-
 {% endblock %}

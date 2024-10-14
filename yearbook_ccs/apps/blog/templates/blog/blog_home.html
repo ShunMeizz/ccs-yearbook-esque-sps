@@ -4,7 +4,7 @@
 {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
 {% endblock extra_styles %}
-
+{% load humanize %}
 
 {% block blog_content %}
     <div>
@@ -17,10 +17,10 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Post</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Blog</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body mr-2">
                     {% csrf_token %}
                     <div>
                      {{form.title}}
@@ -31,10 +31,9 @@
                     <div>
                         {{form.media}}
                     </div>
-                    <!-- <button type="submit">Submit</button> -->
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Post</button>
             </div>
         </div>
@@ -62,14 +61,19 @@
     <div>
         {% block blog_posts %}
             {% for post in posts %}
-                <form method="post", action="{% url 'delete_post' %}">
+                <form method="post" action="{% url 'delete_post' post.user_id %}">
                     {% csrf_token %}
                     <div>
                         <div class="blog-post mt-4">
-                            <div class="coolvetica margin-20 size-18">
-                                {{user.username}}
+                            <div class="margin-20 coolvetica size-18 d-flex justify-content-between">
+                                <div>
+                                    {{post.user.username}}
+                                </div>
+                                <div>
+                                    {{post.date|naturaltime}}
+                                </div>
                             </div>
-                            
+
                             {% if post.media.url and post.media %}
                                 <div class="image-container">
                                     <img class="blog-image" src="{{post.media.url}}">
@@ -89,8 +93,10 @@
                             </div>
                         </div>
                         <div>
-                            <input type="hidden" name="post_id" value="{{ post.id }}">
-                            <button type="submit">Delete</button>
+                            {% if request.user.id == post.user_id %}
+                                <input type="hidden" name="post_id" value="{{ post.id }}">
+                                <button type="submit">Delete</button>
+                            {% endif %}
                         </div>
                     </div>
                 </form>
