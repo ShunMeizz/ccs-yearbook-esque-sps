@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage
 from django.utils.html import format_html
 
 from .models import UserAccount
-from .forms import SignUpForm, LogInForm
+from .forms import SignUpForm, LogInForm, UpdateUserAccountForm
 from .tokens import profile_token
 
 import os
@@ -132,3 +132,23 @@ def home_view(request):
     return render(request, "home.html", {
         "name": f"{request.user.username}"
     })
+
+@login_required
+def account_view(request):
+    user = UserAccount.objects.get(pk = request.user.id)
+
+    if (not user):
+        return redirect('login')
+
+    if (request.method == 'POST'):
+        form = UpdateUserAccountForm(request.POST, instance = user)
+
+        if (form.is_valid()):
+            form.save()
+
+            return redirect('account')
+        
+    else:
+        form = UpdateUserAccountForm(instance = user)
+
+    return render(request, 'user_account/account.html', {'form': form})
