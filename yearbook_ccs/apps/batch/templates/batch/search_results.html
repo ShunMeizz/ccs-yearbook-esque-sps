@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/batch_page.css' %}" />
+{% endblock extra_styles %} {% block content %}
+<h2>Search Results for "{{ query }}"</h2>
+
+<div class="profile-list">
+  {% for profile in profiles %}
+  <div class="profile-circle">
+    <img
+      src="{{ profile.profile_pic.url }}"
+      alt="{{ profile.first_name }}'s profile picture"
+    />
+    <div class="profile-circle-details">
+      <p class="profile-name">
+        {{ profile.first_name }} {{ profile.last_name }}
+      </p>
+      <p class="profile-quote">"{{ profile.quote }}"</p>
+    </div>
+  </div>
+  {% empty %}
+  <p>No profiles found matching your search.</p>
+  {% endfor %}
+</div>
+
+<a href="{% url 'batch_page' %}">Back to Batch Page</a>
+{% endblock %}

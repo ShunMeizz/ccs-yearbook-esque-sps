@@ -1,22 +1,57 @@
-{% extends 'base.html' %} {% load static %} {% block extra_styles %}
-<link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
+{% extends 'base.html' %}
+{% load static %}
 
-{% endblock extra_styles %} {% block before-main %}
-<h1>BATCH PAGE!</h1>
-{% endblock %} {% block content %}
-<h1>Profiles in {{ user_profile.program }} - {{ user_profile.batch_year }}</h1>
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/batch_page.css' %}" />
+{% endblock extra_styles %}
 
+{% block content %}
+<div class="batch-cover">
+  <h2>
+    Profiles in {{ user_profile.batch_program }} - {{ user_profile.batch_year }}
+  </h2>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <form method="GET" action="{% url 'search_profile' %}">
+      <input type="text" name="search" placeholder="Search by Name" />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <!-- Filter Form -->
+  <form method="GET" action="{% url 'batch_page' %}">
+    <div class="filter-container">
+      <select name="year" onchange="this.form.submit()">
+        <option value="">Select Batch Year</option>
+        {% for year in all_batch_years %}
+        <option value="{{ year }}" {% if year == request.GET.year %}selected{% endif %}>
+          {{ year }}
+        </option>
+        {% endfor %}
+      </select>
+
+      <select name="program" onchange="this.form.submit()">
+        <option value="">Select Program</option>
+        {% for program in available_programs %}
+        <option value="{{ program }}" {% if program == request.GET.program %}selected{% endif %}>
+          {{ program }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </form>
+</div>
+
+<!-- Profile List -->
 <div class="profile-list">
   {% for profile in filtered_profiles %}
-  <div class="profile-card">
-    <img
-      src="{{ profile.profile_pic.url }}"
-      alt="{{ profile.first_name }}'s profile picture"
-    />
-    <h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
-    <p>Quote: {{ profile.quote }}</p>
-    <p>Hobbies: {{ profile.hobbies }}</p>
-    <p>Batch Year: {{ profile.batch_year }}</p>
+  <div class="profile-circle">
+    <img src="{{ profile.profile_pic.url }}" alt="{{ profile.first_name }}'s profile picture" />
+    <div class="profile-circle-details">
+      <p class="profile-name">{{ profile.first_name }} {{ profile.last_name }}</p>
+      <p class="profile-quote">"{{ profile.quote }}"</p>
+    </div>
   </div>
   {% empty %}
   <p>No profiles found for this batch.</p>

@@ -1,0 +1,60 @@
+.batch-cover {
+  height: 30vh;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.search-bar {
+  margin: 10px 0;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.profile-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+
+.profile-circle {
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-circle img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 5px;
+}
+
+.profile-name {
+  font-weight: bold;
+  margin: 0;
+  font-size: 15px;
+}
+
+.profile-quote {
+  font-style: italic;
+  margin: 0;
+  color: #555;
+  font-size: 12px;
+}
