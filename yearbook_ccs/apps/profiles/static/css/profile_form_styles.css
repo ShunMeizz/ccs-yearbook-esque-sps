@@ -171,3 +171,8 @@ textarea:focus + label, textarea:not(:placeholder-shown) + label{
 .black-btn {
     background: #473F3B;
 }
+
+.error-message {
+    margin-left: 50px;
+    color: red;
+}
