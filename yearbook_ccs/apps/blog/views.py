@@ -7,19 +7,29 @@ from .forms import BlogForm
 @login_required
 def blog_home(request):
     posts = get_post()
+    user = request.user
     if request.method == "POST":
         form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
             blog = form.save(commit=False)
             blog.user_id = request.user.id
             blog.save()
-            return render(request,"blog/blog_home.html", {'form':form,'blog':blog,'posts':posts})
+            print()
+            # return render(request,"blog/blog_home.html", {'form':form,'blog':blog,'posts':posts})
+            return redirect("intermediary")
     else:
         form = BlogForm() 
-    return render(request,"blog/blog_home.html", {'form':form,'posts':posts})
+    return render(request,"blog/blog_home.html", {'form':form,'posts':posts,'user':user})
 
 def get_post():
     return Blog.objects.all()
+
+def intermediary(request):
+    return render(request, "blog/test.html")
+
+def pending_post(request):
+    pending = Blog.objects.filter(isApproved=-1)
+    return render(request,"blog/blog_pending.html",{'pending':pending})
 
 def delete_post(request):
     if request.method == "POST":

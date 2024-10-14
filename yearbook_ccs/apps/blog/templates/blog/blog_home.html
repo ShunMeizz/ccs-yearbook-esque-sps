@@ -18,10 +18,21 @@
     <div class="bar bg-black"></div>
 
     <div class="bg-white home-padding col-layout">
-        <div class="center col-layout">
-            
-            <div class="blog-post margin-20 p-4">
-                <form method="post" enctype="multipart/form-data">
+
+        <div>
+            <a href="{% url 'pending' %}">View pending posts</a>
+        </div>
+    
+        <!-- MODAL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="post" enctype="multipart/form-data">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Post</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                     {% csrf_token %}
                     <div>
                      {{form.title}}
@@ -32,31 +43,51 @@
                     <div>
                         {{form.media}}
                     </div>
-                    <button type="submit">Submit</button>
-                </form>
-                {{blog.user.username}}
+                    <!-- <button type="submit">Submit</button> -->
             </div>
-            
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Post</button>
+            </div>
         </div>
-
-        <div class="blog-post margin-20 p-4">
-            <input type="text" placeholder="What's on your mind?">
         </div>
+        </form>
+    </div>
 
+    <!-- input field -->
+    <div class="blog-post no-highlight blog-input mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="40" fill="#FF8384"/>
+            </svg>
+                <input type="text" class="blog-make" placeholder="What's on your mind?" readonly>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        Sorted by Latest
+    </div>
+
+    <div>
         {% block blog_posts %}
             {% for post in posts %}
                 <form method="post", action="{% url 'delete_post' %}">
                     {% csrf_token %}
                     <div>
-                        {{post.id}}
+                        {{user.username}}
                         {{post.title}}
-                        <!-- <img src="{{post.media.url}}"> -->
+                        {{post.content}}
+                        {% if post.media.url and post.media %}
+                            <img src="{{post.media.url}}">
+                        {% endif %}
                         <input type="hidden" name="post_id" value="{{ post.id }}">
                         <button type="submit">Delete</button>
                     </div>
                 </form>
             {% endfor %}
         {% endblock %}
+    </div>
+
 
     </div>
 </div>

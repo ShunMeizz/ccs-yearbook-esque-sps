@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block title %}Blog Home{% endblock %} 
+
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
+{% endblock extra_styles %}
+
+{% block content %}
+<div>
+    <div class="blog-margin center">
+        <div class="blog-banner bg-orange center outline-white"> 
+            <div class="label size-100">
+                BLOGS
+            </div>
+        </div>
+    </div>
+
+    <div class="bar bg-black"></div>
+
+    <div class="bg-white home-padding col-layout">
+
+    {% block blog_content %}
+
+    {% endblock %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- <div class="blog-post">
+    <div class="coolvetica margin-20 size-18">
+        shanley_sebial
+    </div>
+    <div>
+        <img src="{% static 'images/test.png' %}">
+    </div>
+    
+    <div class="margin-20">
+        <div class="coolvetica size-18">
+            TITLETILETILETIELTIEL
+        </div>
+        <div>
+            Lorem ipsum dolor sit amet consectetur. Augue sapien odio eget venenatis tempus euismod viverra faucibus volutpat. 
+            Pharetra ullamcorper tempus aenean eget ut penatibus. Habitant massa accumsan tellus mauris nec suspendisse eu lectus. Sit elementum elementum integer quis.
+
+            Scelerisque nulla at et pellentesque elementum nec. Turpis auctor porta rutrum ac bibendum id. 
+            At amet diam fermentum faucibus est erat quisque quam. Mauris vel habitant eu sit. Pellentesque tempor sociis sed tellus dis. Eget augue tristique diam enim id est mattis leo. Fermentum pellentesque sed in platea nec vulputate id tincidunt lorem.
+        </div>
+        <hr>
+        <div>
+            View all comments
+        </div>
+    </div> -->
