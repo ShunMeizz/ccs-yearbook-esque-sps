@@ -69,6 +69,12 @@ header nav ul li a:hover {
   background-color: #292929;
 }
 
+.navbar-dropdown {
+  display: flex;
+  justify-content: right;
+  align-self: right;
+}
+
 /* Main Content */
 main {
   flex-grow: 1;
