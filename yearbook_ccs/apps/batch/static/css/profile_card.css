@@ -1,0 +1,33 @@
+.btn-prev,
+.btn-next {
+  background: transparent; /* No background color */
+  border: none; /* Remove border */
+  color: #e26901; /* Set button text color */
+  font-size: clamp(24px, 5vw + 15px, 40px); /* Responsive font size */
+  cursor: pointer; /* Change cursor to pointer */
+  text-align: center; /* Center align text */
+  z-index: 2; /* Ensure buttons are on top */
+}
+
+/* Optional hover effect */
+.btn-prev:hover,
+.btn-next:hover {
+  text-decoration: underline; /* Optional: underline text on hover */
+}
+
+.modal-content {
+  border-radius: 8px; /* Rounded corners for the modal */
+}
+
+.left-column {
+  border-right: 1px solid #ddd; /* Add border between columns */
+  padding-right: 15px; /* Space between left and right column */
+}
+
+.social-links img {
+  transition: transform 0.3s; /* Add hover effect */
+}
+
+.social-links img:hover {
+  transform: scale(1.1); /* Slightly enlarge icon on hover */
+}
