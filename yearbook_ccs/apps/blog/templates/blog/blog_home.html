@@ -10,39 +10,9 @@
     <div>
         <a href="{% url 'pending' %}">View pending posts</a>
     </div>
-    
-        <!-- MODAL -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="post" enctype="multipart/form-data">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Blog</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body mr-2">
-                    {% csrf_token %}
-                    <div>
-                     {{form.title}}
-                    </div>
-                    <div>
-                        {{form.content}}
-                    </div>
-                    <div>
-                        {{form.media}}
-                    </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Post</button>
-            </div>
-        </div>
-        </div>
-        </form>
-    </div>
 
     <!-- input field -->
-    <div class="blog-post no-highlight blog-input mt-4 mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div class="blog-post no-highlight blog-input mt-4 mb-5" data-bs-toggle="modal" data-bs-target="#blogpostModal">
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 80 80" fill="none">
                 <circle cx="40" cy="40" r="40" fill="#FF8384"/>
@@ -61,5 +31,36 @@
 
     </div>
 </div>
+
+<!-- MODAL -->
+<div class="modal fade" id="blogpostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="true">
+    <form method="post" enctype="multipart/form-data">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Blog</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mr-2">
+                    {% csrf_token %}
+                    <div>
+                        {{ form.title }}
+                    </div>
+                    <div>
+                        {{ form.content }}
+                    </div>
+                    <div>
+                        {{ form.media }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 {% endblock %}

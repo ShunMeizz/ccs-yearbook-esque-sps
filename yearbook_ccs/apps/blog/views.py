@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Blog
+from .models import Blog, Comment
 
-from .forms import BlogForm
+from .forms import BlogForm, CommentForm
 
 @login_required
 def blog_home(request):
@@ -18,6 +18,15 @@ def blog_home(request):
     else:
         form = BlogForm() 
     return render(request,"blog/blog_home.html", {'form':form,'posts':posts})
+
+def comment_section(request):
+    comments = Comment.objects.all()
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.blog_id = 10
+            comment.user_id = request.user.id
 
 # TEMP TO SHOW ALL BLOGS WITHOUT FILTER FROM ISAPPROVED. 
 # TO BE DELETED AFTER ISAPPROVED FILTERS ARE WORKING AND DONE

@@ -35,7 +35,7 @@
                             <hr>
                         </div>
                         <div>
-                            View all comments
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#commentModal">View all comments</a>
                         </div>
                     </div>
                 <div>
@@ -49,3 +49,22 @@
     {% endfor %}
 {% endblock %}
 </div>
+
+<!-- Comments Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          dakhjkahjkd
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+            
+            <button type="button" class="btn btn-primary">Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
