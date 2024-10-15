@@ -1,0 +1,13 @@
+<div class="comment">
+    <div class="comment-header">
+        <img class="comment-icon" src="{{ comment.author.profile.profile_pic.url }}" alt="">
+        <h2 class="comment-author">{{ comment.author.username }}</h2>
+        <h4 class="comment-date">{{ comment.date_created }}</h4>
+    </div>
+
+    <div class="comment-body">
+        {{ comment.comment }}
+    </div>
+
+    {{ user.username }}
+</div>
