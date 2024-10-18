@@ -2,16 +2,19 @@
 {% load static %} 
 
 {% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'css/comment_styles.css' %}">
-{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
+{% endblock %} 
 
 {% block title %}Profile Comments{% endblock %} 
+{% block before-main %} {% endblock %} 
 
-{% block before-main %}
-{% endblock %}
-
-{% block content %}
+{% block content %} 
     {% for comment in comments %}
-        {% include 'comment.html' with comment=comment & user=user %}
-    {% endfor %}
-{% endblock %}
+        {% include 'comment.html' with comment=comment user=user %} 
+    {% endfor %} 
+{%endblock %}
+
+
+
+
+

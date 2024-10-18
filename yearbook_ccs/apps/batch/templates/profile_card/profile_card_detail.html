@@ -1,0 +1,52 @@
+<!--THIS INCLUDES the Profle COMMENT modal-->
+{% load static %} {% block profile_modal %}
+<!-- Modal Structure -->
+<div
+	class="modal fade"
+	id="profileModal"
+	tabindex="-1"
+	aria-labelledby="profileModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content" id="modalContent" style="width: 600px">
+			<div class="modal-header">
+				<h5 class="modal-title" id="profileModalLabel"></h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+
+			<div class="modal-body d-flex" id="modalBody">
+				<!-- Left Column -->
+				<div
+					class="left-column d-flex flex-column align-items-center"
+					style="width: 50%"
+				>
+					<div class="d-flex justify-content-between w-100">
+						<button id="prevProfileBtn" class="btn btn-prev">&lt;</button>
+						<img
+							id="profileImage"
+							class="img-fluid rounded-circle mb-3"
+							style="width: 120px; height: 120px"
+							alt="Profile Image"
+						/>
+						<button id="nextProfileBtn" class="btn btn-next">&gt;</button>
+					</div>
+				</div>
+
+				<!-- Right Column -->
+				<div class="right-column" style="width: 50%">
+					<p><strong>Quote:</strong> <span id="profileQuote"></span></p>
+					<p><strong>Hobbies:</strong> <span id="profileHobbies"></span></p>
+				</div>
+			</div>
+
+			<button id="viewCommentBtn" class="btn btn-primary">View Comment</button>
+		</div>
+	</div>
+</div>
+{% endblock %}
