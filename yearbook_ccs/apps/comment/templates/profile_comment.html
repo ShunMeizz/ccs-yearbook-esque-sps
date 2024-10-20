@@ -21,7 +21,7 @@
     </div>
 
     <div class="comment-button-group">
-        {% if request.user == comment.author %}
+        {% if request.user == comment.author or request.user == comment.profile.user %}
         <form action="{% url 'delete_comment' comment.id %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn-delete-comment">· Delete</button>
