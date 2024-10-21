@@ -1,57 +1,8 @@
 {% extends 'base.html' %} {% block title %}Home - Yearbook CCS{% endblock %}
 {%block content %}
 
-<div class="home-banner center">
-
-  <hr>
-  <div>
-    <div class="label size-100 outline-white black">COMPUTER SCIENCE</div>
-    <div class="tape bg-light-yellow center">
-      <div class="fatpen black size-50">
-        BATCH 2026
-      </div>
-    </div>
-  </div>
-
-  <hr>
-</div>
-
-<div class="home-padding center">
-  <div>
-    <div class="label size-50 orange center">MEET YOUR BATCHMATES</div>
-    <div class="temp-profile center">
-      <div class="white">test</div>
-    </div>
-  </div>
-</div>
-
-<div class="blog-section">
-  <div class="center">
-    <div class="label size-50 black">RECENT BLOG POSTS</div>
-  </div>
-</div>
-
-<div class="center">
-  <div>
-    <div class="home-margin tape2 center">
-      <div class="label black size-50">PROGRAMS</div>
-    </div>
-    
-    <div class="row-box">
-      <div class="label orange size-50 neg-10">
-        <div>COMPUTER</div>
-        <div>SCIENCE</div>
-      </div>
-      <div class="label orange size-50 pos-10">
-        <div>INFORMATION</div>
-        <div>TECHNOLOGY</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
+<h1>Welcome to the Website {{ name }}</h1>
+<p>This is the homepage!</p>
 <!--Logout should be performed via POST request-->
 <form method="POST" action="{% url 'logout' %}">
   {% csrf_token %}

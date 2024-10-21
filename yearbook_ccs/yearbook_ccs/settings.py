@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'imagekit', 
     'apps.blog',
     'apps.profiles',
     'apps.user_management',
     'apps.admin_management',
     'apps.comment',
-    'django.contrib.humanize', #Added for blog posts
 ]
 
 #SITE_ID = 1 #newly add
