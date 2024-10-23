@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		document.getElementById("profileImage").src = profile.image;
 		document.getElementById("profileQuote").textContent = profile.quote;
 		document.getElementById("profileHobbies").textContent = profile.hobbies;
+		document.getElementById("profileUsername").textContent = profile.user_account.username;
 		const socialLink = document.getElementById("socialLink");
 		if (socialLink) {
 			if (profile.social) {
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		quote: link.getAttribute("data-quote"),
 		hobbies: link.getAttribute("data-hobbies"),
 		social: link.getAttribute("data-social"),
+		username: link.getAttribute("data-username"),
 		id: link.getAttribute("data-id"),
 	}));
 

@@ -62,7 +62,6 @@ it will change the header to BSIT or BSCS. -->
     </form>
   </div>
 </div>
-
 <!--for BATCH PAGE Under Cover Photo: Based on the current user info or search or filter, 
 it will change the Batch Year accordingly-->
 <div class="title-container">
@@ -80,7 +79,7 @@ it will change the Batch Year accordingly-->
 </div>
 
 <!-- Profile Circles: When clicked, details are passed to the Profile Card -->
-<div class="profile-list d-flex flex-wrap justify-content-center gap-4 p-4">
+<div class="profile-list d-flex flex-wrap justify-content-center gap-5">
   {% for profile in filtered_profiles %}
   <div class="profile-circle text-center">
     <a href="#" class="profile-link" 
@@ -88,13 +87,25 @@ it will change the Batch Year accordingly-->
       data-bs-target="#profileModal"
       data-name="{{ profile.first_name }} {{ profile.last_name }}"
       data-image="{{ profile.profile_pic.url }}"
+      data-username="{{ profile.user_account.username }}"
       data-quote="{{ profile.quote }}"
       data-hobbies="{{ profile.hobbies }}" 
-      data-social="{{ profile.social_link }}"> 
-   <img src="{{ profile.profile_pic.url }}" 
-        alt="{{ profile.first_name }}'s profile picture" 
-        class="profile-image" />
+      data-social="{{ profile.social_link }}">
+      <div class="profile-wrapper d-flex align-items-center justify-content-center position-relative">
+        <img src="{{ profile.profile_pic.url }}" 
+          alt="{{ profile.first_name }}'s profile picture"
+          style="width: 120px; height: 120px; position: relative; z-index: 2;"
+          class="profile-image" />
+        <img
+          id="profileFrame"
+          class="img-fluid rounded-circle"
+          style="width: 160px; height: 150px; position: absolute;"
+          src="{% static 'images/profile_frame.png' %}"
+          alt="Profile Frame"
+        />
+      </div>
     </a>
+    
     <div class="profile-circle-details">
         <p class="profile-name">{{ profile.first_name }} {{ profile.last_name }}</p>
         <p class="profile-quote">"{{ profile.quote }}"</p>
@@ -106,7 +117,4 @@ it will change the Batch Year accordingly-->
 </div>
 {% include 'profile_card/profile_card_detail.html' %}
 {% include 'profile_card/profile_card_comment.html' %}
-{% endblock %}
-{% block extra_scripts %}
-<script src="{% static 'js/profile_card_script.js' %}"></script>
 {% endblock %}

@@ -9,7 +9,7 @@
 	aria-hidden="true"
 >
 	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content" id="modalContent" style="width: 600px">
+		<div class="modal-content" id="modalContent" style="width: 900px;">
 			<div class="modal-header">
 				<h5 class="modal-title" id="profileModalLabel"></h5>
 				<button
@@ -24,22 +24,30 @@
 				<!-- Left Column -->
 				<div
 					class="left-column d-flex flex-column align-items-center"
-					style="width: 50%"
+					style="width: 40%"
 				>
-					<div class="d-flex justify-content-between w-100">
-						<button id="prevProfileBtn" class="btn btn-prev">&lt;</button>
-						<img
-							id="profileImage"
-							class="img-fluid rounded-circle mb-3"
-							style="width: 120px; height: 120px"
-							alt="Profile Image"
-						/>
-						<button id="nextProfileBtn" class="btn btn-next">&gt;</button>
-					</div>
+				<p><strong>Username</strong> <span id="profileUsername"></span></p>
+				<div class="profile-wrapper d-flex align-items-center justify-content-center position-relative">
+					<button id="prevProfileBtn" class="btn btn-prev position-absolute start-0">&lt;</button>
+					<img
+        				id="profileImage"
+        				class="img-fluid rounded-circle"
+        				style="width: 120px; height: 120px; position: relative; z-index: 2;"
+        				alt="Profile Image"
+    				/>
+    				<img
+        				id="profileFrame"
+        				class="img-fluid rounded-circle"
+        				style="width: 160px; height: 150px; position: absolute;"
+        				src="{% static 'images/profile_frame.png' %}"
+        				alt="Profile Frame"
+    				/>
+					<button id="nextProfileBtn" class="btn btn-next position-absolute end-0">&gt;</button>
+				  </div>
 				</div>
 
 				<!-- Right Column -->
-				<div class="right-column" style="width: 50%">
+				<div class="right-column" style="width: 55%; position:absolute; right: 0;">
 					<p><strong>Quote:</strong> <span id="profileQuote"></span></p>
 					<p><strong>Hobbies:</strong> <span id="profileHobbies"></span></p>
 				</div>

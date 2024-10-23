@@ -1,33 +1,44 @@
+.profile-wrapper {
+	width: 190px; 
+	height: 140px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .btn-prev,
 .btn-next {
-	background: transparent; /* No background color */
-	border: none; /* Remove border */
-	color: #e26901; /* Set button text color */
-	font-size: clamp(24px, 5vw + 15px, 40px); /* Responsive font size */
-	cursor: pointer; /* Change cursor to pointer */
-	text-align: center; /* Center align text */
-	z-index: 2; /* Ensure buttons are on top */
+	background: transparent;
+	border: none;
+	font-family: "Fatpen", cursive;
+	font-weight: 300;
+	color: #e26901;
+	font-size: 20px;
+	cursor: pointer;
+	text-align: center;
+	z-index: 2;
+	text-shadow: 5px 5px 0 #fff, -5px 5px 0 #fff, 5px -5px 0 #fff,
+		-5px -5px 0 #fff, 5px 0 0 #fff, -5px 0 0 #fff, 0 5px 0 #fff, 0 -5px 0 #fff,
+		8px 8px 3px rgba(0, 0, 0, 0.2);	
+	line-height: 1;
+	padding: 0;
 }
-
-/* Optional hover effect */
 .btn-prev:hover,
 .btn-next:hover {
-	text-decoration: underline; /* Optional: underline text on hover */
+	color: #ff8c00;
 }
+
 
 .modal-content {
-	border-radius: 8px; /* Rounded corners for the modal */
+	border-radius: 8px;
 }
 
-.left-column {
-	border-right: 1px solid #ddd; /* Add border between columns */
-	padding-right: 15px; /* Space between left and right column */
-}
 
 .social-links img {
-	transition: transform 0.3s; /* Add hover effect */
+	transition: transform 0.3s;
 }
 
 .social-links img:hover {
-	transform: scale(1.1); /* Slightly enlarge icon on hover */
+	transform: scale(1.1);
 }
