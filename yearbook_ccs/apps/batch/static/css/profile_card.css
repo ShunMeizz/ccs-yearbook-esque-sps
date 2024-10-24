@@ -1,3 +1,7 @@
+.modal {
+    --bs-modal-zindex: 1055;
+    --bs-modal-width: 1500px;
+}
 .profile-wrapper {
 	width: 190px; 
 	height: 140px;
@@ -5,6 +9,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-top: 20px;
 }
 
 .btn-prev,
@@ -17,6 +22,7 @@
 	font-size: 20px;
 	cursor: pointer;
 	text-align: center;
+	transform: translateX(-50%) rotate(-5deg); 
 	z-index: 2;
 	text-shadow: 5px 5px 0 #fff, -5px 5px 0 #fff, 5px -5px 0 #fff,
 		-5px -5px 0 #fff, 5px 0 0 #fff, -5px 0 0 #fff, 0 5px 0 #fff, 0 -5px 0 #fff,
@@ -28,11 +34,138 @@
 .btn-next:hover {
 	color: #ff8c00;
 }
+.right-column {
+    width: 55%; 
+	right: 0;
+    position: absolute; 
+    margin-right: 3px;
+	margin-top: 25px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    height: 85%; 
+}
+.comment-button {
+    font-size: 13px; 
+    padding: 5px;
+    border-radius: 5px; 
+    background-color: #FF912C; 
+    color: white;
+    border: none; 
+    cursor: pointer; 
+}
 
+.comment-button:hover {
+    background-color: #E26901; 
+}
+.profile-quote {
+    max-height: 40px;
+    overflow: hidden;  
+}
 
 .modal-content {
 	border-radius: 8px;
 }
+
+#modalContent, #modalBody{
+	border: 2px solid #292929;
+	margin: 12px;
+	border-radius: 5px;
+}
+#profileUsername{
+    font-family: "Fatpen", cursive;
+    font-weight: 300;
+    color: #e26901;
+    font-size: 1.5em;
+    cursor: pointer;
+    text-align: center;
+    position: absolute; 
+    top: -10px;
+    left: 50%; 
+    transform: translateX(-50%) rotate(-5deg); 
+    z-index: 3;
+    text-shadow: 
+        5px 5px 0 #fff, 
+        -5px 5px 0 #fff, 
+        5px -5px 0 #fff,
+        -5px -5px 0 #fff, 
+        5px 0 0 #fff, 
+        -5px 0 0 #fff, 
+        0 5px 0 #fff, 
+        0 -5px 0 #fff,
+        8px 8px 3px rgba(0, 0, 0, 0.2);
+}
+#profileModalLabel{
+	font-family: "Fatpen", cursive;
+    font-weight: 300;
+    color: #292929;
+    font-size: 1em;
+}
+.logo {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    opacity: 0.15; 
+    width: 200px; 
+    height: auto; 
+    pointer-events: none; 
+}
+
+
+#socialContainer {
+	display: flex;
+	flex-direction: column; 
+	align-items: center; 
+	justify-content: center; 
+	text-align: center;
+  }
+  
+  #socialIconsContainer a {
+	justify-content: center; 
+	margin-top: 5px; 
+  }
+  
+  #socialIconsContainer img {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-right: 5px;
+  }
+
+.profile-program-background {
+    background: linear-gradient(90deg, #FF912C, #E26901); 
+    width: 97%;  
+    padding: 0 10px; 
+    height: 25px; 
+    display: block; 
+}
+
+.profile-program-text {
+    color: white; 
+    font-size: 13px; 
+    margin: 0; 
+    text-align: left;
+    line-height: 25px; 
+}
+.profile-quote-box,
+.profile-hobbies-box {
+    position: relative; 
+    padding: 6px; 
+    border-radius: 10px; 
+    border: 1px #FF912C solid;
+    z-index: 1; 
+	width: 95%;    
+	overflow-y: auto;  
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.profile-quote-box span,
+.profile-hobbies-box span {
+    color: #333; /* Text color inside the boxes */
+    font-size: 13px; /* Font size for better visibility */
+}
+
 
 
 .social-links img {

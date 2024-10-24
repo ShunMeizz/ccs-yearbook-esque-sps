@@ -86,11 +86,16 @@ it will change the Batch Year accordingly-->
       data-bs-toggle="modal" 
       data-bs-target="#profileModal"
       data-name="{{ profile.first_name }} {{ profile.last_name }}"
-      data-image="{{ profile.profile_pic.url }}"
       data-username="{{ profile.user_account.username }}"
+      data-program="{{profile.program}}"
+      data-batch-year="{{profile.batch_year}}"
+      data-image="{{ profile.profile_pic.url }}"
       data-quote="{{ profile.quote }}"
-      data-hobbies="{{ profile.hobbies }}" 
-      data-social="{{ profile.social_link }}">
+      data-hobbies="{{ profile.hobbies }}"
+      data-facebook="{{ profile.visible_social_links.facebook|default_if_none:''}}"
+      data-linkedin="{{ profile.visible_social_links.linkedin|default_if_none:''}}"
+      data-github="{{ profile.visible_social_links.github|default_if_none:''}}"
+      data-instagram="{{ profile.visible_social_links.instagram|default_if_none:''}}">
       <div class="profile-wrapper d-flex align-items-center justify-content-center position-relative">
         <img src="{{ profile.profile_pic.url }}" 
           alt="{{ profile.first_name }}'s profile picture"
@@ -108,7 +113,7 @@ it will change the Batch Year accordingly-->
     
     <div class="profile-circle-details">
         <p class="profile-name">{{ profile.first_name }} {{ profile.last_name }}</p>
-        <p class="profile-quote">"{{ profile.quote }}"</p>
+        <p class="profile-quote" id="quoteText">"{{ profile.quote }}"</p>
     </div>
   </div>
   {% empty %}
@@ -117,4 +122,6 @@ it will change the Batch Year accordingly-->
 </div>
 {% include 'profile_card/profile_card_detail.html' %}
 {% include 'profile_card/profile_card_comment.html' %}
+
+
 {% endblock %}

@@ -8,26 +8,18 @@
 	aria-labelledby="profileModalLabel"
 	aria-hidden="true"
 >
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content" id="modalContent" style="width: 900px;">
-			<div class="modal-header">
-				<h5 class="modal-title" id="profileModalLabel"></h5>
-				<button
-					type="button"
-					class="btn-close"
-					data-bs-dismiss="modal"
-					aria-label="Close"
-				></button>
-			</div>
-
-			<div class="modal-body d-flex" id="modalBody">
+	<div class="modal-dialog modal-dialog-centered" style="width: 600px; max-width: 90%;">
+		<div class="modal-content" id="modalContent">
+			<img src="/static/images/cit_logo.png" alt="Logo" class="logo" /> 
+			<div class="modal-body d-flex" id="modalBody" style="height: 260px;">
 				<!-- Left Column -->
 				<div
 					class="left-column d-flex flex-column align-items-center"
 					style="width: 40%"
 				>
-				<p><strong>Username</strong> <span id="profileUsername"></span></p>
+				
 				<div class="profile-wrapper d-flex align-items-center justify-content-center position-relative">
+					<p><span id="profileUsername"  style="text-transform: uppercase;"></span></p>
 					<button id="prevProfileBtn" class="btn btn-prev position-absolute start-0">&lt;</button>
 					<img
         				id="profileImage"
@@ -44,16 +36,30 @@
     				/>
 					<button id="nextProfileBtn" class="btn btn-next position-absolute end-0">&gt;</button>
 				  </div>
+				  <p style="margin: 2px; margin-top: 15px;"><strong>BATCH <span id="profileBatchYear"></strong></span></p>
+				  <div id="socialContainer" style="display: none;">
+					<p style="margin: 1px; font-size: 12px;">Connect with me on</p>
+					<div id="socialIconsContainer" class="social-icons"></div>
+				  </div>
+				  </div>
 				</div>
 
 				<!-- Right Column -->
-				<div class="right-column" style="width: 55%; position:absolute; right: 0;">
-					<p><strong>Quote:</strong> <span id="profileQuote"></span></p>
-					<p><strong>Hobbies:</strong> <span id="profileHobbies"></span></p>
-				</div>
+				<div class="right-column">
+					<h5 id="profileModalLabel"></h5>
+					<div class="profile-program-background">
+						<p class="profile-program-text">
+							<span>Bachelor of Science in </span>
+							<span id="profileProgram"></span>
+						</p>
+					</div>
+					<strong>Quote:</strong><div class="profile-quote-box"><span id="profileQuote"></span></div>
+					<strong>Hobbies:</strong><div class="profile-hobbies-box"><span id="profileHobbies"></span></div>
+					<div class="d-flex justify-content-end mt-2 me-3" >
+                        <button id="viewCommentBtn" class="comment-button">View Comment</button>
+                    </div>
+				</div>	
 			</div>
-
-			<button id="viewCommentBtn" class="btn btn-primary">View Comment</button>
 		</div>
 	</div>
 </div>

@@ -14,38 +14,68 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Populate the Profile Modal with data
 	function populateProfileModal(profile) {
 		document.getElementById("profileModalLabel").textContent = profile.name;
+		document.getElementById("profileUsername").textContent = profile.username;
+		document.getElementById("profileProgram").textContent = 
+		profile.program === "BSCS" ? "Computer Science" : 
+		profile.program === "BSIT" ? "Information Technology" : 
+		profile.program;
+		document.getElementById("profileBatchYear").textContent = profile.batch_year;
 		document.getElementById("profileImage").src = profile.image;
 		document.getElementById("profileQuote").textContent = profile.quote;
 		document.getElementById("profileHobbies").textContent = profile.hobbies;
-		document.getElementById("profileUsername").textContent = profile.user_account.username;
-		const socialLink = document.getElementById("socialLink");
-		if (socialLink) {
-			if (profile.social) {
-				socialLink.href = profile.social;
-				socialLink.style.display = "block";
-			} else {
-				socialLink.style.display = "none";
-			}
-		}
+		
+		
+		const socialIconsContainer = document.getElementById("socialIconsContainer");
+        socialIconsContainer.innerHTML = ''; 
+		const socialContainer = document.getElementById("socialContainer");
+
+        const rawSocialLinks = [
+			{ name: 'Facebook', url: profile.visible_social_links.facebook, icon: '/static/images/facebook_logo.png' },
+			{ name: 'LinkedIn', url: profile.visible_social_links.linkedin, icon: '/static/images/linkedin_logo.png' },
+			{ name: 'GitHub', url: profile.visible_social_links.github, icon: '/static/images/github_logo.png' },
+			{ name: 'Instagram', url: profile.visible_social_links.instagram, icon: '/static/images/instagram_logo.png' }
+		];
+		
+		// Filter out links with null or undefined URLs
+		const socialLinks = rawSocialLinks.filter(link => 
+			link.url && link.url.trim() !== '' && link.url.toLowerCase() !== 'null'
+		);
+
+		// Create icons dynamically based on link presence
+		socialLinks.forEach(link => {
+			const anchor = document.createElement('a');
+			anchor.href = link.url;
+			anchor.target = '_blank';
+			anchor.innerHTML = `<img src="${link.icon}" alt="${link.name}"/>`;
+			socialIconsContainer.appendChild(anchor);
+		});
+
+		socialContainer.style.display = socialIconsContainer.children.length > 0 ? 'block' : 'none';
 	}
 
 	// Populate profilesData array use mainly for effective next and previous buttons
 	profilesData = Array.from(profileLinks).map((link) => ({
 		name: link.getAttribute("data-name"),
+		username: link.getAttribute("data-username"),
+		program: link.getAttribute("data-program"),
+		batch_year: link.getAttribute("data-batch-year"),
 		image: link.getAttribute("data-image"),
 		quote: link.getAttribute("data-quote"),
 		hobbies: link.getAttribute("data-hobbies"),
-		social: link.getAttribute("data-social"),
-		username: link.getAttribute("data-username"),
-		id: link.getAttribute("data-id"),
+		visible_social_links: {
+            facebook: link.getAttribute("data-facebook"),
+            linkedin: link.getAttribute("data-linkedin"),
+            github: link.getAttribute("data-github"),
+            instagram: link.getAttribute("data-instagram"),
+        }
 	}));
 
 	profileLinks.forEach((link, index) => {
-		link.addEventListener("click", function () {
-			currentProfileIndex = index;
-			updateBothModals();
-			$("#profileModal").modal("show");
-		});
+        link.addEventListener("click", function () {
+            currentProfileIndex = index;
+            populateProfileModal(profilesData[currentProfileIndex]);
+            $("#profileModal").modal("show");
+        });
 	});
 
 	// next/prev Button for Profile Modal
@@ -105,3 +135,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		$("#profileModal").modal("show");
 	});
 });
+
+

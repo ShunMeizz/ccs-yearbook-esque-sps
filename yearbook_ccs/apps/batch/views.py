@@ -19,7 +19,15 @@ def batch_page(request):
     filtered_profiles = UserProfile.objects.filter(
         batch_year=batch_year, program=program
     ).select_related('user_account') #for me to access also the username
-
+    
+    # if social links are marked hidden, assigned as '' (dili lang None, ani lang '' para ka gets daw si html and js)
+    for profile in filtered_profiles:
+        profile.visible_social_links = {
+            'facebook': profile.facebook_link if not profile.facebook_link_hidden else '',
+            'linkedin': profile.linkedin_link if not profile.linkedin_link_hidden else '',
+            'github': profile.github_link if not profile.github_link_hidden else '',
+            'instagram': profile.instagram_link if not profile.instagram_link_hidden else '',
+    }
     # Get distinct values for dropdowns
     all_batch_years = UserProfile.objects.values_list('batch_year', flat=True).distinct()
     available_programs = UserProfile.objects.values_list('program', flat=True).distinct()
