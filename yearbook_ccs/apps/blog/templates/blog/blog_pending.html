@@ -9,11 +9,11 @@
 {% block blog_content %}
 <div>
     <div class="coolvetica size-50 d-flex justify-content-center">
-        PENDING POSTS
+        {{user}}'s Posts
     </div>
     
     <div>
-        {% include 'blog/blog_post.html' with blogs=pending %}
+        {% include 'blog/blog_list.html' with blogs=pending %}
     </div>
 </div>
 

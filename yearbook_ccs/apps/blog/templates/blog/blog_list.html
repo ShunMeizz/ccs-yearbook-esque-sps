@@ -1,0 +1,13 @@
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
+{% endblock extra_styles %}
+{% load humanize %}
+
+<div>
+    {% block blog_post %}
+        {% for post in blogs %}
+                {% include 'blog/components/blog_post.html' with post=post%}
+        {% endfor %}
+    {% endblock %}
+</div>

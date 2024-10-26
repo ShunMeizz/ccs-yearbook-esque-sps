@@ -1,0 +1,5 @@
+{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
+
+{% block blog_content %}
+    {% include 'blog/components/blog_post.html' with post=post%}
+{% endblock %}

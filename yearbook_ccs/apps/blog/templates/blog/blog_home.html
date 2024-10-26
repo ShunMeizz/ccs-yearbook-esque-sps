@@ -1,14 +1,8 @@
 {% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
 
-{% load static %}
-{% block extra_styles %}
-<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
-{% endblock extra_styles %}
-{% load humanize %}
-
 {% block blog_content %}
     <div>
-        <a href="{% url 'pending' %}">View pending posts</a>
+        <a href="{% url 'pending' %}">My Posts</a>
     </div>
 
     <!-- input field -->
@@ -26,7 +20,7 @@
     </div>
 
     <div>
-        {% include 'blog/blog_post.html' with blogs=posts %}
+        {% include 'blog/blog_list.html' with blogs=posts %}
     </div>
 
     </div>
@@ -55,12 +49,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Post</button>
+                    <button type="submit" class="btn btn-primary" name="action" value="create">Post</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
-
 
 {% endblock %}
