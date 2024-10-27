@@ -5,12 +5,8 @@
 	color: white;
 	width: 100%;
 	padding: 0;
+	margin: 0;
 }
-
-.search-cover {
-	height: 30vh;
-}
-
 .batch-cover h2,
 .search-cover h2 {
 	margin: 0;
@@ -87,6 +83,9 @@
 .profile-list {
 	max-width: 1200px;
 	margin: 0 auto;
+	padding-top: 20px;
+	
+
 }
 
 .profile-circle {
@@ -99,7 +98,9 @@
 .profile-circle img {
 	border-radius: 50%;
 }
-
+.profile-circle-details{
+	padding-top: 20px;
+}
 .profile-name {
 	font-weight: 500;
 	margin: 0;
@@ -108,4 +109,8 @@
 .profile-quote {
 	font-style: italic;
 	font-size: 13px;
+}
+.profile-program-and-year{
+	padding: 0;
+	margin:0;
 }

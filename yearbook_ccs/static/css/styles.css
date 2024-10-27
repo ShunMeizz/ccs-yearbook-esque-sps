@@ -55,7 +55,6 @@ header nav ul li a:hover {
 /* Main Content */
 main {
   flex-grow: 1;
-  padding: 20px;
 }
 
 /* Home Section */

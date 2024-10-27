@@ -47,8 +47,14 @@ def search_profile(request):
     # Search by first name and/or last name using Q queries
     search_filters = Q(first_name__icontains=query) | Q(last_name__icontains=query)
     matching_profiles = UserProfile.objects.filter(search_filters).select_related('user_account') #for me to access also the username
+    for profile in matching_profiles:
+        profile.visible_social_links = {
+            'facebook': profile.facebook_link if not profile.facebook_link_hidden else '',
+            'linkedin': profile.linkedin_link if not profile.linkedin_link_hidden else '',
+            'github': profile.github_link if not profile.github_link_hidden else '',
+            'instagram': profile.instagram_link if not profile.instagram_link_hidden else '',
+    }
 
-    profile = get_object_or_404(UserProfile, user_account = request.user)
     return render(request, 'batch/search_profile.html', {
         'profiles': matching_profiles,
         'query': query,

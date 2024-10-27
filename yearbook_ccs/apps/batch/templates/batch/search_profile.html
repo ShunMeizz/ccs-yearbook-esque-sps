@@ -19,6 +19,7 @@
             <i class="bi bi-arrow-left-circle"></i>
         </a>
         <h2 class="text-center">CCS Yearbook Profiles</h2>
+        <div class="orange-rectangle-design"></div>
     </div>
 
     <div class="title-container">
@@ -38,11 +39,17 @@
                    data-bs-toggle="modal"
                    data-bs-target="#profileModal"
                    data-name="{{ profile.first_name }} {{ profile.last_name }}"
+                   data-username="{{ profile.user_account.username }}"
+                   data-program="{{profile.program}}"
+                   data-batch-year="{{profile.batch_year}}"
                    data-image="{{ profile.profile_pic.url }}"
                    data-quote="{{ profile.quote }}"
                    data-hobbies="{{ profile.hobbies }}"
-                   data-social="{{ profile.social_link }}">
-                   <div class="profile-wrapper d-flex align-items-center justify-content-center position-relative">
+                   data-facebook="{{ profile.visible_social_links.facebook|default_if_none:''}}"
+                   data-linkedin="{{ profile.visible_social_links.linkedin|default_if_none:''}}"
+                   data-github="{{ profile.visible_social_links.github|default_if_none:''}}"
+                   data-instagram="{{ profile.visible_social_links.instagram|default_if_none:''}}">
+                   <div class="profile-wrapper d-flex align-items-center justify-content-center position-relative"style="width: 280px;">
                     <img src="{{ profile.profile_pic.url }}" 
                       alt="{{ profile.first_name }}'s profile picture"
                       style="width: 120px; height: 120px; position: relative; z-index: 2;"

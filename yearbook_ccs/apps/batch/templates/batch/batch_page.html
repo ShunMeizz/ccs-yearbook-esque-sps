@@ -96,7 +96,7 @@ it will change the Batch Year accordingly-->
       data-linkedin="{{ profile.visible_social_links.linkedin|default_if_none:''}}"
       data-github="{{ profile.visible_social_links.github|default_if_none:''}}"
       data-instagram="{{ profile.visible_social_links.instagram|default_if_none:''}}">
-      <div class="profile-wrapper d-flex align-items-center justify-content-center position-relative">
+      <div class="profile-wrapper d-flex align-items-center justify-content-center position-relative" style="width: 280px;">
         <img src="{{ profile.profile_pic.url }}" 
           alt="{{ profile.first_name }}'s profile picture"
           style="width: 120px; height: 120px; position: relative; z-index: 2;"

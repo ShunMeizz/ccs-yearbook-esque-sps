@@ -2,7 +2,7 @@
 // 1. Populating the profile modal with data
 // 2. Array for storing filtered or searched profiles
 // 3. Buttons: Syncing the previous and next buttons between the profile modal and comment modal
-// 4. Buttons: View Comments and Back to Profile Buttons
+// 4. Buttons: View Comments and View(Back to) Profile Buttons
 // 5. Load comments based on the profile ID
 
 let currentProfileIndex = 0; // Track the current profile index
@@ -112,28 +112,51 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Load comments based on the profile ID
 	function loadComments(profile) {
 		$(".comment-list").load(`/comments/${profile.id}`, function () {
-			$("#commentsModalLabel").text(`Comments for ${profile.name}`);
+			$("#commentsModalLabel").html(`
+				<img class="comment-header-pic" src="${profile.image}" alt="${profile.username}'s profile picture" />
+				<span class="comment-header-username">${profile.username}</span> 
+            	<span class="comment-header-name">${profile.name}</span>`);
 		});
 	}
 	//VIEW COMMENT BUTTON
-	$("#viewCommentBtn").click(function (event) {
-		event.preventDefault();
-		$("#profileModal").modal("hide");
-		$("#commentsModal").modal("show");
-		loadComments(profilesData[currentProfileIndex]);
-	});
+	  $("#viewCommentBtn").click(function (event) {
+        event.preventDefault();
+        switchModals("#profileModal", "#commentsModal");
+        loadComments(profilesData[currentProfileIndex]);
+    });
 
-	// Sync back to Profile Modal when Comment Modal is closed
-	$("#commentsModal").on("hidden.bs.modal", function () {
-		$("#profileModal").modal("show");
-	});
+    //VIEW PROFILE BUTTON
+    $("#viewProfileBtn").click(function (event) {
+        event.preventDefault();
+        switchModals("#commentsModal", "#profileModal");
+    });
 
-	//BACK TO PROFILE BUTTON
-	$("#backToProfileBtn").click(function (event) {
-		event.preventDefault();
-		$("#commentsModal").modal("hide");
-		$("#profileModal").modal("show");
-	});
+    // Sync back to Profile Modal when Comment Modal is closed
+    $("#commentsModal").on("hidden.bs.modal", function () {
+        switchModals("#commentsModal", "#profileModal");
+    });
+
+    function switchModals(hideModal, showModal) {
+        const $hide = $(hideModal);
+        const $show = $(showModal);
+
+        $hide.removeClass("show").css({ transform: "rotateY(90deg)" });
+
+        setTimeout(function () {
+            $hide.modal("hide"); 
+            $show.css({ display: "block", transform: "rotateY(90deg)" }); 
+            $show.modal("show");
+            setTimeout(function () {
+                $show.addClass("show").css({ transform: "rotateY(0deg)" });
+            }); 
+
+        }, 300);
+    }
+    $(".modal").on("hidden.bs.modal", function () {
+        $(this).removeClass("show").css({ transform: "", display: "" });
+    });
+
+
 });
 
 
