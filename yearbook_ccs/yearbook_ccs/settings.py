@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'apps.profiles',
     'apps.user_management',
     'apps.admin_management',
+    'apps.comment',
+    'django.contrib.humanize', #Added for blog posts
 ]
 
 #SITE_ID = 1 #newly add
