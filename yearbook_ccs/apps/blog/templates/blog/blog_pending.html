@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
+
+{% load static %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
+{% endblock extra_styles %}
+{% load humanize %}
+
+{% block blog_content %}
+<div>
+    <div class="coolvetica size-50 d-flex justify-content-center">
+        PENDING POSTS
+    </div>
+    
+    <div>
+        {% include 'blog/blog_post.html' with blogs=pending %}
+    </div>
+</div>
+
+{% endblock %}
