@@ -10,9 +10,9 @@
         <div class="comment-form edit-comment-form" id="edit-comment-form-{{ comment.id }}" style="align-items: baseline;">
             <form method="post" action="{% url 'edit_comment' comment.id %}">
                 {% csrf_token %}
-                <div class="comment-header" style="width: max-content;">
+                <div class="comment-header">
                     <div class="comment-input">
-                        <textarea name="comment" cols="40" rows="2" placeholder="Write a comment">{{ comment.comment }}</textarea>
+                        <textarea name="comment" rows="1" placeholder="Write a comment">{{ comment.comment }}</textarea>
                     </div>
                     <button type="submit">➤</button>
                 </div>
