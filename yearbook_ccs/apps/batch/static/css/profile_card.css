@@ -1,6 +1,7 @@
 .modal {
     --bs-modal-zindex: 1055;
     --bs-modal-width: 800px;
+    box-sizing: border-box;
 }
 .modal-content {
     height: 400px;
@@ -170,6 +171,11 @@
     position: relative; 
     z-index: 2;
     border-radius: 50%;
+}
+
+.comment-list {
+    overflow-y: auto;
+    max-height: 310px;
 }
 
 #profileModalLabel{

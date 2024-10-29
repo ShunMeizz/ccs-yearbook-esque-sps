@@ -39,6 +39,14 @@ def batch_page(request):
         'available_programs': available_programs, # for program filter dropdown
         'user_profile': user_profile,
     })
+
+def load_profile_comments(request, profile_id):
+    # Load comments 
+    print(f"profile_id: {profile_id}")
+    profile = get_object_or_404(UserProfile, id=profile_id)
+    comments = profile.profile_comments.all()
+    return render(request, 'profile_card/profile_comments.html',{'profile': profile,'comments': comments})
+
 @login_required
 def search_profile(request):
     """Redirect to search results based on user input."""

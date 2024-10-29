@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/comment_styles.css' %}">
+
+{% if profile %}
+    {% include 'create_profile_comment.html' with profile_id=profile.id %}
+
+    <div class="comments-container" style="display: flex; flex-direction: column; overflow-y: auto;">
+        {% for comment in comments %}
+            {% include 'profile_comment.html' with comment=comment %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+<script src="{% static 'js/comment_script.js' %}"></script>

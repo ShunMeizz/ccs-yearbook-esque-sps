@@ -21,7 +21,7 @@ $(function(){
 			profile.program
 		) 
 		$("#profileBatchYear").text(profile.batch_year)
-		$("#profileImage").text(profile.image)
+		$("#profileImage").attr('src', profile.image)
 		$("#profileQuote").text(profile.quote)
 		$("#profileHobbies").text(profile.hobbies)
 		
@@ -111,15 +111,27 @@ $(function(){
 		}
 	}
 	// Load comments based on the profile ID
-	function loadComments(profile) {
+	async function loadComments(profile) {
 		$("#commentsModalLabel").html(`
 			<img class="comment-header-pic" src="${profile.image}" alt="${profile.username}'s profile picture" />
 			<span class="comment-header-username">${profile.username}</span> 
             <span class="comment-header-name">${profile.name}</span>`);
 		
-			$("#commentsModal .comment-list").html(
-				`{% include 'create_profile_comment.html' with ${profile.id} %}`
-			);
+		console.log(profile.id)
+		const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+		$.ajax({
+			url: `/batch_page/profile_comment/${profile.id}/`,
+			type: 'GET',
+			headers: {
+				'X-CSRFToken': csrfToken
+			},
+			success: function(result) {
+				$("#commentsModal .comment-list").html(result);
+			},
+			dataType: 'html'
+		});
+			// $("#commentsModal .comment-list").html('').load(`{% url 'create_profile_comment.html' %}?profile_id=${profile.id}`)
 	}
 	//VIEW COMMENT BUTTON
 	  $("#viewCommentBtn").click(function (event) {
