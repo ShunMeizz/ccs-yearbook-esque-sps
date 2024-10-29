@@ -1,7 +1,7 @@
 from django.db import models
 from apps.profiles.models import UserProfile
 from apps.user_management.models import UserAccount
-# from apps.blog.models import Blog 
+from apps.blog.models import Blog 
 
 # Create your models here.
 class Comment(models.Model):
@@ -20,7 +20,7 @@ class ProfileComment(Comment):
         return super().__str__() + f" on the Profile: {self.profile.user_account.username}"
 
 class BlogComment(Comment):
-    # blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_comments')
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_comments')
 
     def __str__(self):
         return super().__str__() + f" on the Blog: "

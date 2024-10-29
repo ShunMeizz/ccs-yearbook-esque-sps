@@ -10,18 +10,27 @@
     <script src="{% static 'js/comment_script.js' %}"></script>
 {% endblock %}
 
-{% block title %}Profile Comments{% endblock %} 
+{% block title %}Comments testing{% endblock %} 
 
 {% block before-main %}
 {% endblock %}
 
 {% block content %}
-    <h1>Profile Comments</h1>
+    <h1>Profile  1Comments</h1>
     {% if request.user.is_authenticated %}
         {% include 'create_profile_comment.html' with profile_id=1 %}
     {% endif %}
 
     {% for comment in comments %}
-        {% include 'comment.html' with comment=comment %}
+        {% include 'profile_comment.html' with comment=comment %}
     {% endfor %}
+
+    <!-- <h1>Blog 1 Comments</h1>
+    {% if request.user.is_authenticated %}
+        {% include 'create_blog_comment.html' with blog_id=1 %}
+    {% endif %}
+
+    {% for comment in comments %}
+        {% include 'blog_comment.html' with comment=comment %}
+    {% endfor %} -->
 {% endblock %}
