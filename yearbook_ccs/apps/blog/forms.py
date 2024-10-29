@@ -19,3 +19,15 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'comment': forms.TextInput(attrs={'placeholder':'Write a comment'}),
         }
+
+PROGRAM = (
+    ("BSCS","Computer Science"),
+    ("BSIT","Information Technology")
+)
+
+class FilterForm(forms.Form):
+    prog = forms.MultipleChoiceField(
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        choices=PROGRAM,
+    )
