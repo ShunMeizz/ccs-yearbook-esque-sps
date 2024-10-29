@@ -19,17 +19,17 @@
 				
 				<div class="profile-circle-wrapper d-flex align-items-center justify-content-center position-relative">
 					<p><span id="profileUsername"  style="text-transform: uppercase;"></span></p>
-					<button id="prevProfileBtn" class="btn btn-prev position-absolute"style="left: 15px;">&lt;</button>
+					<button id="prevProfileBtn" class="btn btn-prev position-absolute"style="left: 10px;">&lt;</button>
 					<img
         				id="profileImage"
         				class="img-fluid rounded-circle"
-        				style="width: 180px; height: 180px; position: relative; z-index: 2;"
+        				style="width: 160px; height: 160px; position: relative; z-index: 2;"
         				alt="Profile Image"
     				/>
     				<img
         				id="profileFrame"
         				class="img-fluid rounded-circle"
-        				style="width: 230px; height: 220px; position: absolute;"
+        				style="width: 210px; height: 200px; position: absolute;"
         				src="{% static 'images/profile_frame.png' %}"
         				alt="Profile Frame"
     				/>
@@ -62,4 +62,7 @@
 		</div>
 	</div>
 </div>
+
+{% include 'profile_card/profile_card_comment.html' %}
+
 {% endblock %}

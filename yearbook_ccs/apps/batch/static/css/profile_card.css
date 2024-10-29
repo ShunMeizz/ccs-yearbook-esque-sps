@@ -19,7 +19,7 @@
 }
 
 .profile-circle-wrapper {
-	width: 300px; 
+	width: 280px; 
 	height: 200px;
 	position: relative;
 	display: flex;
@@ -57,7 +57,7 @@
 		5px 5px 5px rgba(0, 0, 0, 0.9);
 }
 .right-column {
-    width: 55%; 
+    width: 54%; 
 	right: 0;
     position: absolute; 
     margin-right: 10px;
@@ -112,7 +112,7 @@
     position: absolute; 
     top: -30px;
     left: 50%; 
-    transform: translateX(-50%) rotate(-5deg); 
+    transform: translateX(-50%) rotate(-3deg); 
     z-index: 3;
     text-shadow: 
         5px 5px 0 #fff, 
@@ -178,6 +178,7 @@
     color: #292929;
     font-size: 1.3em;
     margin-top: 20px;
+    margin-left: 4px;
 }
 .logo {
     position: absolute; 
@@ -276,7 +277,7 @@
 }
 
 .modal.flip {
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease;
     transform-style: preserve-3d; 
     transform-origin: center; 
     transform: rotateY(90deg); 

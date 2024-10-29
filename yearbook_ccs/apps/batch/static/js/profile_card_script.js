@@ -8,22 +8,22 @@
 let currentProfileIndex = 0; // Track the current profile index
 let profilesData = [];
 
-document.addEventListener("DOMContentLoaded", function () {
+$(function(){
 	const profileLinks = document.querySelectorAll(".profile-link");
 
 	// Populate the Profile Modal with data
 	function populateProfileModal(profile) {
-		document.getElementById("profileModalLabel").textContent = profile.name;
-		document.getElementById("profileUsername").textContent = profile.username;
-		document.getElementById("profileProgram").textContent = 
-		profile.program === "BSCS" ? "Computer Science" : 
-		profile.program === "BSIT" ? "Information Technology" : 
-		profile.program;
-		document.getElementById("profileBatchYear").textContent = profile.batch_year;
-		document.getElementById("profileImage").src = profile.image;
-		document.getElementById("profileQuote").textContent = profile.quote;
-		document.getElementById("profileHobbies").textContent = profile.hobbies;
-		
+		$("#profileModalLabel").text(profile.name)
+		$("#profileUsername").text(profile.username)
+		$("#profileProgram").text(
+			profile.program === "BSCS" ? "Computer Science" : 
+			profile.program === "BSIT" ? "Information Technology" : 
+			profile.program
+		) 
+		$("#profileBatchYear").text(profile.batch_year)
+		$("#profileImage").text(profile.image)
+		$("#profileQuote").text(profile.quote)
+		$("#profileHobbies").text(profile.hobbies)
 		
 		const socialIconsContainer = document.getElementById("socialIconsContainer");
         socialIconsContainer.innerHTML = ''; 
@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Populate profilesData array use mainly for effective next and previous buttons
 	profilesData = Array.from(profileLinks).map((link) => ({
+		id: link.getAttribute("data-id"),
 		name: link.getAttribute("data-name"),
 		username: link.getAttribute("data-username"),
 		program: link.getAttribute("data-program"),
@@ -111,12 +112,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	// Load comments based on the profile ID
 	function loadComments(profile) {
-		$(".comment-list").load(`/comments/${profile.id}`, function () {
-			$("#commentsModalLabel").html(`
-				<img class="comment-header-pic" src="${profile.image}" alt="${profile.username}'s profile picture" />
-				<span class="comment-header-username">${profile.username}</span> 
-            	<span class="comment-header-name">${profile.name}</span>`);
-		});
+		$("#commentsModalLabel").html(`
+			<img class="comment-header-pic" src="${profile.image}" alt="${profile.username}'s profile picture" />
+			<span class="comment-header-username">${profile.username}</span> 
+            <span class="comment-header-name">${profile.name}</span>`);
+		
+			$("#commentsModal .comment-list").html(
+				`{% include 'create_profile_comment.html' with ${profile.id} %}`
+			);
 	}
 	//VIEW COMMENT BUTTON
 	  $("#viewCommentBtn").click(function (event) {
@@ -144,18 +147,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(function () {
             $hide.modal("hide"); 
-            $show.css({ display: "block", transform: "rotateY(90deg)" }); 
+            $show.css({transform: "rotateY(90deg)" }); 
             $show.modal("show");
             setTimeout(function () {
                 $show.addClass("show").css({ transform: "rotateY(0deg)" });
-            }); 
+            },); 
 
-        }, 300);
+        },200);
     }
     $(".modal").on("hidden.bs.modal", function () {
         $(this).removeClass("show").css({ transform: "", display: "" });
     });
-
 
 });
 

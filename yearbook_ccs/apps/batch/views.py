@@ -14,7 +14,7 @@ def batch_page(request):
     # Get the filter parameters, or default to user's batch year and program
     batch_year = request.GET.get('year') or user_profile.batch_year
     program = request.GET.get('program') or user_profile.program
-    
+
     # Filter profiles
     filtered_profiles = UserProfile.objects.filter(
         batch_year=batch_year, program=program
@@ -31,7 +31,7 @@ def batch_page(request):
     # Get distinct values for dropdowns
     all_batch_years = UserProfile.objects.values_list('batch_year', flat=True).distinct()
     available_programs = UserProfile.objects.values_list('program', flat=True).distinct()
-
+    
     # Render the template with the filtered profiles and dropdown options
     return render(request, 'batch/batch_page.html', {
         'filtered_profiles': filtered_profiles,

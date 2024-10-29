@@ -85,6 +85,7 @@ it will change the Batch Year accordingly-->
     <a href="#" class="profile-link" 
       data-bs-toggle="modal" 
       data-bs-target="#profileModal"
+      data-id="{{ profile.id }}"
       data-name="{{ profile.first_name }} {{ profile.last_name }}"
       data-username="{{ profile.user_account.username }}"
       data-program="{{profile.program}}"
@@ -120,8 +121,9 @@ it will change the Batch Year accordingly-->
   <p>No profiles found for this batch.</p>
   {% endfor %}
 </div>
-{% include 'profile_card/profile_card_detail.html' %}
-{% include 'profile_card/profile_card_comment.html' %}
 
+
+{% include 'profile_card/profile_card_detail.html' %}
+<!-- {% include 'profile_card/profile_card_comment.html' %} -->
 
 {% endblock %}
