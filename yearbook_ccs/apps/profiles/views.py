@@ -24,7 +24,7 @@ def profiles_home(request):
             return redirect('profile_home')
     else:
         form = ProfileCreationForm(instance=profile)
-            
+                    
     return render(request, 'profiles/profiles_home.html', {'update_pform': form, 'profile': profile})
 
 # Setup profile view after user clicks the acc_verified_email (in user_management app) link

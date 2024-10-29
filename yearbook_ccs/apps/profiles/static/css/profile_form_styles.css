@@ -24,6 +24,8 @@ body {
 
 .form-content > img {
     max-width: 75%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 @media (max-width:820px){
@@ -170,4 +172,9 @@ textarea:focus + label, textarea:not(:placeholder-shown) + label{
 
 .black-btn {
     background: #473F3B;
+}
+
+.error-message {
+    margin-left: 50px;
+    color: red;
 }
