@@ -4,7 +4,7 @@
 {% if profile %}
     {% include 'create_profile_comment.html' with profile_id=profile.id %}
 
-    <div class="comments-container" style="display: flex; flex-direction: column; overflow-y: auto;">
+    <div class="comments-container">
         {% for comment in comments %}
             {% include 'profile_comment.html' with comment=comment %}
         {% endfor %}
