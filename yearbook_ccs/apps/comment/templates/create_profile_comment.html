@@ -1,10 +1,10 @@
 <div class="comment-form" style="align-items: baseline;">
     <form method="post" action="{% url 'create_profile_comment' profile_id %}">
         {% csrf_token %}
-        <div class="comment-header" style="width: max-content;">
+        <div class="comment-header">
             <img class="comment-icon" src="{{ request.user.profile.profile_pic.url }}">
             <div class="comment-input">
-                <textarea name="comment" cols="40" rows="2" placeholder="Write a comment" required id="id_comment"></textarea>
+                <textarea name="comment" rows="1" placeholder="Write a comment" required id="id_comment"></textarea>
             </div>
             <button type="submit" id="btn-create-comment">➤</button>
         </div>
