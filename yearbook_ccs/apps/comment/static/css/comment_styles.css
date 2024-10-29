@@ -10,15 +10,25 @@
     padding: 10px;
 }
 
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.comment-form form {
+    width: 100%;
+}
+
 .comment-icon {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     object-fit: cover;
     aspect-ratio: 1/1;
     border-radius: 50%;
 }
 
-.comment-header {
+.comment-header, form .comment-header {
     display: flex;
     width: 100%;
     gap: 10px;
@@ -30,8 +40,18 @@
     margin:0;
 }
 
+.comment-author {
+    font-size: 1.5em;
+}
+
 .comment-date {
     color: gray;
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+.comment > .comment-header {
+    align-items: flex-start;
 }
 
 .comment-body {
@@ -39,6 +59,7 @@
     flex-grow: 1;
     width: 100%;
     padding-left: 60px;
+    margin-top: -15px;
 }
 
 .comment-body p {
@@ -46,10 +67,13 @@
 }
 
 .comment-input {
+    display: flex;
+    align-items: center;
     flex-grow: 1;
 }
 
 .comment-input > textarea {
+    width: 100%;
     color: #5B5654;
     font-size: medium;
     border-radius: 15px;
@@ -59,8 +83,10 @@
     align-self: center;
 }
 
-#btn-create-comment {
-    height: 100%;
+button[type="submit"]:not([class]) {
+    height: 45px;
+    background-color: transparent;
+    border: none;
 }
 
 .comment-button-group {
@@ -68,7 +94,6 @@
     align-self: flex-start;
     gap: 10px;
     padding-left: 60px;
-    margin-top: 10px;
     align-items: baseline;
 }
 
