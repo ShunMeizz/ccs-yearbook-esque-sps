@@ -1,0 +1,299 @@
+.modal {
+    --bs-modal-zindex: 1055;
+    --bs-modal-width: 800px;
+    box-sizing: border-box;
+}
+.modal-content {
+    height: 400px;
+	border-radius: 8px;
+}
+.modal-header{
+    height: 50px;
+    background-color: #FF912C;
+    border-radius: 3px 3px 0 0; 
+}
+.modal-body{
+    padding: 0;
+}
+.modal-title{
+    padding: 20px;
+}
+
+.profile-circle-wrapper {
+	width: 280px; 
+	height: 200px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 40px;
+}
+
+.btn-prev,
+.btn-next {
+	background: transparent;
+	border: none;
+	font-family: "Fatpen", cursive;
+	font-weight: 300;
+	color: #e26901;
+	font-size: 36px;
+	cursor: pointer;
+	text-align: center;
+	transform: translateX(-50%) rotate(-5deg); 
+	z-index: 2;
+	text-shadow: 5px 5px 0 #fff, -5px 5px 0 #fff, 5px -5px 0 #fff,
+		-5px -5px 0 #fff, 5px 0 0 #fff, -5px 0 0 #fff, 0 5px 0 #fff, 0 -5px 0 #fff,
+		8px 8px 3px rgba(0, 0, 0, 0.2);	
+	line-height: 1;
+	padding: 0;
+}
+.btn-prev:hover,
+.btn-next:hover {
+	color: #ff8c00;
+}
+#prevCommentProfileBtn,
+#nextCommentProfileBtn{
+    text-shadow: 3px 2px 0 #fff, -3px 2px 0 #fff, 3px -2px 0 #fff,
+		-3px -2px 0 #fff, 3px 0 0 #fff, -3px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff,
+		5px 5px 5px rgba(0, 0, 0, 0.9);
+}
+.right-column {
+    width: 54%; 
+	right: 0;
+    position: absolute; 
+    margin-right: 10px;
+	margin-top: 25px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    height: 85%; 
+}
+.left-column {
+    width: 40%; 
+	left: 0;
+    position: absolute; 
+    margin-left: 10px;
+	margin-top: 25px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    height: 85%; 
+}
+.comment-button {
+    font-size: 13px; 
+    padding: 5px;
+    border-radius: 5px; 
+    background-color: #FF912C; 
+    color: white;
+    border: none; 
+    cursor: pointer; 
+}
+
+.comment-button:hover {
+    background-color: #E26901; 
+}
+.profile-quote {
+    max-height: 40px;
+    overflow: hidden;  
+}
+
+
+#modalContent, #modalBody{
+	border: 2px solid #292929;
+	margin: 15px;
+	border-radius: 5px;
+}
+#profileUsername{
+    font-family: "Fatpen", cursive;
+    font-weight: 300;
+    color: #e26901;
+    font-size: 2.5em;
+    cursor: pointer;
+    text-align: center;
+    position: absolute; 
+    top: -30px;
+    left: 50%; 
+    transform: translateX(-50%) rotate(-3deg); 
+    z-index: 3;
+    text-shadow: 
+        5px 5px 0 #fff, 
+        -5px 5px 0 #fff, 
+        5px -5px 0 #fff,
+        -5px -5px 0 #fff, 
+        5px 0 0 #fff, 
+        -5px 0 0 #fff, 
+        0 5px 0 #fff, 
+        0 -5px 0 #fff,
+        8px 8px 3px rgba(0, 0, 0, 0.2);
+}
+#commentsModalLabel{
+    display: flex;         
+    flex-direction: row;  
+    align-items: center;  
+    gap: 15px;
+}
+.comment-header-username {
+    font-size: 1.5em;
+    font-family: "Fatpen", cursive;
+    font-weight: 300;
+    color: #e26901;
+    text-shadow: 
+        3px 2px 0 #fff, 
+        -3px 2px 0 #fff, 
+        3px -2px 0 #fff,
+        -3px -2px 0 #fff, 
+        3px 0 0 #fff, 
+        -3px 0 0 #fff, 
+        0 2px 0 #fff, 
+        0 -2px 0 #fff,
+        5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+.comment-header-name {
+    font-family: "Fatpen";
+    color: #fff;
+    font-size: 0.8em;
+    padding-left: 10px;
+    text-shadow: 
+        1px 1px 0  #e26901, 
+        -1px 1px 0  #e26901, 
+        1px -1px 0  #e26901,
+        -1px -1px 0  #e26901, 
+        1px 0 0  #e26901, 
+        -1px 0 0  #e26901, 
+        0 1px 0  #e26901, 
+        0 -1px 0  #e26901,
+        2px 2px 2px rgba(0, 0, 0,0.1);
+}
+.comment-header-pic{
+    width: 40px;
+    height: 40px; 
+    border: 3px solid white;
+    position: relative; 
+    z-index: 2;
+    border-radius: 50%;
+}
+
+.comment-list {
+    overflow-y: auto;
+    max-height: 310px;
+    display: grid;
+    grid-template-rows: 1fr 7fr;
+}
+
+#profileModalLabel{
+	font-family: "Fatpen", cursive;
+    font-weight: 300;
+    color: #292929;
+    font-size: 1.3em;
+    margin-top: 20px;
+    margin-left: 4px;
+}
+.logo {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    opacity: 0.10; 
+    width: 280px; 
+    height: auto; 
+    pointer-events: none; 
+}
+
+
+#socialContainer {
+	display: flex;
+	flex-direction: column; 
+	align-items: center; 
+	justify-content: center; 
+	text-align: center;
+  }
+  
+  #socialIconsContainer a {
+	justify-content: center; 
+	margin-top: 5px; 
+  }
+  
+  #socialIconsContainer img {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-right: 5px;
+  }
+.profile-batch{
+    margin: 2px; 
+    margin-top: 15px;
+    font-size: calc(1em + 1vh);
+}
+.profile-program-background {
+    background: linear-gradient(90deg, #FF912C, #E26901); 
+    width: calc(100% + 20px); 
+    margin-left: -10px;
+    padding: 0 10px; 
+    height: 35px; 
+    display: block; 
+    position: sticky;
+    top: 0;
+}
+.profile-program-background::before {
+    content: '';
+    position: absolute;
+    left: -10px; 
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent; 
+    border-bottom: 40px solid transparent; 
+    border-right: 10px solid #FF912C; 
+}
+
+.profile-program-text {
+    color: white; 
+    font-size: 15px; 
+    padding: 5px;
+    margin: 0; 
+    text-align: left;
+}
+.profile-quote-box,
+.profile-hobbies-box {
+    position: relative; 
+    padding: 6px; 
+    border-radius: 10px; 
+    border: 1px #FF912C solid;
+    z-index: 1; 
+	width: 95%;    
+	overflow-y: auto;
+    height:250px;  
+}
+.profile-quote-box{
+    height:150px;
+}
+
+.profile-quote-box span,
+.profile-hobbies-box span {
+    color: #333; /* Text color inside the boxes */
+    font-size: 13px; /* Font size for better visibility */
+}
+
+
+
+.social-links img {
+	transition: transform 0.3s;
+}
+
+.social-links img:hover {
+	transform: scale(1.1);
+}
+
+.modal.flip {
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d; 
+    transform-origin: center; 
+    transform: rotateY(90deg); 
+}
+
+.modal.show {
+    transform: rotateY(0deg); 
+}
+
+
+

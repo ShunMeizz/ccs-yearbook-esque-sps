@@ -1,0 +1,116 @@
+.batch-cover,
+.search-cover {
+	height: 40vh;
+	background: linear-gradient(45deg, #ffc875, #f6ddb8);
+	color: white;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+.batch-cover h2,
+.search-cover h2 {
+	margin: 0;
+	font-family: "Fatpen", cursive;
+	color: #e26901;
+	text-align: center;
+	font-size: clamp(24px, 5vw + 15px, 40px);
+	font-weight: 400;
+	z-index: 2;
+	text-shadow: 5px 5px 0 #fff, -5px 5px 0 #fff, 5px -5px 0 #fff,
+		-5px -5px 0 #fff, 5px 0 0 #fff, -5px 0 0 #fff, 0 5px 0 #fff, 0 -5px 0 #fff;
+}
+.title-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.batch-title,
+.search-title {
+	margin: 0;
+	font-family: "Fatpen", cursive;
+	color: black;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 400;
+	z-index: 2;
+	text-shadow: 5px 5px 0 #fff, -5px 5px 0 #fff, 5px -5px 0 #fff,
+		-5px -5px 0 #fff, 5px 0 0 #fff, -5px 0 0 #fff, 0 5px 0 #fff, 0 -5px 0 #fff,
+		8px 8px 3px rgba(0, 0, 0, 0.2);
+}
+.search-title {
+	font-size: 20px;
+}
+.back-icon {
+	font-size: 2.5rem;
+	color: white;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.back-icon:hover {
+	color: #ff8800;
+}
+
+.circle {
+	width: 30px;
+	height: 30px;
+	background-color: #ffc875;
+	border-radius: 50%;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.right-circle {
+	background-color: #e26901;
+}
+
+.orange-rectangle-design {
+	background-color: #e26901;
+	height: 10px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.search-filter input {
+	width: 200px;
+}
+
+.profile-list {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding-top: 20px;
+	
+
+}
+
+.profile-circle {
+    max-width: 160px;
+    display: flex;                
+    flex-direction: column;       
+    align-items: center;        
+}
+
+.profile-circle img {
+	border-radius: 50%;
+}
+.profile-circle-details{
+	padding-top: 20px;
+}
+.profile-name {
+	font-weight: 500;
+	margin: 0;
+}
+
+.profile-quote {
+	font-style: italic;
+	font-size: 13px;
+}
+.profile-program-and-year{
+	padding: 0;
+	margin:0;
+}
