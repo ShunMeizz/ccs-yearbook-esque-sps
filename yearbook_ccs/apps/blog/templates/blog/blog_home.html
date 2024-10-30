@@ -2,7 +2,7 @@
 
 {% block blog_content %}
     <div>
-        <a href="{% url 'pending' %}" class="remove-link-style">My Posts</a>
+        <a href="{% url 'pending' request.user.id%}" class="remove-link-style">My Posts</a>
     </div>
 
     <!-- input field -->

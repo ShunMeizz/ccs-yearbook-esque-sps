@@ -59,7 +59,7 @@ def get_post():
 def intermediary(request):
     return render(request, "blog/test.html")
 
-def pending_post(request):
+def my_post(request, user_id):
     user = request.user.username
     pending = Blog.objects.filter(user=request.user).order_by("-date")
     action = request.POST.get('action')
