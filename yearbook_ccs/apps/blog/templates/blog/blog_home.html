@@ -2,7 +2,7 @@
 
 {% block blog_content %}
     <div>
-        <a href="{% url 'pending' %}">My Posts</a>
+        <a href="{% url 'pending' %}" class="remove-link-style">My Posts</a>
     </div>
 
     <!-- input field -->
@@ -16,7 +16,9 @@
     </div>
 
     <div class="d-flex justify-content-end">
-        Sorted by Latest
+        <button type="button" class="btn btn-link remove-link-style" data-bs-toggle="modal" data-bs-target="#filterPostModal">
+            Sort
+        </button>
     </div>
 
     <div>
@@ -26,7 +28,7 @@
     </div>
 </div>
 
-<!-- MODAL -->
+<!-- CREATE POST MODAL -->
 <div class="modal fade" id="blogpostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="true">
     <form method="post" enctype="multipart/form-data">
         <div class="modal-dialog">
@@ -56,4 +58,7 @@
     </form>
 </div>
 
+{% include 'blog/components/modal/filterpost.html' with filter=filterform test=test %}
+
 {% endblock %}
+

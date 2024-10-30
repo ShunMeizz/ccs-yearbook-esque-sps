@@ -1,0 +1,27 @@
+<!-- FILTER POST MODAL -->
+<div class="modal fade" id="filterPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="true">
+    <form method="post" enctype="multipart/form-data">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="p-3">
+                    <div>
+                        Programs
+                        <hr>
+                    </div>
+                </div>
+                <div class="modal-body mr-2 row-layout justify-content-between">
+                    {% csrf_token %}
+                    {{filter.as_p}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="action" value="filter">Filter</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

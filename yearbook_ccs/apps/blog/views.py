@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+
+from apps.profiles.models import UserProfile
 from .models import Blog
 
-from .forms import BlogForm
+from .forms import BlogForm, FilterForm
 
 @login_required
 def blog_home(request):
-    posts = get_post()
-    action = request.POST.get('action')
     print("blog post")
+    posts = get_post()
+    action = request.POST.get('action')    
     if request.method == "POST":
         form = BlogForm(request.POST, request.FILES)
         if action == 'create':
@@ -38,13 +40,20 @@ def blog_home(request):
             blogpost = get_object_or_404(Blog, id=post_id)
 
             print("report")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        if action == "filter":
+            print("filter")
+            filterform, posts = filter_post(request) # Get posts without filters
     else:
-        form = BlogForm() 
-    return render(request,"blog/blog_home.html", {'form':form,'posts':posts})
+        form = BlogForm()
+        filterform = FilterForm()
+        
+    return render(request, "blog/blog_home.html", {'form': form, 'posts': posts, 'filterform': filterform})
 
 # TEMP TO SHOW ALL BLOGS WITHOUT FILTER FROM ISAPPROVED. 
 # TO BE DELETED AFTER ISAPPROVED FILTERS ARE WORKING AND DONE
 def get_post():
+    print("all posts",Blog.objects.all().order_by("-date"))
     return Blog.objects.all().order_by("-date")
 
 def intermediary(request):
@@ -89,3 +98,24 @@ def delete_post(request, user_id):
         if action == "delete":
             post.delete()
     return redirect('blog_home')
+
+def filter_post(request):
+    if request.method == "POST":
+        filterform = FilterForm(request.POST)
+        if filterform.is_valid():
+            program = filterform.cleaned_data.get('prog')
+            if not program:
+                return FilterForm(), get_post()
+            else:
+                user_prog = UserProfile.objects.filter(program__in=program).values_list("user_account", flat=True)
+                # print("user ids:")
+                # print(user_prog)
+                # print(list(user_prog))
+                    
+                filtered_program = Blog.objects.filter(user_id__in=list(user_prog)).order_by("-date")
+                # print(filtered_program)
+                return filterform, filtered_program
+    else:
+        filterform = FilterForm()
+
+    return filterform, None

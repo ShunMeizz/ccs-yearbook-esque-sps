@@ -3,3 +3,8 @@ db.sqlite3
 .env
 **/__pycache__/*
 *.pyc
+
+yearbook_ccs/media/media/blog_imgs/Favorable_Market_1.png
+yearbook_ccs/media/media/blog_imgs/Group_47.png
+yearbook_ccs/media/media/profile_pictures/8d7b037a-d182-45c8-bfef-b29d8f1b88cd.jpg
+yearbook_ccs/media/media/profile_pictures/cdab8c10-021b-46bb-81b5-2003329432b9.jpg
