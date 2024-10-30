@@ -65,3 +65,5 @@ def setup_profile_2_view(request):
         form = ProfileCreationForm()
             
     return render(request, 'profiles/setup_profile.html', {'form': form})
+
+
