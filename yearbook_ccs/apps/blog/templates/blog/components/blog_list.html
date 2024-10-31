@@ -1,6 +1,7 @@
 {% load static %}
 {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
+<link rel="stylesheet" href="{% static 'css/comment_styles.css' %}">
 {% endblock extra_styles %}
 {% load humanize %}
 
@@ -11,3 +12,5 @@
         {% endfor %}
     {% endblock %}
 </div>
+
+<script src="{% static 'js/comment_script.js' %}"></script>
