@@ -11,9 +11,16 @@
 
           <div class="comments-container">
             <!-- accessing all comments under this post -->
-              {% for comment in post.blog_comments.all %}
-                  {% include 'blog_comment.html' with comment=comment %}
-              {% endfor %}
+              {% if post.blog_comments.all %}
+                {% for comment in post.blog_comments.all %}
+                    {% include 'blog_comment.html' with comment=comment %}
+                {% endfor %}
+              {% else %}
+                <div class="no-comments-found-container">
+                  <h6>No comments yet.</h6>
+                  Be the first to comment.
+                </div>
+              {% endif %}
           </div>
         </div>
         <!-- <div class="modal-footer d-flex justify-content-between">
