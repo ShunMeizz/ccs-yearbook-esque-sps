@@ -1,14 +1,8 @@
 {% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
 
-{% load static %}
-{% block extra_styles %}
-<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
-{% endblock extra_styles %}
-{% load humanize %}
-
 {% block blog_content %}
     <div>
-        <a href="{% url 'pending' %}">View pending posts</a>
+        <a href="{% url 'pending' request.user.id%}" class="remove-link-style">My Posts</a>
     </div>
 
     <!-- input field -->
@@ -22,17 +16,19 @@
     </div>
 
     <div class="d-flex justify-content-end">
-        Sorted by Latest
+        <button type="button" class="btn btn-link remove-link-style" data-bs-toggle="modal" data-bs-target="#filterPostModal">
+            Sort
+        </button>
     </div>
 
     <div>
-        {% include 'blog/blog_post.html' with blogs=posts %}
+        {% include 'blog/components/blog_list.html' with blogs=posts %}
     </div>
 
     </div>
 </div>
 
-<!-- MODAL -->
+<!-- CREATE POST MODAL -->
 <div class="modal fade" id="blogpostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="true">
     <form method="post" enctype="multipart/form-data">
         <div class="modal-dialog">
@@ -55,12 +51,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Post</button>
+                    <button type="submit" class="btn btn-primary" name="action" value="create">Post</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
 
+{% include 'blog/components/modal/filterpost.html' with filter=filterform test=test %}
 
 {% endblock %}
+

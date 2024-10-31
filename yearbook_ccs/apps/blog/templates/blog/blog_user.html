@@ -8,12 +8,17 @@
 
 {% block blog_content %}
 <div>
+
     <div class="coolvetica size-50 d-flex justify-content-center">
-        PENDING POSTS
+        {{user}}'s Posts
     </div>
     
     <div>
-        {% include 'blog/blog_post.html' with blogs=pending %}
+        <a href="{% url 'blog_home' %}" class="remove-link-style">Blogs</a>
+    </div>
+
+    <div>
+        {% include 'blog/components/blog_list.html' with blogs=pending %}
     </div>
 </div>
 

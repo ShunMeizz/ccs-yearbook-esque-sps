@@ -33,6 +33,11 @@
     flex-direction: column;
 }
 
+.row-layout {
+    display: flex;
+    flex-direction: row;
+}
+
 .bar {
     height: 30px;
 }
