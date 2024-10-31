@@ -50,8 +50,6 @@ def blog_home(request):
         
     return render(request, "blog/blog_home.html", {'form': form, 'posts': posts, 'filterform': filterform})
 
-# TEMP TO SHOW ALL BLOGS WITHOUT FILTER FROM ISAPPROVED. 
-# TO BE DELETED AFTER ISAPPROVED FILTERS ARE WORKING AND DONE
 def get_post():
     print("all posts",Blog.objects.all().order_by("-date"))
     return Blog.objects.all().order_by("-date")
@@ -81,9 +79,9 @@ def my_post(request, user_id):
             blogpost.save()
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
-            return render(request,"blog/blog_pending.html",{'pending':pending,'user':user})
+            return render(request,"blog/blog_user.html",{'pending':pending,'user':user})
     else:
-        return render(request,"blog/blog_pending.html",{'pending':pending,'user':user})
+        return render(request,"blog/blog_user.html",{'pending':pending,'user':user})
 
 def view_post(request, post_id):
     post = get_object_or_404(Blog, id=post_id)
@@ -108,10 +106,6 @@ def filter_post(request):
                 return FilterForm(), get_post()
             else:
                 user_prog = UserProfile.objects.filter(program__in=program).values_list("user_account", flat=True)
-                # print("user ids:")
-                # print(user_prog)
-                # print(list(user_prog))
-                    
                 filtered_program = Blog.objects.filter(user_id__in=list(user_prog)).order_by("-date")
                 # print(filtered_program)
                 return filterform, filtered_program
@@ -119,3 +113,9 @@ def filter_post(request):
         filterform = FilterForm()
 
     return filterform, None
+
+# comments part huehue
+def load_comments(request,post_id):
+    post = get_object_or_404(UserProfile, id=post_id)
+    comments = post.blog_comments.all()
+    return render(request,"blog/components/blog_post_comment.html",{'comments':comments})
