@@ -7,6 +7,10 @@ body {
     width: 75%;
 }
 
+form {
+    width: 100%;
+}
+
 .form-content {
     flex: 1;
     display: flex;

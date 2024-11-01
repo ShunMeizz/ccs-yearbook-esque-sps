@@ -3,13 +3,10 @@
 
 {% block extra_styles %}
     <!-- External Styles and Scripts -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{% static 'css/batch_page.css' %}" />
     <link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"/>
     
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'js/profile_card_script.js' %}"></script>
 {% endblock extra_styles %} 
 
@@ -38,6 +35,7 @@
                 <a href="#" class="profile-link"
                    data-bs-toggle="modal"
                    data-bs-target="#profileModal"
+                   data-id="{{ profile.id }}"
                    data-name="{{ profile.first_name }} {{ profile.last_name }}"
                    data-username="{{ profile.user_account.username }}"
                    data-program="{{profile.program}}"
