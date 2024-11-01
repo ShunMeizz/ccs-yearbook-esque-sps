@@ -5,9 +5,16 @@
     {% include 'create_profile_comment.html' with profile_id=profile.id %}
 
     <div class="comments-container">
-        {% for comment in comments %}
-            {% include 'profile_comment.html' with comment=comment %}
-        {% endfor %}
+        {% if comments %}
+            {% for comment in comments %}
+                {% include 'profile_comment.html' with comment=comment %}
+            {% endfor %}
+        {% else %}
+            <div class="no-comments-found-container">
+                <h6>No comments yet.</h6>
+                Be the first to comment.
+            </div>
+        {% endif %}
     </div>
 {% endif %}
 
