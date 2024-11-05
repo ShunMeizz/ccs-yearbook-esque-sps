@@ -129,6 +129,8 @@ def logout_view(request):
 
 @login_required
 def home_view(request):
+    if (request.user.is_superuser):
+        return render(request, "admin_home.html")
     return render(request, "home.html", {
         "name": f"{request.user.username}"
     })
