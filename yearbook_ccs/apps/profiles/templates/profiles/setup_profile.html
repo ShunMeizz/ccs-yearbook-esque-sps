@@ -1,133 +1,258 @@
-{% extends 'base.html' %} 
-{% load static %} {% block extra_styles %}
+{% extends 'base.html' %} {% load static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/id_card_styles.css' %}" />
 <link rel="stylesheet" href="{% static 'css/profile_form_styles.css' %}" />
 <link rel="stylesheet" href="{% static 'css/ribbon_header.css' %}" />
 <link rel="stylesheet" href="{% static 'css/button_switch_styles.css' %}" />
-{% endblock extra_styles %}
-{% block title %}Profile{% endblock %} 
+{% endblock extra_styles %} {% block title %}Profile{% endblock %}
+
+<!-- start block -->
 {% block before-main %}
 <script src="{% static 'js/setup_profile_script.js' %}"></script>
 <div class="ribbon-container">
-    <div class="orange-box"></div>
-    <div class="light-box"></div>
-    <h1 style="-webkit-text-stroke-width: 10; -webkit-text-fill-color: #f8f8f8;">CREATE PROFILE!</h1>
+  <div class="orange-box"></div>
+  <div class="light-box"></div>
+  <h1 style="-webkit-text-stroke-width: 10; -webkit-text-fill-color: #f8f8f8">
+    CREATE PROFILE!
+  </h1>
 </div>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="id-card">
-    <div class="id-orange-header"></div>
-    <div class="outer-wrapper">
-        <div class="form-container">
-            <div class="form-content">
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form-content-group" id="profile-group">
-                        <div class="form-content" style="align-items: center; min-width: 35%; padding: 0;">
-                            <img id="profile_pic_container" src="{% static 'images/default_graduate.png' %}" alt="" />
-                            <button type="button" class="profile-button orange-orange-btn" id="btn-add-social-links" class="add-social-links">ADD SOCIALS +</button>
-                        </div>
-                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="modal-add-socials">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">SOCIALS & PRIVACY</h5>
-                                    </div>
-                                    <div class="modal-body form-content">
-                                        <div class="form-link-input-container" style="flex-direction: row; align-items: center; justify-content: space-around;">
-                                            <img style="height: 40px;" src="{% static 'images/facebook_logo.png' %}" alt="" />
-                                            <div class="floating-form-group" style="flex-direction: row;">
-                                                {{ form.facebook_link }}
-                                                <label for="{{ form.facebook_link.id_for_label }}">{{ form.facebook_link.label }}</label>
-                                            </div>
-                                            <label class="switch">
-                                                {{ form.facebook_link_hidden}}
-                                                <div class="slider round"></div>
-                                            </label>
-                                        </div>
-                                        <span class="error-message" id="facebook-error-message"></span>
-                                        <div class="form-link-input-container" style="flex-direction: row; align-items: center; justify-content: space-around;">
-                                            <img style="height: 40px;" src="{% static 'images/linkedin_logo.png' %}" alt="" />
-                                            <div class="floating-form-group" style="flex-direction: row;">
-                                                {{ form.linkedin_link }}
-                                                <label for="{{ form.linkedin_link.id_for_label }}">{{ form.linkedin_link.label }}</label>
-                                            </div>
-                                            <label class="switch">
-                                                {{ form.linkedin_link_hidden}}
-                                                <div class="slider round"></div>
-                                            </label>
-                                        </div>
-                                        <span class="error-message" id="linkedin-error-message"></span>
-                                        <div class="form-link-input-container" style="flex-direction: row; align-items: center; justify-content: space-around;">
-                                            <img style="height: 40px;" src="{% static 'images/instagram_logo.png' %}" alt="" />
-                                            <div class="floating-form-group" style="flex-direction: row;">
-                                                {{ form.instagram_link }}
-                                                <label for="{{ form.instagram_link.id_for_label }}">{{ form.instagram_link.label }}</label>
-                                            </div>
-                                            <label class="switch">
-                                                {{ form.instagram_link_hidden}}
-                                                <div class="slider round"></div>
-                                            </label>
-                                        </div>
-                                        <span class="error-message" id="instagram-error-message"></span>
-                                        <div class="form-link-input-container" style="flex-direction: row; align-items: center; justify-content: space-around;">
-                                            <img style="height: 40px;" src="{% static 'images/github_logo.png' %}" alt="" />
-                                            <div class="floating-form-group" style="flex-direction: row;">
-                                                {{ form.github_link }}
-                                                <label for="{{ form.github_link.id_for_label }}">{{ form.github_link.label }}</label>
-                                            </div>
-                                            <label class="switch">
-                                                {{ form.github_link_hidden}}
-                                                <div class="slider round"></div>
-                                            </label>
-                                        </div>
-                                        <span class="error-message" id="github-error-message"></span>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="profile-button black-orange-btn" style="width: 100px" data-bs-dismiss="modal"> SAVE </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                          
-                        <div class="form-content" style="justify-content: space-around; min-width: 55%; padding: 0;">
-                            <div class="floating-form-group">
-                                {{ form.first_name }}
-                                <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
-                            </div> 
-                            <div class="floating-form-group">
-                                {{ form.last_name }}
-                                <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
-                            </div>
-                            <div class="">
-                                <label for="{{ form.program.id_for_label }}">{{ form.program.label }}</label>
-                                {{ form.program }}
-                            </div>
-                            <div class="">
-                                <label for="{{ form.batch_year.id_for_label }}">{{ form.batch_year.label }}</label>
-                                {{ form.batch_year }}
-                            </div>
-                            <div class="">
-                                <label for="{{ form.profile_pic.id_for_label }}">{{ form.profile_pic.label }}</label>
-                                {{ form.profile_pic }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-content" style="margin-top: 15px; padding: 0">
-                        <div class="floating-form-group">
-                            {{ form.quote }}
-                            <label for="{{ form.quote.id_for_label }}">{{ form.quote.label }}</label>
-                        </div> 
-                        <div class="floating-form-group">
-                            {{ form.hobbies }}
-                            <label for="{{ form.hobbies.id_for_label }}">{{ form.hobbies.label }}</label>
-                        </div> 
-                        <button type="submit" class="profile-button light-orange-btn" style="width: 150px; align-self: center;">DONE</button>
-                    </div>
-                </form>
+  <div class="id-orange-header"></div>
+  <div class="outer-wrapper">
+    <div class="form-container">
+      <div class="form-content">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-content-group" id="profile-group">
+            <div
+              class="form-content"
+              style="align-items: center; min-width: 35%; padding: 0"
+            >
+              <img
+                id="profile_pic_container"
+                src="{% static 'images/default_graduate.png' %}"
+                alt=""
+              />
+              <button
+                type="button"
+                class="profile-button orange-orange-btn"
+                id="btn-add-social-links"
+                class="add-social-links"
+              >
+                ADD SOCIALS +
+              </button>
             </div>
-        </div>
+            <div
+              class="modal fade bd-example-modal-lg"
+              tabindex="-1"
+              role="dialog"
+              id="modal-add-socials"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">SOCIALS & PRIVACY</h5>
+                  </div>
+                  <div class="modal-body form-content">
+                    <div
+                      class="form-link-input-container"
+                      style="
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-around;
+                      "
+                    >
+                      <img
+                        style="height: 40px"
+                        src="{% static 'images/facebook_logo.png' %}"
+                        alt=""
+                      />
+                      <div
+                        class="floating-form-group"
+                        style="flex-direction: row"
+                      >
+                        {{ form.facebook_link }}
+                        <label for="{{ form.facebook_link.id_for_label }}"
+                          >{{ form.facebook_link.label }}</label
+                        >
+                      </div>
+                      <label class="switch">
+                        {{ form.facebook_link_hidden}}
+                        <div class="slider round"></div>
+                      </label>
+                    </div>
+                    <span
+                      class="error-message"
+                      id="facebook-error-message"
+                    ></span>
+                    <div
+                      class="form-link-input-container"
+                      style="
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-around;
+                      "
+                    >
+                      <img
+                        style="height: 40px"
+                        src="{% static 'images/linkedin_logo.png' %}"
+                        alt=""
+                      />
+                      <div
+                        class="floating-form-group"
+                        style="flex-direction: row"
+                      >
+                        {{ form.linkedin_link }}
+                        <label for="{{ form.linkedin_link.id_for_label }}"
+                          >{{ form.linkedin_link.label }}</label
+                        >
+                      </div>
+                      <label class="switch">
+                        {{ form.linkedin_link_hidden}}
+                        <div class="slider round"></div>
+                      </label>
+                    </div>
+                    <span
+                      class="error-message"
+                      id="linkedin-error-message"
+                    ></span>
+                    <div
+                      class="form-link-input-container"
+                      style="
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-around;
+                      "
+                    >
+                      <img
+                        style="height: 40px"
+                        src="{% static 'images/instagram_logo.png' %}"
+                        alt=""
+                      />
+                      <div
+                        class="floating-form-group"
+                        style="flex-direction: row"
+                      >
+                        {{ form.instagram_link }}
+                        <label for="{{ form.instagram_link.id_for_label }}"
+                          >{{ form.instagram_link.label }}</label
+                        >
+                      </div>
+                      <label class="switch">
+                        {{ form.instagram_link_hidden}}
+                        <div class="slider round"></div>
+                      </label>
+                    </div>
+                    <span
+                      class="error-message"
+                      id="instagram-error-message"
+                    ></span>
+                    <div
+                      class="form-link-input-container"
+                      style="
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-around;
+                      "
+                    >
+                      <img
+                        style="height: 40px"
+                        src="{% static 'images/github_logo.png' %}"
+                        alt=""
+                      />
+                      <div
+                        class="floating-form-group"
+                        style="flex-direction: row"
+                      >
+                        {{ form.github_link }}
+                        <label for="{{ form.github_link.id_for_label }}"
+                          >{{ form.github_link.label }}</label
+                        >
+                      </div>
+                      <label class="switch">
+                        {{ form.github_link_hidden}}
+                        <div class="slider round"></div>
+                      </label>
+                    </div>
+                    <span
+                      class="error-message"
+                      id="github-error-message"
+                    ></span>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="profile-button black-orange-btn"
+                      style="width: 100px"
+                      data-bs-dismiss="modal"
+                    >
+                      SAVE
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="form-content"
+              style="justify-content: space-around; min-width: 55%; padding: 0"
+            >
+              <div class="floating-form-group">
+                {{ form.first_name }}
+                <label for="{{ form.first_name.id_for_label }}"
+                  >{{ form.first_name.label }}</label
+                >
+              </div>
+              <div class="floating-form-group">
+                {{ form.last_name }}
+                <label for="{{ form.last_name.id_for_label }}"
+                  >{{ form.last_name.label }}</label
+                >
+              </div>
+              <div class="">
+                <label for="{{ form.program.id_for_label }}"
+                  >{{ form.program.label }}</label
+                >
+                {{ form.program }}
+              </div>
+              <div class="">
+                <label for="{{ form.batch_year.id_for_label }}"
+                  >{{ form.batch_year.label }}</label
+                >
+                {{ form.batch_year }}
+              </div>
+              <div class="">
+                <label for="{{ form.profile_pic.id_for_label }}"
+                  >{{ form.profile_pic.label }}</label
+                >
+                {{ form.profile_pic }}
+              </div>
+            </div>
+          </div>
+          <div class="form-content" style="margin-top: 15px; padding: 0">
+            <div class="floating-form-group">
+              {{ form.quote }}
+              <label for="{{ form.quote.id_for_label }}"
+                >{{ form.quote.label }}</label
+              >
+            </div>
+            <div class="floating-form-group">
+              {{ form.hobbies }}
+              <label for="{{ form.hobbies.id_for_label }}"
+                >{{ form.hobbies.label }}</label
+              >
+            </div>
+            <button
+              type="submit"
+              class="profile-button light-orange-btn"
+              style="width: 150px; align-self: center"
+            >
+              DONE
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}

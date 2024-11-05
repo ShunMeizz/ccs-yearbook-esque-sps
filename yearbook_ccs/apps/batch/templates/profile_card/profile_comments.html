@@ -1,21 +1,22 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/comment_styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
 
 {% if profile %}
-    {% include 'create_profile_comment.html' with profile_id=profile.id %}
+<!-- Profile Comment -->
+{% include 'create_profile_comment.html' with profile_id=profile.id %}
 
-    <div class="comments-container">
-        {% if comments %}
-            {% for comment in comments %}
-                {% include 'profile_comment.html' with comment=comment %}
-            {% endfor %}
-        {% else %}
-            <div class="no-comments-found-container">
-                <h6>No comments yet.</h6>
-                Be the first to comment.
-            </div>
-        {% endif %}
-    </div>
+<div class="comments-container">
+  {% if comments %} {% for comment in comments %}
+  <!-- comment for loop -->
+  {% include 'profile_comment.html' with comment=comment %} {% endfor %}
+  <!-- else -->
+  {% else %}
+  <div class="no-comments-found-container">
+    <h6>No comments yet.</h6>
+    Be the first to comment.
+  </div>
+  {% endif %}
+</div>
 {% endif %}
 
 <script src="{% static 'js/comment_script.js' %}"></script>
