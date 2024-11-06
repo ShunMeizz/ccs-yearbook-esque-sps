@@ -1,35 +1,43 @@
 <div class="comment" id="comment-{{ comment.id }}">
-    <div class="comment-header">
-        <img class="comment-icon" src="{{ comment.author.profile.profile_pic.url }}" alt="">
-        <h2 class="comment-author">{{ comment.author.username }}</h2>
-        <h4 class="comment-date">· {{ comment.date_updated|timesince }} ago</h4>
-    </div>
+  <div class="comment-header">
+    <img
+      class="comment-icon"
+      src="{{ comment.author.profile.profile_pic.url }}"
+      alt=""
+    />
+    <h2 class="comment-author">{{ comment.author.username }}</h2>
+    <h4 class="comment-date">· {{ comment.date_updated|timesince }} ago</h4>
+  </div>
 
-    <div class="comment-body">
-        <p id="comment-body-{{ comment.id }}">{{ comment.comment }}</p>
-        <div class="comment-form edit-comment-form" id="edit-comment-form-{{ comment.id }}" style="align-items: baseline;">
-            <form method="post" action="{% url 'edit_comment' comment.id %}">
-                {% csrf_token %}
-                <div class="comment-header">
-                    <div class="comment-input">
-                        <textarea name="comment" rows="1" placeholder="Write a comment">{{ comment.comment }}</textarea>
-                    </div>
-                    <button type="submit">➤</button>
-                </div>
-            </form>
+  <div class="comment-body">
+    <p id="comment-body-{{ comment.id }}">{{ comment.comment }}</p>
+    <div
+      class="comment-form edit-comment-form"
+      id="edit-comment-form-{{ comment.id }}"
+      style="align-items: baseline"
+    >
+      <form method="post" action="{% url 'edit_comment' comment.id %}">
+        {% csrf_token %}
+        <div class="comment-header">
+          <div class="comment-input">
+            <textarea name="comment" rows="1" placeholder="Write a comment">
+{{ comment.comment }}</textarea
+            >
+          </div>
+          <button type="submit">➤</button>
         </div>
+      </form>
     </div>
+  </div>
 
-    <div class="comment-button-group">
-        {% if request.user == comment.author or request.user == comment.blog.user %}
-        <form action="{% url 'delete_comment' comment.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn-delete-comment">· Delete</button>
-        </form>
-        {% endif %}
-
-        {% if request.user == comment.author %}
-        <button class="btn-edit-comment" value="{{ comment.id }}">· Edit</button>
-        {% endif %}
-    </div>
+  <div class="comment-button-group">
+    {% if request.user == comment.author or request.user == comment.blog.user %}
+    <form action="{% url 'delete_comment' comment.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn-delete-comment">· Delete</button>
+    </form>
+    {% endif %} {% if request.user == comment.author %}
+    <button class="btn-edit-comment" value="{{ comment.id }}">· Edit</button>
+    {% endif %}
+  </div>
 </div>

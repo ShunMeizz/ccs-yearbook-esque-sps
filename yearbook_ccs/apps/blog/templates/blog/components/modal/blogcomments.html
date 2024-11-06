@@ -1,31 +1,42 @@
 <!-- Comments Modal -->
-<div class="modal fade" id="commentModal{{ post.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          {% include 'create_blog_comment.html' with blog_id=post.id %}
+<div
+  class="modal fade"
+  id="commentModal{{ post.id }}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        {% include 'create_blog_comment.html' with blog_id=post.id %}
 
-          <div class="comments-container">
-            <!-- accessing all comments under this post -->
-              {% if post.blog_comments.all %}
-                {% for comment in post.blog_comments.all %}
-                    {% include 'blog_comment.html' with comment=comment %}
-                {% endfor %}
-              {% else %}
-                <div class="no-comments-found-container">
-                  <h6>No comments yet.</h6>
-                  Be the first to comment.
-                </div>
-              {% endif %}
+        <div class="comments-container">
+          <!-- accessing all comments under this post -->
+          {% if post.blog_comments.all %}
+          <!-- for loop comments -->
+          {% for comment in post.blog_comments.all %}
+          <!-- indiv comment -->
+          {% include 'blog_comment.html' with comment=comment %} {% endfor %}
+
+          <!-- else -->
+          {% else %}
+          <div class="no-comments-found-container">
+            <h6>No comments yet.</h6>
+            Be the first to comment.
           </div>
+          {% endif %}
         </div>
-        <!-- <div class="modal-footer d-flex justify-content-between">
-            <button type="button" class="btn btn-primary">Comment</button>
-        </div> -->
       </div>
     </div>
+  </div>
 </div>
