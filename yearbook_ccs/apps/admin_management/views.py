@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from ..user_management.models import UserAccount
 from ..user_management.views import acc_not_verified_email, acc_verified_email
 
+def admin_dashboard(request):
+    return render(request, 'admin_home.html')
+
 def review_user_account(request):
     accounts = UserAccount.objects.filter(is_acc_verified=False)
 
