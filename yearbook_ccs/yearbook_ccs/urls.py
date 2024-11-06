@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('apps.user_management.urls')),
     path('', include('apps.profiles.urls')),
     path('', include('apps.blog.urls')),
-    path('', include('apps.admin_management.urls')),
+    path('admin_dashboard/', include('apps.admin_management.urls')),
     path('', include('apps.comment.urls')),
     path('', include('apps.batch.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

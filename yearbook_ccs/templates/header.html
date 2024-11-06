@@ -18,6 +18,14 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if request.user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link active" href="/reports">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/review_acc">Review Accounts</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/blog"
               >Blogs</a
@@ -26,6 +34,7 @@
           <li class="nav-item">
             <a class="nav-link active" href="/batch_page">Batch</a>
           </li>
+          {% endif %}
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle active"
@@ -38,7 +47,9 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="/account">Account</a></li>
+              {% if not request.user.is_superuser%}
               <li><a class="dropdown-item" href="/profile">Profile</a></li>
+              {% endif %}
               <li><a class="dropdown-item" href="/logout">Log Out</a></li>
             </ul>
           </li>
