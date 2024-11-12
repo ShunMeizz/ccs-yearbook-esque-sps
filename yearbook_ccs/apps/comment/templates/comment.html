@@ -1,10 +1,20 @@
+{% load static %}
 <div class="comment" id="comment-{{ comment.id }}">
   <div class="comment-header">
-    <img
-      class="comment-icon"
-      src="{{ comment.author.profile.profile_pic.url }}"
-      alt=""
-    />
+    <div class="comment-profile">
+      <div class="comment-icon-wrapper">
+        <img
+          class="comment-icon"
+          src="{{ request.user.profile.profile_pic.url }}"
+          alt="Profile Picture"
+        />
+      </div>
+      <img
+        class="comment-icon-frame"
+        src="{% static 'images/profile_frame.png' %}"
+        alt="Profile frame"
+      />
+    </div>
     <h2 class="comment-author">{{ comment.author.username }}</h2>
     <h4 class="comment-date">· {{ comment.date_updated|timesince }} ago</h4>
   </div>

@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.template.loader import render_to_string
+from django.middleware.csrf import get_token
+from django.http import HttpResponseRedirect, HttpResponse
 from apps.profiles.models import UserProfile
 from apps.blog.models import Blog
 from apps.user_management.models import UserAccount
@@ -26,8 +28,8 @@ def create_profile_comment(request, profile_id):
             comment.profile = profile_id
             comment.author = request.user
             comment.save()
+
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-        
 def create_blog_comment(request, blog_id):
     blog_id = get_object_or_404(Blog, pk = blog_id)
 
@@ -38,7 +40,17 @@ def create_blog_comment(request, blog_id):
             comment.blog = blog_id
             comment.author = request.user
             comment.save()
+
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+            # To render the new comment without refreshing the page
+            # csrf_token = get_token(request)
+            
+            # # Render new comment as HTML to insert into the page
+            # comment_html = render_to_string('blog_comment.html', {'comment': comment, 'csrf_token': csrf_token, 'request':request})
+
+            # # Return the new comment as HTML to insert into the page
+            # return HttpResponse(comment_html)
 
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk = comment_id)
