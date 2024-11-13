@@ -1,12 +1,14 @@
 {% load static %}
 <div class="comment-form" style="align-items: baseline">
-  <form method="post" action="{% url 'create_blog_comment' blog_id %}">
-    <!-- to add comment wo refreshing page
-     add this to form
-     hx-post="{% url 'create_blog_comment' blog_id %}"
-     hx-target=".comments-container"
-     hx-swap="beforeend"
-     -->
+  <!-- <form method="post" action="{% url 'create_blog_comment' blog_id %}"> -->
+  <!-- to add comment wo refreshing page, uncomment the ff and comment the one above and adjust comments on views -->
+  <form
+    method="post"
+    hx-post="{% url 'create_blog_comment' blog_id %}"
+    hx-target="#commentModal{{ blog_id }} .comments-container"
+    hx-swap="beforeend"
+    id="blogCommentForm{{ blog_id }}"
+  >
     {% csrf_token %}
     <div class="comment-header">
       <div class="comment-profile">
@@ -36,3 +38,13 @@
     </div>
   </form>
 </div>
+
+<script>
+  $(document).on(
+    "htmx:afterOnLoad",
+    "#blogCommentForm{{ blog_id }}",
+    function () {
+      $(this).trigger("reset"); // reset the form
+    }
+  );
+</script>

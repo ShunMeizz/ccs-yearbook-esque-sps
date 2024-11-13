@@ -41,16 +41,16 @@ def create_blog_comment(request, blog_id):
             comment.author = request.user
             comment.save()
 
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-            # To render the new comment without refreshing the page
-            # csrf_token = get_token(request)
+            # To render the new comment without refreshing the page, uncomment the following lines
+            csrf_token = get_token(request)
             
-            # # Render new comment as HTML to insert into the page
-            # comment_html = render_to_string('blog_comment.html', {'comment': comment, 'csrf_token': csrf_token, 'request':request})
+            # Render new comment as HTML to insert into the page
+            comment_html = render_to_string('blog_comment.html', {'comment': comment, 'csrf_token': csrf_token, 'request':request})
 
-            # # Return the new comment as HTML to insert into the page
-            # return HttpResponse(comment_html)
+            # Return the new comment as HTML to insert into the page
+            return HttpResponse(comment_html)
 
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk = comment_id)
