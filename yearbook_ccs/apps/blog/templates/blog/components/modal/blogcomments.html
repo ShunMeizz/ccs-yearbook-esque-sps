@@ -40,3 +40,46 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    var targetDiv = document.querySelector(
+      `#commentModal{{ post.id }} .comments-container`
+    ); // Get the native DOM element
+
+    // Check if targetDiv exists before setting up MutationObserver
+    if (targetDiv) {
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          if (mutation.type === "childList") {
+            console.log("A new child was added or removed in the div.");
+
+            // Check if a comment class div is added
+            var newComment = $(mutation.addedNodes).filter(".comment");
+
+            // If a comment is added, hide the no-comments-found-container
+            if (newComment.length > 0) {
+              $(
+                "#commentModal{{ post.id }} .no-comments-found-container"
+              ).hide();
+            }
+
+            // If no comments exist, show the no-comments-found-container
+            var comments = $(
+              "#commentModal{{ blog_id }} .comments-container .comment"
+            );
+            if (comments.length === 0) {
+              $(
+                "#commentModal{{ blog_id }} .no-comments-found-container"
+              ).show();
+            }
+          }
+        });
+      });
+
+      // Observer configuration: monitor added or removed children
+      var config = { childList: true, subtree: true };
+      observer.observe(targetDiv, config);
+    }
+  });
+</script>
