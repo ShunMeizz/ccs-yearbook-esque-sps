@@ -40,13 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'imagekit', 
+    'django.contrib.humanize', #Added for blog posts
     'apps.blog',
     'apps.profiles',
     'apps.user_management',
     'apps.admin_management',
     'apps.comment',
-    'django.contrib.humanize', #Added for blog posts
     'apps.batch',
+    'apps.report',
 ]
 
 #SITE_ID = 1 #newly add

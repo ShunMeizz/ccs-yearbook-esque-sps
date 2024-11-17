@@ -1,0 +1,23 @@
+<tr>
+  <th scope="row">{{report.id}}</th>
+  <td>{{username}}</td>
+  <td>{{report.reason}}</td>
+  <td>{{report.date}}</td>
+  <td>{{report.link}}</td>
+  <td>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <!-- {{report.get_status_display}} -->
+        Pending
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Finished</a></li>
+      </ul>
+    </div>
+  </td>
+</tr>
