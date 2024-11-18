@@ -20,8 +20,16 @@
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            {{form.as_p}} {{value}}
-            <input type="hidden" name="report_type" value="{{type}}" />
+            <!-- Corrected textarea name -->
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              name="report_reason"
+              placeholder="What seems to be the problem?"
+            ></textarea>
+            <!-- Hidden input for report type -->
+            <input type="hidden" name="report_type" value="{{ type }}" />
           </div>
         </div>
         <div class="modal-footer">
@@ -32,7 +40,14 @@
           >
             Close
           </button>
-          <button type="submit" class="btn btn-primary">Report</button>
+          <button
+            type="submit"
+            name="action"
+            value="report"
+            class="btn btn-primary"
+          >
+            Report
+          </button>
         </div>
       </form>
     </div>

@@ -24,14 +24,19 @@ def report_home(request):
 
 def add_report(request):
     print("POST REPORT")
-    if request.method == "POST":
-        form = ReportForm(request.POST)
-        if form.is_valid():
-            report = form.save(commit=False)
-            report.report_type = request.POST.get('report_type')
-            report.link = request.path
-            report.save()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    else:
-        form = ReportForm()
-    return render(request, 'component/report_modal.html',{'form':form})
+    if request.method == "POST" and request.POST.get('action') == 'report':
+        # Create a new report instance
+        report = Report(
+            reason=request.POST.get('report_reason'),
+            report_type=request.POST.get('report_type'),
+            link=request.META.get('HTTP_REFERER'),  # Save the referring page as the link
+            user_reported_id=request.user.id
+        )
+        # Debugging prints
+        print(f"Reason: {report.reason}")
+        print(f"Report Type: {report.report_type}")
+        print(f"Link: {report.link}")
+        report.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    return render(request, 'reports.html')  # Fallback render if not POST
