@@ -5,11 +5,11 @@
 
 <!-- start block -->
 {% block content %}
-
 <div class="bg-white">
   <div class="p-4">
-    <div class="coolvetica black size-50">Reports</div>
+    <div class="coolvetica black size-50 center">Reports</div>
     <table class="table">
+      <div class="coolvetica black size-24">Post Reports</div>
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -21,7 +21,49 @@
         </tr>
       </thead>
       <tbody>
-        {% for report in all_reports %}
+        {% for report in post_reports %}
+        <!-- prettier-ignore -->
+        {% include 'component/report.html' with report=report username=username%}
+        <!-- end loop -->
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <table class="table">
+      <div class="coolvetica black size-24">Profile Reports</div>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">User</th>
+          <th scope="col">Reason</th>
+          <th scope="col">Date</th>
+          <th scope="col">Link</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for report in profile_reports %}
+        <!-- prettier-ignore -->
+        {% include 'component/report.html' with report=report username=username%}
+        <!-- end loop -->
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <table class="table">
+      <div class="coolvetica black size-24">Comment Reports</div>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">User</th>
+          <th scope="col">Reason</th>
+          <th scope="col">Date</th>
+          <th scope="col">Link</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for report in comment_reports %}
         <!-- prettier-ignore -->
         {% include 'component/report.html' with report=report username=username%}
         <!-- end loop -->
