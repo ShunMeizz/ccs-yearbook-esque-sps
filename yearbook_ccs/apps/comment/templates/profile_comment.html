@@ -54,8 +54,19 @@
     </form>
     {% endif %} {% if request.user == comment.author %}
     <button class="btn-edit-comment" value="{{ comment.id }}">· Edit</button>
+    <button
+      data-bs-toggle="modal"
+      data-bs-target="#reportModal"
+      class="comment-button ml-3"
+      name="action"
+      value="report"
+    >
+      Report
+    </button>
     {% endif %}
   </div>
 </div>
+
+<!-- {% include "component/report_modal.html" with type=1 %} -->
 
 <script src="{% static 'js/comment_script.js' %}"></script>

@@ -1,3 +1,4 @@
+{% if report.status == 0 %}
 <tr>
   <th scope="row">{{report.id}}</th>
   <td>{{username}}</td>
@@ -12,12 +13,18 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <!-- {{report.get_status_display}} -->
         Pending
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Finished</a></li>
+        <form method="post" action="{% url 'finished_report' %}">
+          {% csrf_token %}
+          <li>
+            <input type="hidden" name="report_id" value="{{report.id}}" />
+            <button type="submit" class="dropdown-item">Finished</button>
+          </li>
+        </form>
       </ul>
     </div>
   </td>
 </tr>
+{% endif %}
