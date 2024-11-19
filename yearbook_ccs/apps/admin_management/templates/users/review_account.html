@@ -1,0 +1,78 @@
+{% extends 'base.html' %}{%load static%}
+<!-- title -->
+{% block title %}Review Accounts{% endblock %}
+<!-- extra styles -->
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/admin_page_styles.css' %}" />
+<link rel="stylesheet" href="{% static 'css/account_modal_styles.css' %}" />
+{% endblock extra_styles %}
+<!-- before main block -->
+{% block before-main %}{% endblock %}
+
+<!-- main content -->
+{% block content %}
+<div class="admin-page-container">
+  <h1>Pending Account Approvals</h1>
+  <div class="table-container-wrapper">
+    <div class="table-container">
+      <form method="POST">
+        {% csrf_token %}
+        <table class="admin-table" border="1">
+          <tr>
+            <th>Select for Verification</th>
+            <th>Select for Not Verified</th>
+            <th>School ID Number</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+          {% if accounts %} {% for user in accounts %}
+          <tr>
+            <td>
+              <input
+                type="checkbox"
+                name="verified_user_ids"
+                value="{{ user.id }}"
+              />
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                name="not_verified_user_ids"
+                value="{{ user.id }}"
+              />
+            </td>
+            <td>{{ user.school_id_number }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn-view-credentials-modal"
+                data-bs-toggle="modal"
+                data-bs-target="#accountModal{{ user.id }}"
+              >
+                View Credentials
+              </button>
+            </td>
+          </tr>
+
+          {% include 'users/components/account_modal.html' %} {% endfor %}
+          <!-- if there are no pending accounts to verify -->
+          {% else %}
+          <tr>
+            <td colspan="6" align="center">
+              No pending user accounts to review
+            </td>
+          </tr>
+          {% endif %}
+        </table>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<!-- after main block -->
+{% block after-main %}{% endblock %}

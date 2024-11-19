@@ -1,0 +1,68 @@
+{% extends 'base.html' %}{% load static %}
+<!-- page title -->
+{% block title %}Verified Users{% endblock %}
+<!-- extra styles -->
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/admin_page_styles.css' %}" />
+<link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
+<link rel="stylesheet" href="{% static 'css/account_modal_styles.css' %}" />
+
+{% endblock extra_styles %}
+<!-- before main block -->
+{% block before-main %}{% endblock %}
+
+<!-- main content -->
+{% block content %}
+<div class="admin-page-container">
+  <h1>Verified Users</h1>
+  <div class="table-container-wrapper">
+    <div class="search-input-wrapper">
+      {% csrf_token %}
+      <form>
+        <input type="text" placeholder="Search" />
+      </form>
+    </div>
+    <div class="table-container">
+      <table class="admin-table">
+        <tr>
+          <th>user_id</th>
+          <th>username</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for user in useraccounts %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>
+            <button
+              class="view-profile-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#profileModal{{ user.profile.id }}"
+            >
+              View Profile
+            </button>
+          </td>
+          <td>
+            <button
+              class="view-user-acc-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#accountModal{{ user.id }}"
+            >
+              View Account
+            </button>
+          </td>
+        </tr>
+
+        <!-- profile_modal -->
+        {% include 'users/components/profile_card.html' with profile=user.profile %}
+        <!-- account_modal -->
+        {% include 'users/components/account_modal.html' %} {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<!-- after main block -->
+{% block after-main %}{% endblock %}
