@@ -37,14 +37,31 @@
             View Profile
           </button>
         </div>
-        <div class="comment-list" style="display: flex">
+        <div class="comment-list" style="display: flex; height: 100%">
           <link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
           <div class="comments-container" style="flex: 1">
             {% with profile_comments=profile.profile_comments.all %}
             <!-- check if there are comments under this profile -->
             {% if profile_comments %} {% for comment in profile_comments %}
             <!-- comment for loop -->
-            {% include 'profile_comment.html' with comment=comment %} {%endfor%}
+            {% include 'profile_comment.html' with comment=comment %}
+            <div class="comment-button-group">
+              <form
+                action="{% url 'delete_comment' comment.id %}"
+                method="post"
+                style="width: 0"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="btn-delete-comment"
+                  style="text-align: left; width: 100px"
+                >
+                  · Delete
+                </button>
+              </form>
+            </div>
+            {%endfor%}
             <!-- else -->
             {% else %}
             <div class="no-comments-found-container">
@@ -53,7 +70,6 @@
             </div>
             {% endif %} {% endwith %}
           </div>
-          <script src="{% static 'js/comment_script.js' %}"></script>
         </div>
       </div>
     </div>

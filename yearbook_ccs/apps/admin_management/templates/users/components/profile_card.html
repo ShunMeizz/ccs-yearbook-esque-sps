@@ -49,9 +49,8 @@
               ><strong>{{profile.batch_year }}</strong></span
             >
           </p>
-          {% if not profile.github_link_hidden or not
-          profile.facebook_link_hidden or not profile.linkedin_link_hidden or
-          not profile.instagram_link_hidden%}
+          <!-- prettier-ignore -->
+          {% if not profile.github_link_hidden or not profile.facebook_link_hidden or not profile.linkedin_link_hidden or not profile.instagram_link_hidden%}
           <div id="socialContainer">
             <p style="margin: 1px; font-size: 12px; color: #e26901">
               Connect with me on
