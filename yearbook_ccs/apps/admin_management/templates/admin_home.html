@@ -1,11 +1,27 @@
-{% extends 'base.html' %} {% block title %}CCS Yearbook Admin{% endblock %}
+{% extends 'base.html' %} {% load static %}
+<!-- page title -->
+{% block title %}CCS Yearbook Admin{% endblock %}
 <!-- extra styles -->
-{% block extra_styles %}{% endblock extra_styles %}
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/admin_page_styles.css' %}" />
+{% endblock extra_styles %}
 <!-- before main block -->
 {% block before-main %}{% endblock %}
 
 <!-- main content -->
-{% block content %} {% endblock %}
+{% block content %}
+<div class="admin-page-container">
+  <section id="latest-user-verification-request">
+    <!-- insert recent user verification request -->
+  </section>
+  <section id="latest-blog-report">
+    <!-- insert recent blog report -->
+  </section>
+  <section id="latest-comment-report">
+    <!-- insert recent comment report -->
+  </section>
+</div>
+{% endblock %}
 
 <!-- after main block -->
 {% block after-main %}{% endblock %}
