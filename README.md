@@ -1,71 +1,202 @@
-# CCS YEARBOOK-ESQUE STUDENT PROFILE SYSTEM
+<a id="readme-top"></a>
 
 [![Contributors][contributors-shield]][contributors-url]
+[![Stargazers][stars-shield]][stars-url]
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-  </ol>
-</details>
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/ShunMeizz/ccs-yearbook-esque-sps">
+    <img src="images/citlogo.png" alt="Logo" width="80" height="80">
+  </a>
 
-<!-- About The Project -->
+  <h3 align="center">CCS YEARBOOK-ESQUE STUDENT PROFILE SYSTEM</h3>
+
+  <p align="center">
+    Prepared for CSIT327 - Information Management 2
+  </p>
+</div>
+
+---
+
+## Table of Contents
+
+1. [About The Project](#about-the-project)
+   - [Purpose](#purpose)
+   - [UI/UX](#uiux)
+   - [Functional Requirements](#functional-requirements)
+   - [ERD](#erd)
+   - [Gantt Chart](#gantt-chart)
+   - [Built With](#built-with)
+2. [Getting Started](#getting-started)
+   - [Prerequisites and Installation](#prerequisites-and-installation)
+   - [Setup Instructions](#setup-instructions)
+     - [Setup the Django](#setup-the-django)
+     - [Run the Development Server](#run-the-development-server)
+3. [Top Contributors](#top-contributors)
+4. [Contact](#contact)
+
+---
+
 ## About The Project
-  It is a yearbook system designed to enable students from the College of Computer Studies (CCS) to create and manage profiles, interact with peers through comments, and participate in a blogging platform.
-  
-  - **Functional Requirements**
 
-    I. User Management
-    
-    II. Profile Management
-    
-    III. Commenting System
-    
-    IV. Blogging System
-    
-    V. Profile Filtering
-    
-    VI. Administrative Management
+### Purpose
 
-    Access full document of the functional requirements [here](https://docs.google.com/document/d/1_X5-35SeR2l8PPpQWE8BnXv4xjnfnH-jFXWXNbbn7QM/edit?usp=sharing).
-   
-  - **Gantt Chart**
+The CCS Yearbook-esque Student Profile System is designed to provide a digital platform for students in the College of Computer Studies (CCS) to create and manage profiles, interact through comments, and engage in a blogging system.
 
-    Access it [here](https://docs.google.com/spreadsheets/d/1dgcrYwHk6Z3L8fpoq2Di0B3ZduTi4T2ZaZ-mwRFIVsQ/edit?usp=sharing).
+### UI/UX
 
-  - **ERD**
+Details about the user interface and user experience design go here. Include screenshots, wireframes, or design concepts if available.
 
-    Access it [here](https://online.visual-paradigm.com/share.jsp?id=323735373834392d34).
-      
-  - **UI/UX**
+### Functional Requirements
 
-    Access it [here](https://www.figma.com/design/TuTkacP5TMmgnySRN4Dovl/CCS-Yearbook-esque-Student-Profile-System-UI%2FUX?node-id=0-1&t=XOkLihFBqrn1mJAC-1).
+The functional aspects of the system include:
 
-<!-- Built With -->
+1. User Account Management
+2. Profile Management
+3. Commenting System
+4. Blogging System
+5. Profile Filtering
+6. Administrative Management
+7. Report System
+
+### ERD
+
+### Gantt Chart
+
 ### Built With
 
-[![Bootrap][bootstrap.com]][bootstrap-url]
+- [![HTML][HTML.com]][HTML-url]
+- [![CSS][CSS.com]][CSS-url]
+- [![JavaScript][JavaScript.com]][JavaScript-url]
+- [![Python][Python.com]][Python-url]
+- [![Django][Django.com]][Django-url]
+- [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+- [![JQuery][JQuery.com]][JQuery-url])
 
-[![JQuery][JQuery.com]][Jquery-url]
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[![Django][Django.com]][Django-url]
+---
 
-<!-- Getting Started -->
+## Getting Started
+
+### Prerequisites and Installation
+
+Ensure you have the following installed on your computer:
+
+1. **Python (v3.8 or higher)**
+
+   - [Download Python](https://www.python.org/downloads/).
+   - Verify installation:
+     ```sh
+     python --version
+     pip --version
+     ```
+
+2. **Git**
+
+   - [Download Git](https://git-scm.com/downloads) for version control.
+   - Verify installation:
+     ```sh
+     git --version
+     ```
+
+3. **A Web Browser**  
+   Use Chrome, Firefox, or Edge for testing.
+
+### Setup Instructions
+
+#### Setup the Django
+
+1. **Create a Virtual Environment**
+
+   - Run the following command to create a virtual environment:
+     ```sh
+     python -m venv venv
+     ```
+
+2. **Activate the Virtual Environment**
+
+   - On macOS/Linux:
+     ```sh
+     source venv/bin/activate
+     ```
+   - On Windows:
+     ```sh
+     venv\Scripts\activate
+     ```
+
+3. **Install the Required Python Packages**
+
+   - Use the `requirements.txt` file to install all necessary dependencies:
+     ```sh
+     pip install -r requirements.txt
+     ```
+
+4. **Apply Database Migrations**
+   - Run the following command to set up the database:
+     ```sh
+     python manage.py migrate
+     ```
+
+#### Run the Development Server
+
+1. **Start the Django Backend**
+
+   - Run the following command to start the development server:
+     ```sh
+     python manage.py runserver
+     ```
+
+2. **Open the Application in Your Browser**
+   - Navigate to:
+     ```sh
+     http://localhost:8000
+     ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+## Top Contributors
+
+<a href="https://github.com/ShunMeizz/ccs-yearbook-esque-sps/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ShunMeizz/ccs-yearbook-esque-sps" alt="Contributors Image for ccs-yearbook-esque-sps" />
+</a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+## Contact
+
+- **Angel Sheinen O. Cambarijan** - [GitHub](https://github.com/jellypedia) - angelsheinen.cambarijan@cit.edu
+- **Charlene R. Repuesto** - [GitHub](https://github.com/chrlskrt) - charlene.repuesto@cit.edu
+- **Shanley Mae F. Sebial** - [GitHub](https://github.com/ShunMeizz) - shanleymae.sebial@cit.edu
+
+Project Link: [https://github.com/ShunMeizz/ccs-yearbook-esque-sps](https://github.com/ShunMeizz/ccs-yearbook-esque-sps)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/ShunMeizz/ccs-yearbook-esque-sps?style=for-the-badge&logo=github&labelColor=orange&color=yellow
-[contributors-url]: https://github.com/ShunMeizz/ccs-yearbook-esque-sps/graphs/contributors
-[stars-shield]: https://img.shields.io/github/stars/ShunMeizz/ccs-yearbook-esque-sps?style=for-the-badge&logo=github&color=yellow
-[stars-url]: https://github.com/ShunMeizz/ccs-yearbook-esque-sps/stargazers
-[bootstrap.com]: https://img.shields.io/badge/Bootstrap-purple?style=for-the-badge&logo=bootstrap&logoColor=%239461fb
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[product-screenshot]: images/screenshot.png
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
-[bootstrap-url]: https://getbootstrap.com/
-[Django-url]: https://www.djangoproject.com/
-[Django.com]: https://img.shields.io/badge/Django-%230C4B33?style=for-the-badge&logo=django&logoColor=%230C4B33&labelColor=white
+[JQuery-url]: https://jquery.com
+[HTML.com]: https://developer.mozilla.org/en-US/docs/Web/HTML
+[HTML-url]: https://img.shields.io/badge/-HTML-orange
+[CSS.com]: https://developer.mozilla.org/en-US/docs/Web/CSS
+[CSS-url]: https://img.shields.io/badge/-CSS-blue
+[JavaScript.com]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[JavaScript-url]: https://img.shields.io/badge/-JavaScript-yellow
+[Python.com]: https://www.python.org/
+[Python-url]: https://img.shields.io/badge/-Python-blue
+[Django.com]: https://www.djangoproject.com/
+[Django-url]: https://img.shields.io/badge/-Django-green
