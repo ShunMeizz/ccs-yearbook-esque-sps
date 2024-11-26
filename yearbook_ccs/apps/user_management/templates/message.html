@@ -1,12 +1,10 @@
 {% extends 'base.html' %} {% load static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
-
 {% endblock extra_styles %} {% block before-main %}
 <div class="form-header" style="margin-top: 20px">
 	<div class="ribbon-container"></div>
 	<div class="orange-box"></div>
-	<div class="light-box"></div>
-	<h1>WELCOME BACK!</h1>
+	<h1>VERIFYING...</h1>
 </div>
 {% endblock %} {% block content %}
 <div class="id-card">
@@ -17,20 +15,12 @@
 	<div class="id-orange-header"></div>
 	<div class="outer-wrapper">
 		<div class="form-container">
-			<div class="images-content">
-				<img src="{% static 'images/default_graduate.png' %}" alt="" />
-			</div>
 			<div class="form-content">
-				<form method="POST">
-					{% csrf_token %}
-					<div class="input-group">{{ form.username }}</div>
-					<div class="input-group">{{ form.password }}</div>
-					<button type="submit">LOGIN</button>
-					<div class="switch-page-message">
-						Don't have an account?
-						<a href="{% url 'signup_step1' %}">Sign up</a>
-					</div>
-				</form>
+				<div class="message-container">
+					<div class="content-message">{{ message }}</div>
+					<div class="additional-content-message">{{ additional_message }}</div>
+					<a href="{% url 'login' %}"> Go back to login page</a>
+				</div>
 			</div>
 		</div>
 	</div>

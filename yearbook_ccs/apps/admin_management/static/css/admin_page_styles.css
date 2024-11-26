@@ -1,0 +1,55 @@
+body {
+  background: none;
+}
+
+.admin-page-container,
+.table-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+}
+
+.admin-page-container h1 {
+  margin: 50px 0;
+  color: #e26901;
+  text-align: center;
+}
+
+.table-container-wrapper {
+  background: #d1d0d0;
+  border-radius: 20px;
+}
+
+.table-container form,
+.table-container table,
+.table-container table tbody {
+  width: 100%;
+}
+
+.table-container th,
+.table-container td {
+  padding: 5px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.admin-table td button {
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 8px 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.show-modal-btn {
+  border: 1px solid #e26901;
+  color: #ff912c;
+}
+
+.show-modal-btn:hover {
+  background: #e26901;
+  color: white;
+}
