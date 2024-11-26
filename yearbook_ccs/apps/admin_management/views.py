@@ -46,5 +46,5 @@ def view_user_accounts(request):
     
     accounts = UserAccount.objects.filter(is_acc_verified=True)
 
-    return render(request, 'users/user_table.html' , {'useraccounts': accounts})
+    return render(request, 'users/user_verified_page.html' , {'useraccounts': accounts})
 
