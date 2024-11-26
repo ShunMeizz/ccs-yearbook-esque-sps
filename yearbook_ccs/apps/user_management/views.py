@@ -59,15 +59,8 @@ def acc_not_verified_email(request, user, to_email):
     message = render_to_string("email_messages/acc_not_verified_message.html", {
         'user': user.username,
     })
-    email = EmailMessage(mail_subject, message, to=[to_email])
+    EmailMessage(mail_subject, message, to=[to_email])
 
-    if email.send():
-        messages.success(
-            request, 
-            format_html('Dear <b>{}</b>, please check your email inbox at <b>{}</b> for your account status update. <b>Note:</b> Check your spam folder.', user, to_email)
-        )
-    else:
-        messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
 
 def signup_step1(request):
     if request.method == 'POST':
@@ -108,7 +101,7 @@ def signup_step2(request):
             del request.session['step1_data']
             del request.session['password1']
             message = "Thank you for signing up!"
-            additional_message = "Your account is under review. Check your email for the verification link."
+            additional_message = "Your account is under review. We will notify you at your email user.email? inbox (or spam folder) for the verification update."
             return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
         else:
              for error in list(form.errors.values()):
