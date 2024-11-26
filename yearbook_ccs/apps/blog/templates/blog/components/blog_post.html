@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{% static 'js/styles.js' %}" />
 
 {% endblock extra_styles %} {% load humanize %} {% block blog_post %}
+<!-- prettier-ignore -->
+{% if post %}
 <div>
   <div class="blog-post mt-4">
     <div class="margin-20 coolvetica size-18 d-flex justify-content-between">
@@ -44,8 +46,6 @@
               data-bs-toggle="modal"
               data-bs-target="#reportModal"
               class="dropdown-item"
-              name="action"
-              value="report"
             >
               Report
             </button>
@@ -83,12 +83,16 @@
       <div></div>
     </a>
   </div>
-  {% endblock %}
+  {% else %} no posts found! {% endif %} {% endblock %}
 
+  <!-- prettier-ignore -->
+  {% if post %}
   <!-- passing the post to blogcomments -->
   {% include "blog/components/modal/blogcomments.html" with post=post %}
   <!-- prettier-ignore -->
   {% include "component/report_modal.html" with type=0 %}
+
+  {% endif %}
 
   <!-- Edit post Modal -->
   <div
@@ -129,7 +133,6 @@
                 value="{{post.content}}"
                 class="form-control m-1"
               >
-              <!-- prettier-ignore -->
               {{post.content}}
               </textarea>
             </div>

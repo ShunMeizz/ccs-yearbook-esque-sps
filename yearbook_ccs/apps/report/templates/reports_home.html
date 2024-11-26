@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% load static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
 <link rel="stylesheet" href="{% static 'js/styles.js' %}" />
+<link rel="stylesheet" href="{% static 'css/admin_page_styles.css' %}" />
+<link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
+<link rel="stylesheet" href="{% static 'css/account_modal_styles.css' %}" />
 {% endblock extra_styles %} {% load humanize %}
 
 <!-- start block -->
@@ -23,7 +26,7 @@
       <tbody>
         {% for report in post_reports %}
         <!-- prettier-ignore -->
-        {% include 'component/report.html' with report=report username=username%}
+        {% include 'component/report.html' with report=report profile=report.user_reported.userprofile %}
         <!-- end loop -->
         {% endfor %}
       </tbody>
@@ -37,14 +40,14 @@
           <th scope="col">User</th>
           <th scope="col">Reason</th>
           <th scope="col">Date</th>
-          <th scope="col">Link</th>
+          <th scope="col">View</th>
           <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
         {% for report in profile_reports %}
         <!-- prettier-ignore -->
-        {% include 'component/report.html' with report=report username=username%}
+        {% include 'component/report.html' with report=report profile=report.user_reported.userprofile %}
         <!-- end loop -->
         {% endfor %}
       </tbody>
@@ -65,7 +68,7 @@
       <tbody>
         {% for report in comment_reports %}
         <!-- prettier-ignore -->
-        {% include 'component/report.html' with report=report username=username%}
+        {% include 'component/report.html' with report=report profile=report.user_reported.userprofile %}
         <!-- end loop -->
         {% endfor %}
       </tbody>

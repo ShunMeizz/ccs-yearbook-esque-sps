@@ -1,10 +1,23 @@
-{% if report.status == 0 %}
+{% load static %} {% if report.status == 0 %}
 <tr>
   <th scope="row">{{report.id}}</th>
-  <td>{{username}}</td>
+  <td>{{report.user_reported_id}}</td>
   <td>{{report.reason}}</td>
-  <td>{{report.date}}</td>
-  <td>{{report.link}}</td>
+  <!-- <td>report.date</td> -->
+  <td>{{report.user_reported.userprofile}}</td>
+  {% if report.report_type == 2 %}
+  <td>
+    <button
+      class="show-modal-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#profileModal{{ profile.id }}"
+    >
+      View Account
+    </button>
+  </td>
+  {% else %}
+  <td>" url 'view_post' post.id "</td>
+  {% endif %}
   <td>
     <div class="dropdown">
       <button
@@ -28,3 +41,7 @@
   </td>
 </tr>
 {% endif %}
+<!-- prettier-ignore -->
+{% include 'users/components/profile_card.html' with profile=profile %}
+<!-- account_modal -->
+<!-- % include 'users/components/account_modal.html' with user=% -->

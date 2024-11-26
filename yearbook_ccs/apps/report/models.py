@@ -1,5 +1,6 @@
 from django.db import models
 from apps.user_management.models import UserAccount
+from apps.blog.admin import Blog
 
 # Create your models here.
 class Report(models.Model):
@@ -20,3 +21,7 @@ class Report(models.Model):
     status = models.IntegerField(choices=PENDING_CHOICES,null=False,default=0)
     date = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     link = models.URLField(null=True, blank=True) #kani unsaon dae
+
+class PostReport(models.Model):
+    post_id = models.ForeignKey(Blog, null=False, blank=False,related_name="blog_post")
+    report_id = models.ForeignKey(Report, null=False, blank=False, related_name="blog_report")
