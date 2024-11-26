@@ -38,17 +38,17 @@
 
 ---
 
-## About The Project
+# I. About The Project
 
-### Purpose
+- ### Purpose
 
 The CCS Yearbook-esque Student Profile System is designed to provide a digital platform for students in the College of Computer Studies (CCS) to create and manage profiles, interact through comments, and engage in a blogging system.
 
-### UI/UX
+- ### UI/UX
 
 Details about the user interface and user experience design go here. Include screenshots, wireframes, or design concepts if available.
 
-### Functional Requirements
+- ### Functional Requirements
 
 The functional aspects of the system include:
 
@@ -60,27 +60,27 @@ The functional aspects of the system include:
 6. Administrative Management
 7. Report System
 
-### ERD
+- ### ERD
 
-### Gantt Chart
+- ### Gantt Chart
 
-### Built With
+- ### Built With
 
-- [![HTML][HTML.com]][HTML-url]
-- [![CSS][CSS.com]][CSS-url]
-- [![JavaScript][JavaScript.com]][JavaScript-url]
-- [![Python][Python.com]][Python-url]
-- [![Django][Django.com]][Django-url]
-- [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-- [![JQuery][JQuery.com]][JQuery-url])
+- [![HTML][HTML-shield]][HTML-url]
+- [![CSS][CSS-shield]][CSS-url]
+- [![JavaScript][JavaScript-shield]][JavaScript-url]
+- [![Bootstrap][Bootstrap-shield]][Bootstrap-url]
+- [![jQuery][JQuery-shield]][JQuery-url]
+- [![Python][Python-shield]][Python-url]
+- [![Django][Django-shield]][Django-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
-## Getting Started
+# II. Getting Started
 
-### Prerequisites and Installation
+- ### Prerequisites and Installation
 
 Ensure you have the following installed on your computer:
 
@@ -104,7 +104,7 @@ Ensure you have the following installed on your computer:
 3. **A Web Browser**  
    Use Chrome, Firefox, or Edge for testing.
 
-### Setup Instructions
+- ### Setup Instructions
 
 #### Setup the Django
 
@@ -158,7 +158,7 @@ Ensure you have the following installed on your computer:
 
 ---
 
-## Top Contributors
+# III. Top Contributors
 
 <a href="https://github.com/ShunMeizz/ccs-yearbook-esque-sps/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ShunMeizz/ccs-yearbook-esque-sps" alt="Contributors Image for ccs-yearbook-esque-sps" />
@@ -168,11 +168,11 @@ Ensure you have the following installed on your computer:
 
 ---
 
-## Contact
+# IV. Contact
 
 - **Angel Sheinen O. Cambarijan** - [GitHub](https://github.com/jellypedia) - angelsheinen.cambarijan@cit.edu
-- **Charlene R. Repuesto** - [GitHub](https://github.com/chrlskrt) - charlene.repuesto@cit.edu
-- **Shanley Mae F. Sebial** - [GitHub](https://github.com/ShunMeizz) - shanleymae.sebial@cit.edu
+- **Charlene R. Repuesto** - [LinkedIn](https://www.linkedin.com/in/charlene-repuesto/) - charlene.repuesto@cit.edu
+- **Shanley Mae F. Sebial** - [LinkedIn](https://www.linkedin.com/in/shanley-mae-sebial-966358305/) - shanleymae.sebial@cit.edu
 
 Project Link: [https://github.com/ShunMeizz/ccs-yearbook-esque-sps](https://github.com/ShunMeizz/ccs-yearbook-esque-sps)
 
@@ -185,17 +185,17 @@ Project Link: [https://github.com/ShunMeizz/ccs-yearbook-esque-sps](https://gith
 [contributors-url]: https://github.com/ShunMeizz/ccs-yearbook-esque-sps/graphs/contributors
 [stars-shield]: https://img.shields.io/github/stars/ShunMeizz/ccs-yearbook-esque-sps?style=for-the-badge
 [stars-url]: https://github.com/ShunMeizz/ccs-yearbook-esque-sps/stargazers
-[HTML-url]: https://img.shields.io/badge/-HTML-orange
-[HTML.com]: https://developer.mozilla.org/en-US/docs/Web/HTML
-[CSS-url]: https://img.shields.io/badge/-CSS-blue
-[CSS.com]: https://developer.mozilla.org/en-US/docs/Web/CSS
-[JavaScript-url]: https://img.shields.io/badge/-JavaScript-yellow
-[JavaScript.com]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
-[Bootstrap-url]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap.com]: https://getbootstrap.com
-[JQuery-url]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery.com]: https://jquery.com
-[Python-url]: https://img.shields.io/badge/-Python-blue
-[Python.com]: https://www.python.org/
-[Django-url]: https://img.shields.io/badge/-Django-green
-[Django.com]: https://www.djangoproject.com/
+[HTML-shield]: https://img.shields.io/badge/-HTML-orange
+[HTML-url]: https://developer.mozilla.org/en-US/docs/Web/HTML
+[CSS-shield]: https://img.shields.io/badge/-CSS-blue
+[CSS-url]: https://developer.mozilla.org/en-US/docs/Web/CSS
+[JavaScript-shield]: https://img.shields.io/badge/-JavaScript-yellow
+[JavaScript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[Bootstrap-shield]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery-shield]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com
+[Python-shield]: https://img.shields.io/badge/-Python-blue
+[Python-url]: https://www.python.org/
+[Django-shield]: https://img.shields.io/badge/-Django-green
+[Django-url]: https://www.djangoproject.com/
