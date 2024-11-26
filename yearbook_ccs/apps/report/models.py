@@ -22,6 +22,6 @@ class Report(models.Model):
     date = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     link = models.URLField(null=True, blank=True) #kani unsaon dae
 
-class PostReport(models.Model):
-    post_id = models.ForeignKey(Blog, null=False, blank=False,related_name="blog_post")
-    report_id = models.ForeignKey(Report, null=False, blank=False, related_name="blog_report")
+# class PostReport(models.Model):
+#     post_id = models.ForeignKey(Blog, null=False, blank=False,related_name="blog_post")
+#     report_id = models.ForeignKey(Report, null=False, blank=False, related_name="blog_report")
