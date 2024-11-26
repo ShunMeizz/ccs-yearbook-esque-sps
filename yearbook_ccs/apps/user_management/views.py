@@ -9,9 +9,10 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
 from django.utils.html import format_html
-
+from django.urls import reverse
+from django.contrib.auth.forms import UserCreationForm
 from .models import UserAccount
-from .forms import SignUpForm, LogInForm, UpdateUserAccountForm
+from .forms import SignUpStep1Form, SignUpStep2Form, LogInForm, UpdateUserAccountForm
 from .tokens import profile_token
 
 import os
@@ -53,48 +54,62 @@ def acc_verified_email(request, user, to_email):
     user.is_active = True
     user.save()
 
-    if email.send():
-        messages.success(
-            request, 
-            format_html('Dear <b>{}</b>, please check your email inbox at <b>{}</b> for your account status update. <b>Note:</b> Check your spam folder.', user, to_email)
-        )
-    else:
-        messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
-
 def acc_not_verified_email(request, user, to_email):
     mail_subject = "Fail to create an account"
     message = render_to_string("email_messages/acc_not_verified_message.html", {
         'user': user.username,
     })
-    email = EmailMessage(mail_subject, message, to=[to_email])
+    EmailMessage(mail_subject, message, to=[to_email])
 
-    if email.send():
-        messages.success(
-            request, 
-            format_html('Dear <b>{}</b>, please check your email inbox at <b>{}</b> for your account status update. <b>Note:</b> Check your spam folder.', user, to_email)
-        )
-    else:
-        messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
 
-def signup_view(request):
-    if request.method == "POST":
-        form = SignUpForm(request.POST, request.FILES)
+def signup_step1(request):
+    if request.method == 'POST':
+        form = SignUpStep1Form(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False  # Deactivate the user until admin approval
-            user.save()
-
-            messages.success(request, "Thank you for signing up! Your account is under review by our admins.")
-            print(request.FILES)
-            return redirect('login')
+            # Store only the non-sensitive data in session
+            step1_data = {key: value for key, value in form.cleaned_data.items() if key not in ['password1', 'password2']}
+            request.session['step1_data'] = step1_data
+            
+            # Store the password separately (it's ok because session data is stored server-side)
+            request.session['password1'] = form.cleaned_data['password1']
+            return redirect('signup_step2')
         else:
-            for error in list(form.errors.values()):
+             for error in list(form.errors.values()):
                 messages.error(request, error)
     else:
-        form = SignUpForm()
-    
-    return render(request, 'registration/signup.html', {'form': form})
+        form = SignUpStep1Form()
 
+    return render(request, 'registration/signup_step1.html', {'form': form})
+
+def signup_step2(request):
+    step1_data = request.session.get('step1_data', None)
+    if not step1_data:
+        return redirect('signup_step1')
+
+    # Retrieve the passwords from session
+    password1 = request.session.get('password1')
+
+    if request.method == 'POST':
+        form = SignUpStep2Form(request.POST, request.FILES)
+        if form.is_valid():
+            # Combine Step 1 and Step 2 data to create the user instance
+            user_data = {**step1_data, **form.cleaned_data}
+            user = UserAccount(**user_data)
+            user.set_password(password1)
+            user.save()
+
+            del request.session['step1_data']
+            del request.session['password1']
+            message = "Thank you for signing up!"
+            additional_message = "Your account is under review. We will notify you at your email user.email? inbox (or spam folder) for the verification update."
+            return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
+        else:
+             for error in list(form.errors.values()):
+                messages.error(request, error)
+    else:
+        form = SignUpStep2Form()
+
+    return render(request, 'registration/signup_step2.html', {'form': form})
 
 def login_view(request): 
     form = LogInForm(data=request.POST)
@@ -108,11 +123,16 @@ def login_view(request):
         
             user = authenticate(request, username=username, password=password)
             if user is not None:
+                if not user.is_acc_verified:
+                    message = "Account still under review"
+                    additional_message = "Check your email inbox (or spam folder) for the verification update sent by the admin"
+                    return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
+                
+                
                 login(request, user)
                 messages.success(request, f"Hello {user.username}! You have been logged in")
                 return redirect('home')
             else:
-                print("Authentication failed: User not found") 
                 messages.error(request, "User not found, please sign in")
         else:
             for error in list(form.errors.values()):
@@ -123,8 +143,8 @@ def login_view(request):
 
 @login_required
 def logout_view(request):
-    logout(request)  # Log out the user
-    messages.info(request, "Logged out successfully!")  # Optional message
+    logout(request) 
+    messages.info(request, "Logged out successfully!") 
     return redirect('login') 
 
 @login_required
