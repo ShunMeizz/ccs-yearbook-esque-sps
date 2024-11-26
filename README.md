@@ -7,7 +7,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ShunMeizz/ccs-yearbook-esque-sps">
-    <img src="images/citlogo.png" alt="Logo" width="80" height="80">
+    <img src="yearbook_ccs/static/images/cit_logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">CCS YEARBOOK-ESQUE STUDENT PROFILE SYSTEM</h3>
@@ -181,22 +181,21 @@ Project Link: [https://github.com/ShunMeizz/ccs-yearbook-esque-sps](https://gith
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[product-screenshot]: images/screenshot.png
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com
-[HTML.com]: https://developer.mozilla.org/en-US/docs/Web/HTML
+[contributors-shield]: https://img.shields.io/github/contributors/ShunMeizz/ccs-yearbook-esque-sps.svg?style=for-the-badge
+[contributors-url]: https://github.com/ShunMeizz/ccs-yearbook-esque-sps/graphs/contributors
+[stars-shield]: https://img.shields.io/github/stars/ShunMeizz/ccs-yearbook-esque-sps?style=for-the-badge
+[stars-url]: https://github.com/ShunMeizz/ccs-yearbook-esque-sps/stargazers
 [HTML-url]: https://img.shields.io/badge/-HTML-orange
-[CSS.com]: https://developer.mozilla.org/en-US/docs/Web/CSS
+[HTML.com]: https://developer.mozilla.org/en-US/docs/Web/HTML
 [CSS-url]: https://img.shields.io/badge/-CSS-blue
-[JavaScript.com]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[CSS.com]: https://developer.mozilla.org/en-US/docs/Web/CSS
 [JavaScript-url]: https://img.shields.io/badge/-JavaScript-yellow
-[Python.com]: https://www.python.org/
+[JavaScript.com]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[Bootstrap-url]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap.com]: https://getbootstrap.com
+[JQuery-url]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery.com]: https://jquery.com
 [Python-url]: https://img.shields.io/badge/-Python-blue
-[Django.com]: https://www.djangoproject.com/
+[Python.com]: https://www.python.org/
 [Django-url]: https://img.shields.io/badge/-Django-green
+[Django.com]: https://www.djangoproject.com/
