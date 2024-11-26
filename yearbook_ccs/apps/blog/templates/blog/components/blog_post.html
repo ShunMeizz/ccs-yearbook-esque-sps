@@ -1,9 +1,8 @@
 {% load static %} {% block extra_styles %}
-
-<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
-<link rel="stylesheet" href="{% static 'js/styles.js' %}" />
-
-{% endblock extra_styles %} {% load humanize %} {% block blog_post %}
+<!-- prettier-ignore -->
+{% endblock extra_styles %}
+<!-- prettier-ignore -->
+{% load humanize %} {% block blog_post %}
 <!-- prettier-ignore -->
 {% if post %}
 <div>
@@ -43,9 +42,9 @@
             </form>
             {% else %}
             <button
-              data-bs-toggle="modal"
-              data-bs-target="#reportModal"
-              class="dropdown-item"
+              name="post_id"
+              value="{{post.id}}"
+              class="reportBtn post_report dropdown-item"
             >
               Report
             </button>
@@ -90,9 +89,6 @@
   <!-- passing the post to blogcomments -->
   {% include "blog/components/modal/blogcomments.html" with post=post %}
   <!-- prettier-ignore -->
-  {% include "component/report_modal.html" with type=0 %}
-  {% include "modal.html" %}
-
   {% endif %}
 
   <!-- Edit post Modal -->

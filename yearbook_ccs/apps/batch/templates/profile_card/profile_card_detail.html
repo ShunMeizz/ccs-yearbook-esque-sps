@@ -57,7 +57,7 @@
 					<div class="d-flex justify-content-end mt-2 me-3" >
                         <button id="viewCommentBtn" class="comment-button">View Comment</button>
 						<!-- add if profile is not request.user -->
-						<button data-bs-toggle="modal" data-bs-target="#reportModal" name="action" value="report">Report</button>
+						<button class="reportBtn profile_report" id="profile_report">Report</button>
                     </div>
 				</div>	
 			</div>
@@ -68,6 +68,5 @@
 <!-- {% include 'profile_card/profile_card_comment.html' %} -->
  
 <!-- prettier-ignore -->
-{% include "component/report_modal.html" with type=2 %}
 
 {% endblock %}

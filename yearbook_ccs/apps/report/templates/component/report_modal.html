@@ -1,3 +1,5 @@
+{% load static %}
+
 <div
   class="modal fade"
   id="reportModal"
@@ -29,8 +31,8 @@
               placeholder="What seems to be the problem?"
             ></textarea>
             <!-- Hidden input for report type -->
-            {{type}}
-            <input type="hidden" name="report_type" value="{{ type }}" />
+            <input type="hidden" name="report_type" id="report_type" />
+            <input type="hidden" name="report_item_id" id="report_item_id" />
           </div>
         </div>
         <div class="modal-footer">
@@ -54,3 +56,5 @@
     </div>
   </div>
 </div>
+
+<script src="{% static 'js/report_styles.js' %}"></script>

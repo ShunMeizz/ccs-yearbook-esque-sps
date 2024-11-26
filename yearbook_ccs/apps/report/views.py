@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import user_passes_test
 from apps.report.forms import ReportForm
 from apps.user_management.models import UserAccount
+from apps.profiles.models import UserProfile
 from .models import Report
 
 # Create your views here.
@@ -11,27 +12,31 @@ from .models import Report
 # @user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
 def report_home(request):
     # tapol ko so ang paglabay og multiple forms sa ni
-    post_reports = Report.objects.filter(report_type=0).all().select_related('user_reported__profile')
-    comment_reports = Report.objects.filter(report_type=1).all().select_related('user_reported__profile')
-    profile_reports = Report.objects.filter(report_type=2).all().select_related('user_reported__profile')
+    post_reports = Report.objects.filter(report_type=0).all()
+    comment_reports = Report.objects.filter(report_type=1).all()
+    profile_reports = Report.objects.filter(report_type=2).all()
+    reported_profiles = []
+    for pr in profile_reports:
+        profile = UserProfile.objects.get(id = pr.report_item_id)
+        reported_profiles.append(profile)
 
+    print("PROFILE REPORTS",(reported_profiles))
     return render(request, 'reports_home.html',{'post_reports':post_reports,
                                             'profile_reports':profile_reports,
-                                            'comment_reports':comment_reports})
+                                            'comment_reports':comment_reports,
+                                            'reported_profiles':reported_profiles})
 
 def add_report(request):
     print("POST REPORT")
     if request.method == "POST":
+        report_item_id = request.POST.get('report_item_id')
         report = Report(
             reason=request.POST.get('report_reason'),
             report_type=request.POST.get('report_type'),
-            link=request.META.get('HTTP_REFERER'),  # Save the referring page as the link
-            user_reported_id=request.user.id
+            link=request.META.get('HTTP_REFERER') + "post/" + report_item_id,
+            user_reported_id=request.user.id,
+            report_item_id = report_item_id
         )
-            # Debugging prints
-        print(f"Reason: {report.reason}")
-        print(f"Report Type: {report.report_type}")
-        print(f"Link: {report.link}")
         report.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return render(request, 'reports.html')  # Fallback render if not POST
