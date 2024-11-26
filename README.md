@@ -66,13 +66,7 @@ The functional aspects of the system include:
 
 - ### Built With
 
-- [![HTML][HTML-shield]][HTML-url]
-- [![CSS][CSS-shield]][CSS-url]
-- [![JavaScript][JavaScript-shield]][JavaScript-url]
-- [![Bootstrap][Bootstrap-shield]][Bootstrap-url]
-- [![jQuery][JQuery-shield]][JQuery-url]
-- [![Python][Python-shield]][Python-url]
-- [![Django][Django-shield]][Django-url]
+[![HTML][HTML-shield]][HTML-url] [![CSS][CSS-shield]][CSS-url] [![JavaScript][JavaScript-shield]][JavaScript-url] [![Bootstrap][Bootstrap-shield]][Bootstrap-url] [![jQuery][JQuery-shield]][JQuery-url] [![Python][Python-shield]][Python-url] [![Django][Django-shield]][Django-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -104,55 +98,61 @@ Ensure you have the following installed on your computer:
 3. **A Web Browser**  
    Use Chrome, Firefox, or Edge for testing.
 
-- ### Setup Instructions
+### Setup Instructions
 
-#### Setup the Django
+-#### Setup the Django
 
 1. **Create a Virtual Environment**
 
-   - Run the following command to create a virtual environment:
-     ```sh
-     python -m venv venv
-     ```
+   Run the following command to create a virtual environment:
+
+   ```sh
+   python -m venv venv
+   ```
 
 2. **Activate the Virtual Environment**
 
-   - On macOS/Linux:
-     ```sh
-     source venv/bin/activate
-     ```
-   - On Windows:
-     ```sh
-     venv\Scripts\activate
-     ```
+   On macOS/Linux:
+
+   ```sh
+   source venv/bin/activate
+   ```
+
+   On Windows:
+
+   ```sh
+   venv\Scripts\activate
+   ```
 
 3. **Install the Required Python Packages**
 
-   - Use the `requirements.txt` file to install all necessary dependencies:
-     ```sh
-     pip install -r requirements.txt
-     ```
+   Use the `requirements.txt` file to install all necessary dependencies:
+
+   ```sh
+   pip install -r requirements.txt
+   ```
 
 4. **Apply Database Migrations**
-   - Run the following command to set up the database:
-     ```sh
-     python manage.py migrate
-     ```
+   Run the following command to set up the database:
+   ```sh
+   python manage.py migrate
+   ```
 
-#### Run the Development Server
+-#### Run the Development Server
 
 1. **Start the Django Backend**
 
-   - Run the following command to start the development server:
-     ```sh
-     python manage.py runserver
-     ```
+   Run the following command to start the development server:
+
+   ```sh
+   python manage.py runserver
+   ```
 
 2. **Open the Application in Your Browser**
-   - Navigate to:
-     ```sh
-     http://localhost:8000
-     ```
+   Navigate to:
+   ```sh
+   http://localhost:8000
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
