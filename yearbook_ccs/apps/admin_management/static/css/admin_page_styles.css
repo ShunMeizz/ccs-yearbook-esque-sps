@@ -2,12 +2,17 @@ body {
   background: none;
 }
 
+main {
+  display: flex;
+}
+
 .admin-page-container,
 .table-container-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 30px;
+  flex: 1;
 }
 
 .admin-page-container h1 {
@@ -52,4 +57,34 @@ body {
 .show-modal-btn:hover {
   background: #e26901;
   color: white;
+}
+
+.admin-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  gap: 30px;
+  flex: 1;
+}
+
+.admin-card {
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(226, 105, 1, 0.2);
+  padding: 50px;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  transition: transform 0.3s ease;
+}
+
+.admin-card a {
+  text-decoration: none;
+}
+
+.admin-card:hover {
+  transform: scale(1.05);
 }
