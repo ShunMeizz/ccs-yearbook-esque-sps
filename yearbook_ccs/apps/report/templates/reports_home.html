@@ -2,11 +2,12 @@
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
 <link rel="stylesheet" href="{% static 'js/styles.js' %}" />
 <link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
+<link rel="stylesheet" href="{% static 'css/admin_page_styles.css' %}" />
 {% endblock extra_styles %} {% load humanize %}
 
 <!-- start block -->
 {% block content %}
-<div class="bg-white">
+<div class="bg-white admin-page-container">
   <div class="p-4">
     <div class="coolvetica black size-50 center">
       {% block report_type_title %} {% endblock %}
