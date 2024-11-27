@@ -124,7 +124,7 @@ def login_view(request):
         
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                if not user.is_acc_verified:
+                if not user.is_acc_verified and not user.is_superuser:
                     message = "Account still under review"
                     additional_message = "Check your email inbox (or spam folder) for the verification update sent by the admin"
                     return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
