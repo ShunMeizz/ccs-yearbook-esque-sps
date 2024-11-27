@@ -1,0 +1,10 @@
+{% extends "reports_home.html" %}
+<!-- prettier-ignore -->
+{% block report_type_title %} Comment Reports {% endblock %} 
+
+{% block report_content %}
+{% for report in comment_reports %}
+<!-- prettier-ignore -->
+{% include 'component/report.html' with report=report%}
+<!-- end loop -->
+{% endfor %} {% endblock %}
