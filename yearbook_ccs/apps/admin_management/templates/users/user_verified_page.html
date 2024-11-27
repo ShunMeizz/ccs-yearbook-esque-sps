@@ -19,8 +19,9 @@
     <div class="search-input-wrapper">
       {% csrf_token %}
       <form>
-        <input type="text" placeholder="Search" />
+        <input type="text" id="search-user" placeholder="Search" />
       </form>
+      <a href="#" class="btn-clear" id="btn-clear-search-user">X</a>
     </div>
     <div class="table-container">
       <table class="admin-table">
@@ -55,6 +56,7 @@
         </tr>
 
         <!-- profile_modal -->
+        <!-- prettier-ignore -->
         {% include 'users/components/profile_card.html' with profile=user.profile %}
         <!-- account_modal -->
         {% include 'users/components/account_modal.html' %} {% endfor %}
@@ -65,4 +67,6 @@
 {% endblock %}
 
 <!-- after main block -->
-{% block after-main %}{% endblock %}
+{% block after-main %}
+<script src="{% static 'js/user_verified_page.js' %}"></script>
+{% endblock %}

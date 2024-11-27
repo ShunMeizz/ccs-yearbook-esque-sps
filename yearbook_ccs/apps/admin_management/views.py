@@ -5,7 +5,10 @@ from django.contrib.auth.decorators import user_passes_test
 
 @user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login') # This makes sure that the user is a superuser and an active user, if they fail to pass the test, they will be redirected to login.
 def admin_dashboard(request):
-    return render(request, 'admin_home.html')
+    user_verified_count = UserAccount.objects.filter(is_acc_verified=True).count()
+    user_unverified_count = UserAccount.objects.filter(is_superuser=False, is_acc_verified=False).count()
+
+    return render(request, 'admin_home.html', {'user_verified_count': user_verified_count, 'user_unverified_count': user_unverified_count})
 
 @user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login') 
 def review_user_verification_requests(request):
@@ -43,5 +46,5 @@ def view_user_accounts(request):
     
     accounts = UserAccount.objects.filter(is_acc_verified=True)
 
-    return render(request, 'users/user_table.html' , {'useraccounts': accounts})
+    return render(request, 'users/user_verified_page.html' , {'useraccounts': accounts})
 

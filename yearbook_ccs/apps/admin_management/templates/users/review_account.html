@@ -14,8 +14,8 @@
 <div class="admin-page-container">
   <h1>Pending Account Approvals</h1>
   <div class="table-container-wrapper">
-    <div class="table-container">
-      <form method="POST">
+    <form method="POST">
+      <div class="table-container">
         {% csrf_token %}
         <table class="admin-table" border="1">
           <tr>
@@ -67,9 +67,9 @@
           </tr>
           {% endif %}
         </table>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </div>
 {% endblock %}
