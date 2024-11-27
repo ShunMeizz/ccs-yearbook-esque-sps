@@ -4,8 +4,6 @@
 <link rel="stylesheet" href="{% static 'js/styles.js' %}" />
 
 {% endblock extra_styles %} {% load humanize %} {% block blog_post %}
-<!-- prettier-ignore -->
-{% if post %}
 <div>
 	<div class="blog-post mt-4">
 		<div class="margin-20 coolvetica size-18 d-flex justify-content-between">
@@ -88,7 +86,7 @@
 			<div></div>
 		</a>
 	</div>
-	{% else %} No posts found! {% endif %} {% endblock %}
+	{% endblock %}
 
 	<!-- passing the post to blogcomments -->
 	{% include "blog/components/modal/blogcomments.html" with post=post %}

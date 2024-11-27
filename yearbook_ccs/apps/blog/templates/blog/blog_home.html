@@ -1,7 +1,7 @@
-{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} {% load
-static %} {% block extra_styles %}
-<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
-{% endblock extra_styles %} {% load humanize %} {% block blog_content %}
+{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %}
+
+<!-- content -->
+{% block blog_content %}
 <div>
 	<a href="{% url 'pending' request.user.id%}" class="remove-link-style"
 		>My Posts</a
@@ -95,4 +95,5 @@ static %} {% block extra_styles %}
 	</form>
 </div>
 
-{% endblock %}
+<!-- prettier-ignore -->
+{% include 'blog/components/modal/filterpost.html' with filter=filterform test=test %} {% endblock %}

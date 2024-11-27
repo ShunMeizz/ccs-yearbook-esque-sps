@@ -1,0 +1,50 @@
+h1.account-modal-header {
+  margin: 0;
+}
+
+.credentials-container > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.credentials-info-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.credentials-info-container img {
+  align-self: center;
+  width: 80%;
+  object-fit: cover;
+}
+
+.user-account-modal-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-account-modal-dialog {
+  max-width: 80vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.user-account-modal-dialog .modal-header {
+  background: white;
+  border-radius: 25px;
+}
+
+.user-account-modal-dialog .modal-body {
+  padding: 10px 30px;
+  overflow-y: auto;
+}
+
+.user-account-modal-dialog .modal-content {
+  height: max-content;
+}

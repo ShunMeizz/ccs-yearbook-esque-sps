@@ -1,0 +1,122 @@
+body {
+  background: none;
+}
+
+main {
+  display: flex;
+}
+
+.admin-page-container {
+  width: 100vw;
+}
+
+/* tables in admin pages */
+
+.table-container {
+  overflow-x: auto;
+}
+
+.admin-page-container,
+.table-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  flex: 1;
+}
+
+.admin-page-container h1 {
+  margin: 50px 0;
+  color: #e26901;
+  text-align: center;
+}
+
+.table-container-wrapper {
+  background: #d1d0d0;
+  border-radius: 20px;
+  gap: 15px;
+}
+
+.table-container form,
+.table-container table {
+  width: 100%;
+  /* min-width: 600px; */
+}
+
+.table-container th,
+.table-container td {
+  padding: 8px;
+  min-width: 100px;
+  text-align: center;
+  border-width: 8px;
+}
+
+.table-container th {
+  color: white;
+  background: #ff912c;
+}
+
+.admin-table td button {
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 8px 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.show-modal-btn {
+  border: 1px solid #e26901;
+  color: #ff912c;
+}
+
+.show-modal-btn:hover {
+  background: #e26901;
+  color: white;
+}
+
+/* cards in home page of admin */
+
+.admin-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  gap: 30px;
+  flex: 1;
+}
+
+.admin-card {
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(226, 105, 1, 0.2);
+  padding: 50px;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  transition: transform 0.3s ease;
+}
+
+.admin-card a {
+  text-decoration: none;
+}
+
+.admin-card:hover {
+  transform: scale(1.05);
+}
+
+/* search in user_verified_page */
+.search-input-wrapper {
+  display: flex;
+  gap: 5px;
+}
+
+.search-input-wrapper form {
+  flex: 1;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  border-radius: 15px;
+  padding: 5px;
+}
