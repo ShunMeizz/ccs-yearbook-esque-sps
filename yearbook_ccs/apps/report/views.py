@@ -6,25 +6,32 @@ from apps.user_management.models import UserAccount
 from apps.profiles.models import UserProfile
 from .models import Report
 
-# Create your views here.
-
-# This makes sure that the user is a superuser and an active user, if they fail to pass the test, they will be redirected to login.
-# @user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
-def report_home(request):
-    # tapol ko so ang paglabay og multiple forms sa ni
+# def report_home(request):
+#     # tapol ko so ang paglabay og multiple forms sa ni
+#     # add pretty page here
+    
+@user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
+def report_posts(request):
     post_reports = Report.objects.filter(report_type=0).all()
-    comment_reports = Report.objects.filter(report_type=1).all()
+    return render(request,'reports_blogs.html', {'post_reports':post_reports})
+
+@user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
+def report_profiles(request):
     profile_reports = Report.objects.filter(report_type=2).all()
     reported_profiles = []
     for pr in profile_reports:
         profile = UserProfile.objects.get(id = pr.report_item_id)
         reported_profiles.append(profile)
+        # print(post_reports.all())
 
     print("PROFILE REPORTS",(reported_profiles))
-    return render(request, 'reports_home.html',{'post_reports':post_reports,
-                                            'profile_reports':profile_reports,
-                                            'comment_reports':comment_reports,
-                                            'reported_profiles':reported_profiles})
+    
+    return render(request,'reports_profiles.html', {'profile_reports':profile_reports,'reported_profiles':reported_profiles})
+
+@user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
+def report_comments(request):
+    comment_reports = Report.objects.filter(report_type=1).all()
+    return render(request, 'reports_comments.html',{'comment_reports':comment_reports,})
 
 def add_report(request):
     print("POST REPORT")

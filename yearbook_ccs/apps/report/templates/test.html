@@ -1,0 +1,44 @@
+<table class="table">
+  <div class="coolvetica black size-24">Profile Reports</div>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Reason</th>
+      <th scope="col">Date</th>
+      <th scope="col">View</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in profile_reports %}
+    <!-- prettier-ignore -->
+    {% include 'component/report.html' with report=report%}
+    <!-- end loop -->
+    {% endfor %} {% for pr in reported_profiles %}
+    <!-- prettier-ignore -->
+    {% include 'users/components/profile_card.html' with profile=pr %}
+      {% endfor %}
+  </tbody>
+</table>
+
+<table class="table">
+  <div class="coolvetica black size-24">Comment Reports</div>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Reason</th>
+      <th scope="col">Date</th>
+      <th scope="col">Link</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in comment_reports %}
+    <!-- prettier-ignore -->
+    {% include 'component/report.html' with report=report profile=report.user_reported.userprofile %}
+    <!-- end loop -->
+    {% endfor %}
+  </tbody>
+</table>

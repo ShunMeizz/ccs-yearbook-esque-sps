@@ -74,6 +74,19 @@ $(function () {
 
     socialContainer.style.display =
       socialIconsContainer.children.length > 0 ? "block" : "none";
+
+    // REPORT BUTTON
+    var profile_id = profile.id;
+    var current_user_id = $(".profile-report-div").data("curr-user");
+
+    console.log("PROFILE ID", profile_id);
+    console.log("CURRENT USER ID", current_user_id);
+
+    if (current_user_id != profile_id) {
+      $(".profile-report-div").css("display", "block");
+    } else {
+      $(".profile-report-div").css("display", "none");
+    }
   }
 
   // Populate profilesData array use mainly for effective next and previous buttons
