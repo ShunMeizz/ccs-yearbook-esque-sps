@@ -1,66 +1,98 @@
-{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
-
-{% load static %}
-{% block extra_styles %}
+{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} {% load
+static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
-{% endblock extra_styles %}
-{% load humanize %}
-
-{% block blog_content %}
-    <div>
-        <a href="{% url 'pending' %}">View pending posts</a>
-    </div>
-
-    <!-- input field -->
-    <div class="blog-post no-highlight blog-input mt-4 mb-5" data-bs-toggle="modal" data-bs-target="#blogpostModal">
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 80 80" fill="none">
-                <circle cx="40" cy="40" r="40" fill="#FF8384"/>
-            </svg>
-                <input type="text" class="blog-make" placeholder="What's on your mind?" readonly>
-        </div>
-    </div>
-
-    <div class="d-flex justify-content-end">
-        Sorted by Latest
-    </div>
-
-    <div>
-        {% include 'blog/blog_post.html' with blogs=posts %}
-    </div>
-
-    </div>
+{% endblock extra_styles %} {% load humanize %} {% block blog_content %}
+<div>
+	<a href="{% url 'pending' request.user.id%}" class="remove-link-style"
+		>My Posts</a
+	>
 </div>
 
-<!-- MODAL -->
-<div class="modal fade" id="blogpostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="true">
-    <form method="post" enctype="multipart/form-data">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Blog</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body mr-2">
-                    {% csrf_token %}
-                    <div>
-                        {{ form.title }}
-                    </div>
-                    <div>
-                        {{ form.content }}
-                    </div>
-                    <div>
-                        {{ form.media }}
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Post</button>
-                </div>
-            </div>
-        </div>
-    </form>
+<!-- input field -->
+<div
+	class="blog-post no-highlight blog-input mt-4 mb-5"
+	data-bs-toggle="modal"
+	data-bs-target="#blogpostModal"
+>
+	<div>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="40"
+			height="40"
+			viewBox="0 0 80 80"
+			fill="none"
+		>
+			<circle cx="40" cy="40" r="40" fill="#FF8384" />
+		</svg>
+		<input
+			type="text"
+			class="blog-make"
+			placeholder="What's on your mind?"
+			readonly
+		/>
+	</div>
 </div>
 
+<div class="d-flex justify-content-end">
+	<button
+		type="button"
+		class="btn btn-link remove-link-style"
+		data-bs-toggle="modal"
+		data-bs-target="#filterPostModal"
+	>
+		Sort
+	</button>
+</div>
+
+<div>{% include 'blog/components/blog_list.html' with blogs=posts %}</div>
+
+<!-- CREATE POST MODAL -->
+<div
+	class="modal fade"
+	id="blogpostModal"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+	data-bs-backdrop="true"
+>
+	<form method="post" enctype="multipart/form-data">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Blog</h1>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					></button>
+				</div>
+				<div class="modal-body mr-2">
+					{% csrf_token %}
+					<div>{{ form.title }}</div>
+					<div>{{ form.content }}</div>
+					<div>{{ form.media }}</div>
+				</div>
+				<div class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-outline-secondary"
+						data-bs-dismiss="modal"
+					>
+						Close
+					</button>
+					<button
+						type="submit"
+						class="btn btn-primary"
+						name="action"
+						value="create"
+					>
+						Post
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
 
 {% endblock %}
