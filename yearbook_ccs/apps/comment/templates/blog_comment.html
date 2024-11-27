@@ -53,8 +53,17 @@
     </form>
     {% endif %} {% if request.user == comment.author %}
     <button class="btn-edit-comment" value="{{ comment.id }}">· Edit</button>
+    {% else %}
+    <button
+      name="post_id"
+      value="{{comment.id}}"
+      class="reportBtn comment_report"
+    >
+      Report
+    </button>
     {% endif %}
   </div>
 </div>
 
 <script src="{% static 'js/comment_script.js' %}"></script>
+<script src="{% static 'js/report_styles.js' %}"></script>

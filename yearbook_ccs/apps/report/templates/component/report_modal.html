@@ -1,0 +1,60 @@
+{% load static %}
+
+<div
+  class="modal fade"
+  id="reportModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" action="{% url 'add_report' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Report</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <!-- Corrected textarea name -->
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              name="report_reason"
+              placeholder="What seems to be the problem?"
+            ></textarea>
+            <!-- Hidden input for report type -->
+            <input type="hidden" name="report_type" id="report_type" />
+            <input type="hidden" name="report_item_id" id="report_item_id" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="report"
+            class="btn btn-primary"
+          >
+            Report
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/report_styles.js' %}"></script>
