@@ -50,7 +50,7 @@ def acc_verified_email(request, user, to_email):
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     email.content_subtype = "html"
-    
+    email.send()
     user.is_active = True
     user.save()
 
@@ -59,7 +59,8 @@ def acc_not_verified_email(request, user, to_email):
     message = render_to_string("email_messages/acc_not_verified_message.html", {
         'user': user.username,
     })
-    EmailMessage(mail_subject, message, to=[to_email])
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    email.send()
 
 
 def signup_step1(request):
