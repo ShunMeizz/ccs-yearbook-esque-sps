@@ -56,6 +56,8 @@
 					<strong style="margin: 5px 0;">Hobbies:</strong><div class="profile-hobbies-box"><span id="profileHobbies"></span></div>
 					<div class="d-flex justify-content-end mt-2 me-3" >
                         <button id="viewCommentBtn" class="comment-button">View Comment</button>
+						<!-- add if profile is not request.user -->
+						<button class="reportBtn profile_report" id="profile_report">Report</button>
                     </div>
 				</div>	
 			</div>
@@ -64,5 +66,7 @@
 </div>
 
 <!-- {% include 'profile_card/profile_card_comment.html' %} -->
+ 
+<!-- prettier-ignore -->
 
 {% endblock %}
