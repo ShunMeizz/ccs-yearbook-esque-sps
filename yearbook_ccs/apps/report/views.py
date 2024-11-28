@@ -12,12 +12,12 @@ from .models import Report
     
 @user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
 def report_posts(request):
-    post_reports = Report.objects.filter(report_type=0).all()
+    post_reports = Report.objects.filter(report_type=0,status=0).all()
     return render(request,'reports_blogs.html', {'post_reports':post_reports})
 
 @user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
 def report_profiles(request):
-    profile_reports = Report.objects.filter(report_type=2).all()
+    profile_reports = Report.objects.filter(report_type=2,status=0).all()
     reported_profiles = []
     for pr in profile_reports:
         profile = UserProfile.objects.get(id = pr.report_item_id)
@@ -30,7 +30,7 @@ def report_profiles(request):
 
 @user_passes_test(lambda u: u.is_active and u.is_superuser, login_url='login')
 def report_comments(request):
-    comment_reports = Report.objects.filter(report_type=1).all()
+    comment_reports = Report.objects.filter(report_type=1,status=0).all()
     return render(request, 'reports_comments.html',{'comment_reports':comment_reports,})
 
 def add_report(request):

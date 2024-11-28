@@ -40,6 +40,19 @@
                 Delete
               </button>
             </form>
+            {% elif request.user.is_superuser %}
+            <form method="post" action="{% url 'delete_post' post.user_id %}">
+              {% csrf_token %}
+              <input type="hidden" name="post_id" value="{{ post.id }}" />
+              <button
+                type="submit"
+                class="dropdown-item"
+                name="action"
+                value="delete"
+              >
+                Delete
+              </button>
+            </form>
             {% else %}
             <button
               name="post_id"
