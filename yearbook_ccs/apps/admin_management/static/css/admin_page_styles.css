@@ -104,6 +104,8 @@ main {
   background: white;
   border: 3px solid #e26901;
   color: #ff912c;
+  border-radius: 15px;
+  padding: 4.5px 15px;
 }
 
 .show-modal-btn:hover {
@@ -153,7 +155,6 @@ main {
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
   align-items: center;
-  flex: 1;
   gap: 5px;
 }
 

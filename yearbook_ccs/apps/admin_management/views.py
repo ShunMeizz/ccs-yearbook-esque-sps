@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from ..user_management.models import UserAccount
 from ..report.models import Report
@@ -15,9 +15,9 @@ def admin_dashboard(request):
 
     user_verified_count = UserAccount.objects.filter(is_acc_verified=True).count()
     user_unverified_count = UserAccount.objects.filter(is_superuser=False, is_acc_verified=False).count()
-    blog_reports_count = Report.objects.filter(report_type=0).count()
-    profile_reports_count = Report.objects.filter(report_type=2).count()
-    comment_reports_count = Report.objects.filter(report_type=1).count()
+    blog_reports_count = Report.objects.filter(report_type=0, status=0).count()
+    profile_reports_count = Report.objects.filter(report_type=2, status=0).count()
+    comment_reports_count = Report.objects.filter(report_type=1, status=0).count()
 
     return render(request, 'admin_home.html', 
                   {'user_verified_count': user_verified_count, 
@@ -78,14 +78,15 @@ def edit_profile(request, profile_id):
     if (not request.user.is_superuser ):
         return redirect('home')
     
-    profile = UserProfile.objects.get(id=profile_id)
+    profile = get_object_or_404(UserProfile, id=profile_id)
     
     if (request.method == "POST"):
         form = ProfileCreationForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
+            print("form is valid")
             form.save()
 
-            return redirect('profile_home')
+            # return redirect('edit_profile', profile_id=profile_id)
     else:
         form = ProfileCreationForm(instance=profile)
 
