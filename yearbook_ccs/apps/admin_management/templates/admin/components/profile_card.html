@@ -11,6 +11,8 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" id="modalContent">
       <img src="/static/images/cit_logo.png" alt="Logo" class="logo" />
+
+      {% if profile %}
       <div class="modal-body d-flex" id="modalBody">
         <!-- Left Column -->
         <div class="left-column d-flex flex-column align-items-center">
@@ -123,6 +125,18 @@
           <span id="profileHobbies">{{ profile.hobbies }}</span>
         </div>
         <div class="d-flex justify-content-end mt-2 me-3">
+          {% if request.user.is_superuser %}
+          <button class="edit-profile-button">
+            <a href="/admin_dashboard/profile/{{ profile.id }}">
+              Edit Profile
+            </a>
+          </button>
+          <button class="edit-profile-button return-profile-default">
+            <a href="/admin_dashboard/profile/default/{{ profile.id }}">
+              Set to default Profile
+            </a>
+          </button>
+          {% endif %}
           <button
             class="comment-button"
             data-bs-toggle="modal"
@@ -132,8 +146,15 @@
           </button>
         </div>
       </div>
+      {% else %}
+      <div class="modal-body d-flex" id="modalBody">
+        <h5 style="align-content: center; text-align: center; flex: 1">
+          No Profile Yet
+        </h5>
+      </div>
+      {% endif %}
     </div>
   </div>
 </div>
 
-{% include 'users/components/profile_card_comment.html' %} {% endblock %}
+{% include 'admin/components/profile_card_comment.html' %} {% endblock %}

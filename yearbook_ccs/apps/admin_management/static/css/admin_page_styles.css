@@ -24,6 +24,10 @@ main {
   flex: 1;
 }
 
+.table-container-wrapper {
+  padding: 30px 15px;
+}
+
 .admin-page-container h1 {
   margin: 50px 0;
   color: #e26901;
@@ -44,18 +48,51 @@ main {
 
 .table-container th,
 .table-container td {
-  padding: 8px;
+  padding: 10px 15px;
   min-width: 100px;
   text-align: center;
-  border-width: 8px;
+  border-width: 5px;
+  border-color: #d1d0d0;
 }
 
 .table-container th {
   color: white;
   background: #ff912c;
+  border-top: 0;
 }
 
-.admin-table td button {
+.table-container td {
+  background: white;
+}
+
+.admin-table tr th:first-child {
+  border-radius: 20px 0 0;
+}
+
+.admin-table tr th:last-child {
+  border-radius: 0 20px 0 0;
+}
+
+.admin-table tr:last-child td:first-child {
+  border-radius: 0 0 0 20px;
+}
+
+.admin-table tr:last-child td:last-child {
+  border-radius: 0 0 20px;
+}
+
+.admin-table tr td:first-child,
+.admin-table tr th:first-child {
+  border-left: 0;
+}
+
+.admin-table tr td:last-child,
+.admin-table tr th:last-child {
+  border-right: 0;
+}
+
+.admin-table td button,
+.btn-submit {
   cursor: pointer;
   border-radius: 15px;
   padding: 8px 15px;
@@ -64,13 +101,20 @@ main {
 }
 
 .show-modal-btn {
-  border: 1px solid #e26901;
+  background: white;
+  border: 3px solid #e26901;
   color: #ff912c;
+  border-radius: 15px;
+  padding: 4.5px 15px;
 }
 
 .show-modal-btn:hover {
   background: #e26901;
   color: white;
+}
+
+.btn-submit {
+  margin-top: 15px;
 }
 
 /* cards in home page of admin */
@@ -107,16 +151,47 @@ main {
 
 /* search in user_verified_page */
 .search-input-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  align-items: center;
   gap: 5px;
 }
 
 .search-input-wrapper form {
   flex: 1;
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 .search-input-wrapper input {
   width: 100%;
   border-radius: 15px;
-  padding: 5px;
+  padding: 5px 10px;
+}
+
+.btn-clear {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: 5;
+  margin-right: 5px;
+  font-size: x-large;
+  color: black;
+  text-decoration: none;
+  text-align: right;
+  border: none;
+  background: transparent;
+  display: none;
+}
+
+.edit-profile-button {
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  background-color: #ff912c;
+  border: none;
+  margin-right: 15px;
+}
+
+.edit-profile-button a {
+  text-decoration: none;
+  color: white;
 }
