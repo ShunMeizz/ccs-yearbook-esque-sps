@@ -17,7 +17,7 @@
     <form method="POST">
       <div class="table-container">
         {% csrf_token %}
-        <table class="admin-table" border="1">
+        <table class="admin-table">
           <tr>
             <th>Select for Verification</th>
             <th>Select for Not Verified</th>
@@ -57,18 +57,18 @@
             </td>
           </tr>
 
-          {% include 'users/components/account_modal.html' %} {% endfor %}
+          {% include 'admin/components/account_modal.html' %} {% endfor %}
           <!-- if there are no pending accounts to verify -->
           {% else %}
           <tr>
-            <td colspan="6" align="center">
+            <td colspan="6" align="center" style="border-radius: 0 0 20px 20px">
               No pending user accounts to review
             </td>
           </tr>
           {% endif %}
         </table>
       </div>
-      <button type="submit">Submit</button>
+      <button class="btn-submit" type="submit">Submit</button>
     </form>
   </div>
 </div>
