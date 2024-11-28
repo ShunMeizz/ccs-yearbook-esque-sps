@@ -103,12 +103,12 @@ def set_default_profile(request, profile_id):
 
             if field.default != NOT_PROVIDED:
                 field_value = field.get_default() if callable(field.get_default) else field.default
-            elif field.null and isinstance(field, (CharField, TextField)) and field.name != ("first_name", "last_name"):
+            elif field.null and isinstance(field, (CharField, TextField)) and (field.name != "first_name" or field.name != "last_name"):
                 field_value = ""
             elif field.name == "profile_pic":
                 field_value = "media/profile_pictures/default_graduate.png"
             else:
-                field_value = ""
+                continue
 
             setattr(profile, field.name, field_value)
 
