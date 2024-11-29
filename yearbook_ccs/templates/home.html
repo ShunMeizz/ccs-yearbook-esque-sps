@@ -43,34 +43,34 @@
 		</div>
 	</div>
 
-	<div class="center">
-		<div>
-			<div class="home-margin tape2 center">
-				<div class="label black size-50">PROGRAMS</div>
-			</div>
+  <div class="center">
+    <div>
+      <div class="home-margin tape2 center">
+        <div class="label black size-50">PROGRAMS</div>
+      </div>
 
-			<form method="post">
-				<div class="row-box">
-					{% csrf_token %}
-					<div>
-						<button type="submit" name="course" value="BSCS">
-							<div class="label orange size-50 neg-10">
-								COMPUTER <br />
-								SCIENCE
-							</div>
-						</button>
-					</div>
-					<div>
-						<button type="submit" name="course" value="BSIT">
-							<div class="label orange size-50 pos-10">
-								INFORMATION <br />
-								TECHNOLOGY
-							</div>
-						</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+      <form method="post">
+        <div class="row-box">
+          {% csrf_token %}
+          <div>
+            <button type="submit" name="course" value="BSCS">
+              <div class="label orange size-50 neg-10">
+                COMPUTER <br />
+                SCIENCE
+              </div>
+            </button>
+          </div>
+          <div>
+            <button type="submit" name="course" value="BSIT">
+              <div class="label orange size-50 pos-10">
+                INFORMATION <br />
+                TECHNOLOGY
+              </div>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock %}

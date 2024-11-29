@@ -47,51 +47,51 @@
 
 <!-- CREATE POST MODAL -->
 <div
-	class="modal fade"
-	id="blogpostModal"
-	tabindex="-1"
-	aria-labelledby="exampleModalLabel"
-	aria-hidden="true"
-	data-bs-backdrop="true"
+  class="modal fade"
+  id="blogpostModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="true"
 >
-	<form method="post" enctype="multipart/form-data">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Blog</h1>
-					<button
-						type="button"
-						class="btn-close"
-						data-bs-dismiss="modal"
-						aria-label="Close"
-					></button>
-				</div>
-				<div class="modal-body mr-2">
-					{% csrf_token %}
-					<div>{{ form.title }}</div>
-					<div>{{ form.content }}</div>
-					<div>{{ form.media }}</div>
-				</div>
-				<div class="modal-footer">
-					<button
-						type="button"
-						class="btn btn-outline-secondary"
-						data-bs-dismiss="modal"
-					>
-						Close
-					</button>
-					<button
-						type="submit"
-						class="btn btn-primary"
-						name="action"
-						value="create"
-					>
-						Post
-					</button>
-				</div>
-			</div>
-		</div>
-	</form>
+  <form method="post" enctype="multipart/form-data">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Blog</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body mr-2">
+          {% csrf_token %}
+          <div>{{ form.title }}</div>
+          <div>{{ form.content }}</div>
+          <div>{{ form.media }}</div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            name="action"
+            value="create"
+          >
+            Post
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <!-- prettier-ignore -->
