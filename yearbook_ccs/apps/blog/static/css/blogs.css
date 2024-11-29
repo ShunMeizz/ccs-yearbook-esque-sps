@@ -1,6 +1,6 @@
 .blog-post {
-  background-color: #ececec;
-  border-radius: 30px;
+  border-radius: 10px;
+  border: 1.4px solid #585858;
   display: flex;
   flex-direction: column;
 }
@@ -27,4 +27,11 @@
   object-fit: cover;
   width: 100%;
   aspect-ratio: 16/9;
+}
+
+.profile-image {
+  border-radius: 300px;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
 }

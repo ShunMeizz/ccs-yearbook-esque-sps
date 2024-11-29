@@ -23,7 +23,7 @@
 					<img
         				id="profileImage"
         				class="img-fluid rounded-circle"
-        				style="width: 160px; height: 160px; position: relative; z-index: 2;"
+        				style="width: 160px; height: 160px; position: relative; z-index: 2; object-fit: cover;"
         				alt="Profile Image"
     				/>
     				<img
@@ -52,10 +52,15 @@
 							<span id="profileProgram" style="text-transform: uppercase;"></span>
 						</p>
 					</div>
+					{{request.user.profile.id}}
 					<strong style="margin: 5px 0;">Quote:</strong><div class="profile-quote-box"><span id="profileQuote"></span></div>
 					<strong style="margin: 5px 0;">Hobbies:</strong><div class="profile-hobbies-box"><span id="profileHobbies"></span></div>
 					<div class="d-flex justify-content-end mt-2 me-3" >
                         <button id="viewCommentBtn" class="comment-button">View Comment</button>
+						<!-- add if profile is not request.user -->
+						<div class="profile-report-div" data-curr-user="{{request.user.profile.id}}" style="display:none">
+							<button class="reportBtn profile_report" id="profile_report">Report</button>
+						</div>
                     </div>
 				</div>	
 			</div>
@@ -64,5 +69,7 @@
 </div>
 
 <!-- {% include 'profile_card/profile_card_comment.html' %} -->
+ 
+<!-- prettier-ignore -->
 
 {% endblock %}

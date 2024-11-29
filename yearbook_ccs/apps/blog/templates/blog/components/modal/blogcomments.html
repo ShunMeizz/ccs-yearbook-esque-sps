@@ -18,7 +18,10 @@
         ></button>
       </div>
       <div class="modal-body">
+        {% if not request.user.is_superuser %}
+        <!-- prettier-ignore -->
         {% include 'create_blog_comment.html' with blog_id=post.id %}
+        {% endif %}
 
         <div class="comments-container">
           <!-- accessing all comments under this post -->

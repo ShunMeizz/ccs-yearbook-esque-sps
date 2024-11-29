@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="sub-home-padding bg-white col-layout d-flex">
+  <div class="center coolvetica size-50 m-5">Oh snap! Error{{status}}</div>
+  <div class="row-box">
+    <div>
+      <img src="/static/images/error.png" class="img-error" />
+    </div>
+    <div>
+      <div>
+        We searched high and low but couldn't find what you were looking for.
+        Let's find a better place for you to go.
+      </div>
+      <div>
+        <a class="btn btn-outline-dark" href="{% url 'homepage' %}">
+          Go back to home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
