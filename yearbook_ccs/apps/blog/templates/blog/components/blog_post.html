@@ -1,177 +1,203 @@
-{% load static %} {% block extra_styles %}
-
-<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
-<link rel="stylesheet" href="{% static 'js/styles.js' %}" />
-
-{% endblock extra_styles %} {% load humanize %} {% block blog_post %}
+{% load static %} {% block extra_styles %} {% endblock extra_styles %}
 <!-- prettier-ignore -->
+{% load humanize %} {% block blog_post %}
 {% if post %}
 <div>
-	<div class="blog-post mt-4">
-		<div class="margin-20 coolvetica size-18 d-flex justify-content-between">
-			<div>{{post.user.username}}</div>
-			<div class="row-layout">
-				{{post.date|naturaltime}}
-				<div class="dropdown">
-					<button
-						class="btn btn-secondary dropdown-toggle"
-						type="button"
-						data-bs-toggle="dropdown"
-						aria-expanded="false"
-					></button>
-					<ul class="dropdown-menu">
-						{% if request.user.id == post.user_id %}
-						<button
-							class="dropdown-item"
-							data-bs-toggle="modal"
-							data-bs-target="#editpostModal{{post.id}}"
-							id="editBtn"
-						>
-							Edit
-						</button>
-						<form method="post" action="{% url 'delete_post' post.user_id %}">
-							{% csrf_token %}
-							<input type="hidden" name="post_id" value="{{ post.id }}" />
-							<button
-								type="submit"
-								class="dropdown-item"
-								name="action"
-								value="delete"
-							>
-								Delete
-							</button>
-						</form>
-						{% else %}
-						<form method="post">
-							{% csrf_token %}
-							<input type="hidden" name="post_id" value="{{ post.id }}" />
-							<button
-								type="submit"
-								class="dropdown-item"
-								name="action"
-								value="report"
-							>
-								Report
-							</button>
-						</form>
-						{% endif %}
-					</ul>
-				</div>
-			</div>
-		</div>
+  <div class="blog-post bg-white mt-4 p-3">
+    <div class="coolvetica size-18 d-flex justify-content-between">
+      <div style="align-items: start">
+        <div>{{post.user.username}}</div>
+      </div>
+      <div class="row-layout">
+        <div class="m-auto">{{post.date|naturaltime}}</div>
+        <div class="dropdown" style="margin-left: 15px">
+          <button
+            class="btn btn-outline-dark dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></button>
+          <ul class="dropdown-menu">
+            {% if request.user.id == post.user_id %}
+            <button
+              class="dropdown-item"
+              data-bs-toggle="modal"
+              data-bs-target="#editpostModal{{post.id}}"
+              id="editBtn"
+            >
+              Edit
+            </button>
+            <form method="post" action="{% url 'delete_post' post.user_id %}">
+              {% csrf_token %}
+              <input type="hidden" name="post_id" value="{{ post.id }}" />
+              <button
+                type="submit"
+                class="dropdown-item"
+                name="action"
+                value="delete"
+              >
+                Delete
+              </button>
+            </form>
+            {% elif request.user.is_superuser %}
+            <form method="post" action="{% url 'delete_post' post.user_id %}">
+              {% csrf_token %}
+              <input type="hidden" name="post_id" value="{{ post.id }}" />
+              <button
+                type="submit"
+                class="dropdown-item"
+                name="action"
+                value="delete"
+              >
+                Delete
+              </button>
+            </form>
+            {% else %}
+            <button
+              name="post_id"
+              value="{{post.id}}"
+              class="reportBtn post_report dropdown-item"
+            >
+              Report
+            </button>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
 
-		<a href="{% url 'view_post' post.id %}" class="remove-link-style">
-			{% if post.media.url and post.media %}
-			<div class="image-container">
-				<img class="blog-image" src="{{post.media.url}}" />
-			</div>
-			{% endif %}
+    <a href="{% url 'view_post' post.id %}" class="remove-link-style">
+      {% if post.media.url and post.media %}
+      <div class="image-container mt-3 mb-3">
+        <img
+          class="blog-image"
+          data-bs-toggle="modal"
+          data-bs-target="#viewImageModal{{post.id}}"
+          src="{{post.media.url}}"
+        />
+      </div>
+      {% endif %}
 
-			<div class="margin-20">
-				<div class="coolvetica size-24 font-weight-bold mb-3">
-					{{post.title}}
-				</div>
-				<div class="inter size-18">
-					{{post.content}}
-					<hr />
-				</div>
-				<div>
-					<a
-						href="#"
-						id="viewblogcommentBtn"
-						data-bs-toggle="modal"
-						data-bs-target="#commentModal{{ post.id }}"
-						>View all comments</a
-					>
-				</div>
-			</div>
-			<div></div>
-		</a>
-	</div>
-	{% else %} No posts found! {% endif %} {% endblock %}
+      <div>
+        <div class="coolvetica size-24 font-weight-bold mb-1">
+          {{post.title}}
+        </div>
+        <div class="inter size-18">
+          {{post.content}}
+          <hr />
+        </div>
+        <div>
+          <a
+            href="#"
+            id="viewblogcommentBtn"
+            data-bs-toggle="modal"
+            data-bs-target="#commentModal{{ post.id }}"
+            class="remove-link-style"
+          >
+            <img
+              src="\static\images\icons\comments.svg"
+              style="margin-right: 5px"
+            />
+            View all comments
+          </a>
+        </div>
+      </div>
+      <div></div>
+    </a>
+  </div>
+  {% else %} no posts found! {% endif %} {% endblock %}
 
-	<!-- passing the post to blogcomments -->
-	{% include "blog/components/modal/blogcomments.html" with post=post %}
+  <!-- prettier-ignore -->
+  {% if post %}
+  <!-- passing the post to blogcomments -->
+  {% include "blog/components/modal/blogcomments.html" with post=post %}
+  <!-- prettier-ignore -->
+  {% endif %}
 
-	<!-- Edit post Modal -->
-	<div
-		class="modal fade"
-		id="editpostModal{{post.id}}"
-		tabindex="-1"
-		aria-labelledby="exampleModalLabel"
-		aria-hidden="true"
-		data-bs-backdrop="true"
-	>
-		<form method="post" enctype="multipart/form-data">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
-						<button
-							type="button"
-							class="btn-close"
-							data-bs-dismiss="modal"
-							aria-label="Close"
-						></button>
-					</div>
-					<div class="modal-body mr-2">
-						{% csrf_token %}
-						<div>
-							<input
-								type="text"
-								id="editTitle"
-								name="title"
-								value="{{post.title}}"
-								class="form-control m-1"
-							/>
-						</div>
-						<div>
-							<textarea
-								id="editContent"
-								name="content"
-								value="{{post.content}}"
-								class="form-control m-1"
-							>
-{{post.content}}</textarea
-							>
-						</div>
-						<div>
-							{% if post.media.url and post.media %}
-							<div class="image-container">
-								<img class="blog-image" src="{{post.media.url}}" />
-								<input
-									type="file"
-									id="editMedia"
-									name="media"
-									value="{{post.media.url}}"
-									class="form-control m-1"
-								/>
-							</div>
-							{% else %}
-							<input type="file" class="form-control m-1" />
-							{% endif %}
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button
-							type="button"
-							class="btn btn-outline-secondary"
-							data-bs-dismiss="modal"
-						>
-							Close
-						</button>
-						<input type="hidden" name="post_id" value="{{ post.id }}" />
-						<button
-							type="submit"
-							class="btn btn-primary"
-							name="action"
-							value="edit"
-						>
-							Edit
-						</button>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
+  <!-- Edit post Modal -->
+  <div
+    class="modal fade"
+    id="editpostModal{{post.id}}"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    data-bs-backdrop="true"
+  >
+    <form method="post" enctype="multipart/form-data">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body mr-2">
+            {% csrf_token %}
+            <div>
+              <input
+                type="text"
+                id="editTitle"
+                name="title"
+                value="{{post.title}}"
+                class="form-control m-1"
+              />
+            </div>
+            <div>
+              <textarea
+                id="editContent"
+                name="content"
+                value="{{post.content}}"
+                class="form-control m-1"
+              >
+              {{post.content}}
+              </textarea>
+            </div>
+            <div>
+              {% if post.media.url and post.media %}
+              <div class="image-container">
+                <img class="blog-image" src="{{post.media.url}}" />
+                <input
+                  type="file"
+                  id="editMedia"
+                  name="media"
+                  value="{{post.media.url}}"
+                  class="form-control m-1"
+                />
+              </div>
+              {% else %}
+              <input type="file" class="form-control m-1" />
+              {% endif %}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <input type="hidden" name="post_id" value="{{ post.id }}" />
+            <button
+              type="submit"
+              class="btn btn-primary"
+              name="action"
+              value="edit"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+
+<!-- view image post modal -->
+<!-- <div class="modal-dialog modal-dialog-centered" id="viewImageModal{{post.id}}">
+  <img src="post.media.url" />
+</div> -->

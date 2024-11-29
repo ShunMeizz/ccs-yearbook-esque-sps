@@ -1,7 +1,11 @@
 {% extends 'base.html' %} {% load static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
 <link rel="stylesheet" href="{% static 'js/styles.js' %}" />
-{% endblock extra_styles %} {% load humanize %} {% block content %}
+{% endblock extra_styles %} {% load humanize %}
+<!-- prettier-ignore -->
+{% block navbar_variants %}
+navbar-black
+{% endblock %}{% block content %}
 <div>
   <div class="blog-margin center">
     <div class="blog-banner bg-orange center outline-white">

@@ -97,7 +97,7 @@ it will change the Batch Year accordingly-->
       <div class="profile-wrapper d-flex align-items-center justify-content-center position-relative" style="width: 280px;">
         <img src="{{ profile.profile_pic.url }}" 
           alt="{{ profile.first_name }}'s profile picture"
-          style="width: 120px; height: 120px; position: relative; z-index: 2;"
+          style="width: 120px; height: 120px; position: relative; z-index: 2; object-fit: cover;"
           class="profile-image" />
         <img
           id="profileFrame"
@@ -123,4 +123,6 @@ it will change the Batch Year accordingly-->
 {% include 'profile_card/profile_card_detail.html' %}
 <!-- {% include 'profile_card/profile_card_comment.html' %} -->
 
+<script src="{% static 'js/report_styles.js' %}"></script>
+{% include "component/report_modal.html" %}
 {% endblock %}

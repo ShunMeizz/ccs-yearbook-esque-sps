@@ -4,11 +4,14 @@
 {% endblock extra_styles %} {% load humanize %}
 
 <div>
-	{% block blog_post %} {% for post in blogs %}
-	<!-- loop all blogs -->
-	{% include 'blog/components/blog_post.html' with post=post%} {% endfor %}
-	<!-- end loop -->
-	{% endblock %}
+  {% block blog_post %} {% for post in blogs %}
+  <!-- loop all blogs -->
+  {% include 'blog/components/blog_post.html' with post=post%} {% endfor %}
+  <!-- prettier-ignore -->
+  {% include "component/report_modal.html" %}
+  <!-- end loop -->
+  {% endblock %}
 </div>
 
 <script src="{% static 'js/comment_script.js' %}"></script>
+<script src="{% static 'js/report_styles.js' %}"></script>
