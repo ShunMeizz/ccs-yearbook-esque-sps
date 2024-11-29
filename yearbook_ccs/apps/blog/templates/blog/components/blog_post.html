@@ -1,3 +1,7 @@
+{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %} 
+{% load static %} {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
+{% endblock extra_styles %} {% load humanize %} {% block blog_content %}
 {% load static %} {% block extra_styles %} {% endblock extra_styles %}
 <!-- prettier-ignore -->
 {% load humanize %} {% block blog_post %}
