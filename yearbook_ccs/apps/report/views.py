@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import user_passes_test
@@ -44,6 +45,7 @@ def add_report(request):
             user_reported_id=request.user.id,
             report_item_id = report_item_id
         )
+        print(report.reason)
         report.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return render(request, 'reports.html')  # Fallback render if not POST
@@ -53,8 +55,15 @@ def finished_report(request):
         report_id = request.POST.get('report_id')
         report = get_object_or_404(Report,pk=report_id)
         report.status = 1
+        report.report_description = request.POST.get('report_description')
+        report.date = timezone.now()
+        print(report.report_description)
         report.save()
         print('Finished report')
         print(report_id)
     
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def closed_report(request):
+    closed_reports = Report.objects.filter(status=1).all()
+    return render(request, 'reports_closed.html', {'closed_reports':closed_reports})

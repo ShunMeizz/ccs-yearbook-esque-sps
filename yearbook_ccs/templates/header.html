@@ -15,7 +15,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      {% if request.user.is_authenticated %}
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% if request.user.is_superuser %}
@@ -67,6 +67,9 @@
               <li>
                 <a class="dropdown-item" href="/reports/comments">Comment</a>
               </li>
+              <li>
+                <a class="dropdown-item" href="/reports/closed">Finished</a>
+              </li>
             </ul>
           </li>
           {% else %}
@@ -87,10 +90,17 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
+              {% if request.user.profile.profile_pic.url %}
               <img
                 src="{{request.user.profile.profile_pic.url}}"
                 class="img-navbar-icon"
               />
+              {% else %}
+              <img
+                src="\static\images\default_profile.png"
+                class="img-navbar-icon"
+              />
+              {% endif %}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="/account">Account</a></li>
@@ -102,6 +112,7 @@
           </li>
         </ul>
       </div>
+      {% endif %}
     </div>
   </nav>
 </div>
