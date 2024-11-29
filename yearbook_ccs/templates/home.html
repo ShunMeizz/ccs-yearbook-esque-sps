@@ -1,47 +1,55 @@
-{% extends 'base.html' %} 
-{% block title %}Home - Yearbook CCS
-{% endblock %}
-{% block content %} {%load static%}
+{% extends 'base.html' %} {% block title %}Home - Yearbook CCS {% endblock %}
+<!--  -->
+{%block content %} {%load static%}
 <link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
 <link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
 
-<div
-	class="home-cover container-fluid d-flex flex-column justify-content-center position-relative"
->
-	<div class="light-orange-rectangle-design">
-		<img
-			src="{% static 'images/sketch_assets/B-Star.svg' %}"
-			class="b-star-svg"
-		/>
-		<img
-			src="{% static 'images/sketch_assets/Y-Star2.svg' %}"
-			class="y-star-svg"
-		/>
-		<div class="program-label text-style-1 size-80">{{course}}</div>
-		<div class="batch-label">BATCH 2026</div>
-	</div>
+<div class="home-banner center">
+  <hr />
+  <div class="center">
+    <img
+      src="{% static 'images/sketch_assets/B-Star.svg' %}"
+      class="b-star-svg"
+    />
+
+    <a href="/batch_page" class="remove-link-style">
+      <div class="label size-100 outline-white black">{{course}}</div>
+      <div
+        class="tape bg-light-yellow center"
+        style="justify-self: last baseline"
+      >
+        <div class="fatpen black size-50">BATCH 2026</div>
+      </div>
+    </a>
+
+    <img
+      src="{% static 'images/sketch_assets/Y-Star2.svg' %}"
+      class="y-star-svg"
+    />
+  </div>
+  <hr />
 </div>
+
 <div class="preview-profile-cover">
-	<div class="preview-profile-label text-style-2">
-		MEET YOUR BATCHMATES
-	</div>
-	<div class="rectangle-orange-box"></div>
-	<div class="rectangle-light-orange-box"></div>
-	<div class="preview-profile-pictures">
-		{% include "admin/components/profile_card_detail.html" with profile=random_profile %}
-	</div>
+  <div class="preview-profile-label text-style-2">MEET YOUR BATCHMATES</div>
+  <div class="rectangle-orange-box"></div>
+  <div class="rectangle-light-orange-box"></div>
+  <div class="preview-profile-pictures">
+    <!-- prettier-ignore -->
+    {% include "admin/components/profile_card_detail.html" with profile=random_profile %}
+  </div>
 </div>
 <div>
-	<div>
-		<div class="center blog-section">
-			<div>
-				<div class="label size-50 black">RECENT BLOG POST</div>
-				{% if recent_blog %}
-				<!-- prettier-ignore -->
-				{% include "blog/components/blog_post.html" with post=recent_blog %} {% else %} No posts! {% endif %}
-			</div>
-		</div>
-	</div>
+  <div>
+    <div class="center blog-section">
+      <div>
+        <div class="label size-50 black">RECENT BLOG POST</div>
+        {% if recent_blog %}
+        <!-- prettier-ignore -->
+        {% include "blog/components/blog_post.html" with post=recent_blog %} {% else %} No posts! {% endif %}
+      </div>
+    </div>
+  </div>
 
   <div class="center">
     <div>

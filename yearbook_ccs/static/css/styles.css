@@ -52,22 +52,16 @@ header nav ul li a:hover {
   text-decoration: underline;
 }
 
-.coolvetica {
-	font-family: coolvetica, sans-serif;
-	font-style: normal;
-	font-weight: 100;
-}
-
 .navbar-white {
-	background-color: #f8f8f8;
+  background-color: #f8f8f8;
 }
 
 .navbar-orange {
-	background-color: #ff912c;
+  background-color: #ff912c;
 }
 
 .navbar-black {
-	background-color: #292929;
+  background-color: #292929;
 }
 
 .navbar-dropdown {
