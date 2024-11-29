@@ -6,12 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Yearbook CCS{% endblock %}</title>
 
-    <!--Styles for the entire app-->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/sub-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/container.css' %}" />
-
     <!-- HTMX -->
     <script
       src="https://unpkg.com/htmx.org@2.0.3"
@@ -56,6 +50,12 @@
       href="https://fonts.googleapis.com/css2?family=Fatpen&display=swap"
       rel="stylesheet"
     />
+
+    <!--Styles for the entire app-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/sub-styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/container.css' %}" />
 
     <!-- Custom JS -->
     <script src="{% static 'js/messages.js' %}"></script>

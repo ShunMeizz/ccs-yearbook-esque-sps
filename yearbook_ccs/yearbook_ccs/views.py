@@ -1,10 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 import random
 
 from apps.blog.models import Blog
 from apps.profiles.models import UserProfile
+
+@login_required
 def homepage(request):
     if (request.user.is_superuser):
         return redirect('admin_home')

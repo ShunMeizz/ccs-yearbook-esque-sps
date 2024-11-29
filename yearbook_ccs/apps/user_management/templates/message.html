@@ -2,27 +2,39 @@
 <link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
 {% endblock extra_styles %} {% block before-main %}
 <div class="form-header" style="margin-top: 20px">
-	<div class="ribbon-container"></div>
-	<div class="orange-box"></div>
-	<h1>VERIFYING...</h1>
+  <div class="ribbon-container"></div>
+  <div class="orange-box"></div>
+  <h1>VERIFYING...</h1>
 </div>
 {% endblock %} {% block content %}
 <div class="id-card">
-	<img src="{% static 'images/sketch_assets/star.svg' %}" class="star1-svg" />
-	<img src="{% static 'images/sketch_assets/star.svg' %}" class="star2-svg" />
-	<img src="{% static 'images/sketch_assets/star.svg' %}" class="star3-svg" />
-	<img src="{% static 'images/sketch_assets/star.svg' %}" class="star4-svg" />
-	<div class="id-orange-header"></div>
-	<div class="outer-wrapper">
-		<div class="form-container">
-			<div class="form-content">
-				<div class="message-container">
-					<div class="content-message">{{ message }}</div>
-					<div class="additional-content-message">{{ additional_message }}</div>
-					<a href="{% url 'login' %}"> Go back to login page</a>
-				</div>
-			</div>
-		</div>
-	</div>
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star1-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star2-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star3-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star4-svg"
+  />
+  <div class="id-orange-header"></div>
+  <div class="outer-wrapper">
+    <div class="form-container">
+      <div class="form-content">
+        <div class="message-container">
+          <div class="content-message">{{ message }}</div>
+          <div class="additional-content-message">{{ additional_message }}</div>
+          <a href="{% url 'login' %}"> Go back to login page</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
