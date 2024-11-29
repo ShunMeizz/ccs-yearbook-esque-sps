@@ -78,7 +78,10 @@ def my_post(request, user_id):
         return render(request,"blog/blog_user.html",{'pending':pending,'user':user})
 
 def view_post(request, post_id):
-    post = get_object_or_404(Blog, id=post_id)
+    try:
+        post = Blog.objects.get(id=post_id)
+    except Blog.DoesNotExist:
+        return render(request,"error.html",status=404)
     return render(request, 'blog/components/baseblog_post.html', {'post': post})
 
 def delete_post(request, user_id):

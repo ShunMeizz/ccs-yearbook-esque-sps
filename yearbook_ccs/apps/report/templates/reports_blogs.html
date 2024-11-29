@@ -4,8 +4,18 @@
 {% endblock %} 
 
 {% block report_content %}
+
+{% if post_reports %}
+
 {% for report in post_reports %}
 <!-- prettier-ignore -->
 {% include 'component/report.html' with report=report %}
 <!-- end loop -->
-{% endfor %} {% endblock %}
+{% endfor %} {% else %}
+<td>No reports found.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+{% endif %} {% endblock %}
