@@ -43,11 +43,11 @@
           <link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
           <div class="comments-container" style="flex: 1">
             <!-- create comments section for non-admin -->
-            {% if not profile.user_account.is_superuser %} 
+            {% if not request.user.is_superuser %}
             <!-- prettier-ignore -->
             {% include 'create_profile_comment.html' with profile_id=profile.id %}
             {% endif %}
-            
+
             <!-- Profile comments -->
             {% with profile_comments=profile.profile_comments.all %}
             <!-- check if there are comments under this profile -->
@@ -72,8 +72,7 @@
                 </button>
               </form>
             </div>
-            {% endif %}
-            {%endfor%}
+            {% endif %} {%endfor%}
             <!-- else -->
             {% else %}
             <div class="no-comments-found-container">
