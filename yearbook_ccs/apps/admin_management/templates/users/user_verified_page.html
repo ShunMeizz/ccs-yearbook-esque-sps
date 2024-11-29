@@ -14,19 +14,14 @@
 <!-- main content -->
 {% block content %}
 <div class="admin-page-container">
-  <div class="coolvetica center size-50 orange m-4">Verified Users</div>
+  <h1>Verified Users</h1>
   <div class="table-container-wrapper">
     <div class="search-input-wrapper">
       {% csrf_token %}
-      <form method="get">
-        <input
-          type="text"
-          id="search-user"
-          name="search"
-          placeholder="Search by username, name, email or ID"
-        />
+      <form>
+        <input type="text" id="search-user" placeholder="Search" />
       </form>
-      <button class="btn-clear" id="btn-clear-search-user">X</button>
+      <a href="#" class="btn-clear" id="btn-clear-search-user">X</a>
     </div>
     <div class="table-container">
       <table class="admin-table">
@@ -36,7 +31,7 @@
           <th></th>
           <th></th>
         </tr>
-        {% if useraccounts %} {% for user in useraccounts %}
+        {% for user in useraccounts %}
         <tr>
           <td>{{ user.id }}</td>
           <td>{{ user.username }}</td>
@@ -62,18 +57,9 @@
 
         <!-- profile_modal -->
         <!-- prettier-ignore -->
-        {% include 'admin/components/profile_card.html' with profile=user.profile %}
+        {% include 'users/components/profile_card.html' with profile=user.profile %}
         <!-- account_modal -->
-        {% include 'admin/components/account_modal.html' %} {% endfor %}
-
-        <!-- prettier-ignore -->
-        {% else %}
-        <tr>
-          <td colspan="6" align="center" style="border-radius: 0 0 20px 20px">
-            No user accounts to view
-          </td>
-        </tr>
-        {% endif %}
+        {% include 'users/components/account_modal.html' %} {% endfor %}
       </table>
     </div>
   </div>

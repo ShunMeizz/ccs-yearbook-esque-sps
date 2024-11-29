@@ -11,8 +11,7 @@ from .forms import BlogForm, FilterForm
 def blog_home(request):
     print("blog post")
     posts = get_post()
-    action = request.POST.get('action')
-    filterform = FilterForm()    
+    action = request.POST.get('action')    
     if request.method == "POST":
         form = BlogForm(request.POST, request.FILES)
         if action == 'create':
@@ -36,11 +35,18 @@ def blog_home(request):
 
             blogpost.save()
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        if action == "report":
+            post_id = request.POST.get('post_id')
+            blogpost = get_object_or_404(Blog, id=post_id)
+
+            print("report")
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         if action == "filter":
             print("filter")
             filterform, posts = filter_post(request) # Get posts without filters
     else:
         form = BlogForm()
+        filterform = FilterForm()
         
     return render(request, "blog/blog_home.html", {'form': form, 'posts': posts, 'filterform': filterform})
 

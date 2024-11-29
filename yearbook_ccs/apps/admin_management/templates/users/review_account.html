@@ -12,25 +12,12 @@
 <!-- main content -->
 {% block content %}
 <div class="admin-page-container">
-  <div class="coolvetica center size-50 orange m-4">
-    Pending Account Approvals
-  </div>
+  <h1>Pending Account Approvals</h1>
   <div class="table-container-wrapper">
-    <div class="search-input-wrapper">
-      <form method="get">
-        <input
-          type="text"
-          id="search-user"
-          name="search"
-          placeholder="Search by username, name, email or ID"
-        />
-      </form>
-      <button class="btn-clear" id="btn-clear-search-user">X</button>
-    </div>
     <form method="POST">
       <div class="table-container">
         {% csrf_token %}
-        <table class="admin-table">
+        <table class="admin-table" border="1">
           <tr>
             <th>Select for Verification</th>
             <th>Select for Not Verified</th>
@@ -70,18 +57,18 @@
             </td>
           </tr>
 
-          {% include 'admin/components/account_modal.html' %} {% endfor %}
+          {% include 'users/components/account_modal.html' %} {% endfor %}
           <!-- if there are no pending accounts to verify -->
           {% else %}
           <tr>
-            <td colspan="6" align="center" style="border-radius: 0 0 20px 20px">
+            <td colspan="6" align="center">
               No pending user accounts to review
             </td>
           </tr>
           {% endif %}
         </table>
       </div>
-      <button class="btn-submit" type="submit">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </div>

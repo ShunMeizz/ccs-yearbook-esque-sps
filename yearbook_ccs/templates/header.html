@@ -1,6 +1,6 @@
 <div>
   <nav
-    class="navbar navbar-expand-lg bg-body-tertiary coolvetica {% block navbar_variants %} {% endblock %}"
+    class="navbar navbar-expand-lg bg-body-tertiary coolvetica {% block navbar_variants %} navbar-white navbar-orange navbar-black {% endblock %}"
   >
     <div class="container-fluid ms-2 me-2">
       <a class="navbar-brand" href="{% url 'home' %}">CSS Yearbook</a>
@@ -15,7 +15,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      {% if request.user.is_authenticated %}
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% if request.user.is_superuser %}
@@ -42,11 +42,6 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="/admin_dashboard/blogs"
-              >Manage Blogs</a
-            >
-          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle active"
@@ -59,16 +54,14 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <a class="dropdown-item" href="/reports/profiles">Profile</a>
+                <a class="dropdown-item" href="/admin_dashboard/comment_reports"
+                  >Comment</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" href="/reports/posts">Blog</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/reports/comments">Comment</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/reports/closed">Finished</a>
+                <a class="dropdown-item" href="/admin_dashboard/blog_reports"
+                  >Blog</a
+                >
               </li>
             </ul>
           </li>
@@ -90,17 +83,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {% if request.user.profile.profile_pic.url %}
-              <img
-                src="{{request.user.profile.profile_pic.url}}"
-                class="img-navbar-icon"
-              />
-              {% else %}
-              <img
-                src="\static\images\default_profile.png"
-                class="img-navbar-icon"
-              />
-              {% endif %}
+              Account Icon unta
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="/account">Account</a></li>
@@ -112,7 +95,6 @@
           </li>
         </ul>
       </div>
-      {% endif %}
     </div>
   </nav>
 </div>

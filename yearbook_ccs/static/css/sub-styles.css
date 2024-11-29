@@ -20,7 +20,7 @@
 }
 
 .margin-140 {
-  margin: 140px;
+	margin: 140px;
 }
 
 .col-layout {
@@ -29,8 +29,8 @@
 }
 
 .row-layout {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .bar {

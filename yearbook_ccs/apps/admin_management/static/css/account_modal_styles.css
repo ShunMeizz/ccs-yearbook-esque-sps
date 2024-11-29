@@ -35,13 +35,6 @@ h1.account-modal-header {
   align-items: center;
 }
 
-.user-account-modal-dialog .modal-content-wrapper {
-  border: 2px solid black;
-  padding: 15px;
-  background: white;
-  border-radius: 5px;
-}
-
 .user-account-modal-dialog .modal-header {
   background: white;
   border-radius: 25px;
@@ -54,5 +47,4 @@ h1.account-modal-header {
 
 .user-account-modal-dialog .modal-content {
   height: max-content;
-  border: 2px solid black;
 }
