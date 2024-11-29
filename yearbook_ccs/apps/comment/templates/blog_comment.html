@@ -46,20 +46,21 @@
   </div>
 
   <div class="comment-button-group">
-    {% if request.user == comment.author or request.user == comment.blog.user %}
+    <!-- prettier-ignore -->
+    {% if request.user == comment.author or request.user == comment.blog.user or request.user.is_superuser %}
     <form action="{% url 'delete_comment' comment.id %}" method="post">
       {% csrf_token %}
       <button type="submit" class="btn-delete-comment">· Delete</button>
     </form>
     {% endif %} {% if request.user == comment.author %}
     <button class="btn-edit-comment" value="{{ comment.id }}">· Edit</button>
-    {% else %}
+    {% elif not request.user.is_superuser %}
     <button
       name="post_id"
       value="{{comment.id}}"
       class="reportBtn comment_report"
     >
-      Report
+      · Report
     </button>
     {% endif %}
   </div>
