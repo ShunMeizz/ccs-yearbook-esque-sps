@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
+from django.db.models import Q, ForeignKey, CharField, TextField
+from django.db.models.fields import NOT_PROVIDED
 from ..user_management.models import UserAccount
 from ..report.models import Report
 from ..profiles.models import UserProfile
 from ..profiles.forms import ProfileCreationForm
+from ..blog.models import Blog
 from ..user_management.views import acc_not_verified_email, acc_verified_email
-from django.contrib.auth.decorators import user_passes_test
-from django.db.models import Q, ForeignKey, CharField, TextField
-from django.db.models.fields import NOT_PROVIDED
 
 def admin_dashboard(request):
     if (not request.user.is_superuser):
@@ -55,6 +55,13 @@ def review_user_verification_requests(request):
                 continue
 
         return redirect('review_acc')
+    
+    elif request.method == 'GET':
+        search = request.GET.get('search', '')
+
+        accounts = accounts.filter(
+            Q(username__icontains=search) | Q(email=search) | Q(school_id_number__icontains=search) 
+        )
 
     return render(request, 'admin/review_account.html', {'accounts': accounts})
 
@@ -116,3 +123,11 @@ def set_default_profile(request, profile_id):
     profile.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def manage_blogs(request):
+    if (not request.user.is_superuser):
+        return redirect('home')
+    
+    posts = Blog.objects.all()
+
+    return render(request, 'admin/manage_blogs.html', {'posts': posts})
