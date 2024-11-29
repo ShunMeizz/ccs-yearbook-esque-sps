@@ -102,7 +102,7 @@ def signup_step2(request):
             del request.session['step1_data']
             del request.session['password1']
             message = "Thank you for signing up!"
-            additional_message = "Your account is under review. We will notify you at your email user.email? inbox (or spam folder) for the verification update."
+            additional_message = "Your account is under review. We will notify you at your email inbox (or spam folder) for the verification update."
             return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
         else:
              for error in list(form.errors.values()):
