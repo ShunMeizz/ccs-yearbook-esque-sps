@@ -3,19 +3,31 @@
 <link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
 <link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
 
-<div class="home-cover container-fluid d-flex flex-column justify-content-center position-relative">
-    <div class="light-orange-rectangle-design">
-        <img src="{% static 'images/sketch_assets/B-Star.svg' %}" class="b-star-svg" />
-        <img src="{% static 'images/sketch_assets/Y-Star2.svg' %}" class="y-star-svg" />
-        <div class="program-label text-style-1 size-80">{{course}}</div>
-        <div class="batch-label">BATCH 2026</div>
-    </div>
+<div
+	class="home-cover container-fluid d-flex flex-column justify-content-center position-relative"
+>
+	<div class="light-orange-rectangle-design">
+		<img
+			src="{% static 'images/sketch_assets/B-Star.svg' %}"
+			class="b-star-svg"
+		/>
+		<img
+			src="{% static 'images/sketch_assets/Y-Star2.svg' %}"
+			class="y-star-svg"
+		/>
+		<div class="program-label text-style-1 size-80">{{course}}</div>
+		<div class="batch-label">BATCH 2026</div>
+	</div>
 </div>
 <div class="preview-profile-cover">
-	<div class="preview-profile-label text-style-2 size-35">MEET YOUR BATCHMATES</div>
+	<div class="preview-profile-label text-style-2">
+		MEET YOUR BATCHMATES
+	</div>
 	<div class="rectangle-orange-box"></div>
 	<div class="rectangle-light-orange-box"></div>
-	{% include "users/components/profile_card_detail.html" with profile=random_profile %}	
+	<div class="preview-profile-pictures">
+		{% include "users/components/profile_card_detail.html" with profile=random_profile %}
+	</div>
 </div>
 <div>
 	<div>

@@ -17,8 +17,18 @@
 	margin: 0;
 	box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.25); /* Bottom shadow only */
 }
-.profile-cover {
-	position: relative;
+.preview-profile-cover {
+	display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    width: 100%; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+.preview-profile-pictures {
+    width: 800px; 
+    height: auto; 
+    object-fit: cover; 
 }
 .light-orange-rectangle-design {
 	border-top: 4px solid #ffc875;
@@ -51,6 +61,7 @@
 	color: #fff;
 	padding: 50px;
 	margin-top: 15px;
+	font-size: 35px;
 }
 .batch-label {
 	background-color: #f6ddb8;
@@ -66,7 +77,7 @@
 	position: absolute;
 	width: clamp(60px, 5vw, 80px);
 	height: 70px;
-	z-index: 10;
+	z-index: 3;
 }
 .b-star-svg {
 	left: 10%;
@@ -76,17 +87,4 @@
 	right: 18%;
 	bottom: clamp(50%, 67%, 75%);
 }
-.size-100 {
-	font-size: 100px;
-}
 
-.size-80 {
-	font-size: 80px;
-}
-
-.size-50 {
-	font-size: 50px;
-}
-.size-35 {
-	font-size: 35px;
-}
