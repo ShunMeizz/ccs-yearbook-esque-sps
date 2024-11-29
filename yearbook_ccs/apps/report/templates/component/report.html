@@ -1,0 +1,103 @@
+{% load static %} {% if report.status == 0 %}
+<tr>
+  <th scope="row">{{report.id}}</th>
+  <td>{{report.user_reported_id}}</td>
+  <td>{{report.get_reason_display}}</td>
+  <td>{{report.date}}</td>
+  {% if report.report_type == 2 %}
+  <td>
+    <button
+      class="show-modal-btn"
+      data-bs-toggle="modal"
+      data-bs-target="#profileModal{{ report.report_item_id }}"
+    >
+      View Account
+    </button>
+  </td>
+  {% else %}
+  <td><a href="{{report.link}}" class="remove-link-style"> View post </a></td>
+  {% endif %}
+  <td>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Pending
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <button
+            type="button"
+            class="dropdown-item"
+            data-bs-toggle="modal"
+            data-bs-target="#finishedReportModal"
+          >
+            Finished
+          </button>
+        </li>
+      </ul>
+    </div>
+  </td>
+</tr>
+{% elif report.status == 1 %}
+<tr>
+  <th scope="row">{{report.id}}</th>
+  <td>{{report.user_reported_id}}</td>
+  <td>{{report.get_reason_display}}</td>
+  <td>{{report.date}}</td>
+  <td>{{report.report_description}}</td>
+  <td><button class="btn btn-outline-secondary" disabled>Finished</button></td>
+</tr>
+{% endif %}
+
+<div
+  class="modal fade"
+  id="finishedReportModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          Report Description
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form method="post" action="{% url 'finished_report' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            name="report_description"
+            placeholder="Please detail on how you have handled this report."
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <input type="hidden" name="report_id" value="{{report.id}}" />
+          <button type="submit" class="btn btn-primary">Finished Report</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

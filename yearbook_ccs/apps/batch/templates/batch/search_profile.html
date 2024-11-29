@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% load static %} {% block extra_styles %}
+<!-- External Styles and Scripts -->
+<link rel="stylesheet" href="{% static 'css/batch_page.css' %}" />
+<link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+/>
+
+<script src="{% static 'js/profile_card_script.js' %}"></script>
+{% endblock extra_styles %} {% block content %}
+<div
+  class="search-cover container-fluid d-flex flex-column justify-content-center position-relative"
+>
+  <a
+    href="{% url 'batch_page' %}"
+    class="back-icon position-absolute top-0 start-0 m-3"
+  >
+    <i class="bi bi-arrow-left-circle"></i>
+  </a>
+  <h2 class="text-center">CCS Yearbook Profiles</h2>
+  <div class="orange-rectangle-design"></div>
+</div>
+
+<div class="title-container">
+  <div class="circle"></div>
+  <div class="circle right-circle"></div>
+  <h2 class="search-title">Search Results for "{{ query }}"</h2>
+  <div class="circle"></div>
+  <div class="circle right-circle"></div>
+</div>
+
+<div class="profile-list d-flex flex-wrap justify-content-center gap-5">
+  {% for profile in profiles %}
+  <div class="profile-circle text-center">
+    <a
+      href="#"
+      class="profile-link"
+      data-bs-toggle="modal"
+      data-bs-target="#profileModal"
+      data-id="{{ profile.id }}"
+      data-name="{{ profile.first_name }} {{ profile.last_name }}"
+      data-username="{{ profile.user_account.username }}"
+      data-program="{{profile.program}}"
+      data-batch-year="{{profile.batch_year}}"
+      data-image="{{ profile.profile_pic.url }}"
+      data-quote="{{ profile.quote }}"
+      data-hobbies="{{ profile.hobbies }}"
+      data-facebook="{{ profile.visible_social_links.facebook|default_if_none:''}}"
+      data-linkedin="{{ profile.visible_social_links.linkedin|default_if_none:''}}"
+      data-github="{{ profile.visible_social_links.github|default_if_none:''}}"
+      data-instagram="{{ profile.visible_social_links.instagram|default_if_none:''}}"
+    >
+      <div
+        class="profile-wrapper d-flex align-items-center justify-content-center position-relative"
+        style="width: 280px"
+      >
+        <img
+          src="{{ profile.profile_pic.url }}"
+          alt="{{ profile.first_name }}'s profile picture"
+          style="width: 120px; height: 120px; position: relative; z-index: 2"
+          class="profile-image"
+        />
+        <img
+          id="profileFrame"
+          class="img-fluid rounded-circle"
+          style="width: 160px; height: 150px; position: absolute"
+          src="{% static 'images/profile_frame.png' %}"
+          alt="Profile Frame"
+        />
+      </div>
+    </a>
+    <div class="profile-circle-details">
+      <p class="profile-name">
+        {{ profile.first_name }} {{ profile.last_name }}
+      </p>
+      <p class="profile-program-and-year">
+        {{ profile.program }} - {{ profile.batch_year }}
+      </p>
+      <p class="profile-quote">"{{ profile.quote }}"</p>
+    </div>
+  </div>
+  {% empty %}
+  <p>No profiles found matching your search.</p>
+  {% endfor %}
+</div>
+
+{% include 'profile_card/profile_card_detail.html' %}
+<!-- profile comment -->
+{% include 'profile_card/profile_card_comment.html' %}
+<!-- report moda -->
+{% include "component/report_modal.html" %}
+<!-- end -->
+{% endblock %}

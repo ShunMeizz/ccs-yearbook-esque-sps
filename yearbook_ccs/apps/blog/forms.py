@@ -11,3 +11,15 @@ class BlogForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'placeholder': 'What\'s on your mind?', 'class': 'form-control m-1'}),
             'media': ClearableFileInput(attrs={'class': 'form-control m-1'}),
         }
+        
+PROGRAM = (
+    ("BSCS","Computer Science"),
+    ("BSIT","Information Technology")
+)
+
+class FilterForm(forms.Form):
+    prog = forms.MultipleChoiceField(
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        choices=PROGRAM,
+    )

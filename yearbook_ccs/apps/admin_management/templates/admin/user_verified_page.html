@@ -1,0 +1,86 @@
+{% extends 'base.html' %}{% load static %}
+<!-- page title -->
+{% block title %}Verified Users{% endblock %}
+<!-- extra styles -->
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/admin_page_styles.css' %}" />
+<link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
+<link rel="stylesheet" href="{% static 'css/account_modal_styles.css' %}" />
+
+{% endblock extra_styles %}
+<!-- before main block -->
+{% block before-main %}{% endblock %}
+
+<!-- main content -->
+{% block content %}
+<div class="admin-page-container">
+  <div class="coolvetica center size-50 orange m-4">Verified Users</div>
+  <div class="table-container-wrapper">
+    <div class="search-input-wrapper">
+      {% csrf_token %}
+      <form method="get">
+        <input
+          type="text"
+          id="search-user"
+          name="search"
+          placeholder="Search by username, name, email or ID"
+        />
+      </form>
+      <button class="btn-clear" id="btn-clear-search-user">X</button>
+    </div>
+    <div class="table-container">
+      <table class="admin-table">
+        <tr>
+          <th>user_id</th>
+          <th>username</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% if useraccounts %} {% for user in useraccounts %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>
+            <button
+              class="show-modal-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#profileModal{{ user.profile.id }}"
+            >
+              View Profile
+            </button>
+          </td>
+          <td>
+            <button
+              class="show-modal-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#accountModal{{ user.id }}"
+            >
+              View Account
+            </button>
+          </td>
+        </tr>
+
+        <!-- profile_modal -->
+        <!-- prettier-ignore -->
+        {% include 'admin/components/profile_card.html' with profile=user.profile %}
+        <!-- account_modal -->
+        {% include 'admin/components/account_modal.html' %} {% endfor %}
+
+        <!-- prettier-ignore -->
+        {% else %}
+        <tr>
+          <td colspan="6" align="center" style="border-radius: 0 0 20px 20px">
+            No user accounts to view
+          </td>
+        </tr>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<!-- after main block -->
+{% block after-main %}
+<script src="{% static 'js/user_verified_page.js' %}"></script>
+{% endblock %}

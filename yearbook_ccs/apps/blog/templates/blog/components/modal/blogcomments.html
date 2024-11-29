@@ -1,0 +1,88 @@
+<!-- Comments Modal -->
+<div
+  class="modal fade"
+  id="commentModal{{ post.id }}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        {% if not request.user.is_superuser %}
+        <!-- prettier-ignore -->
+        {% include 'create_blog_comment.html' with blog_id=post.id %}
+        {% endif %}
+
+        <div class="comments-container">
+          <!-- accessing all comments under this post -->
+          {% if post.blog_comments.all %}
+          <!-- for loop comments -->
+          {% for comment in post.blog_comments.all %}
+          <!-- indiv comment -->
+          {% include 'blog_comment.html' with comment=comment %} {% endfor %}
+
+          <!-- else -->
+          {% else %}
+          <div class="no-comments-found-container">
+            <h6>No comments yet.</h6>
+            Be the first to comment.
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    var targetDiv = document.querySelector(
+      `#commentModal{{ post.id }} .comments-container`
+    ); // Get the native DOM element
+
+    // Check if targetDiv exists before setting up MutationObserver
+    if (targetDiv) {
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          if (mutation.type === "childList") {
+            console.log("A new child was added or removed in the div.");
+
+            // Check if a comment class div is added
+            var newComment = $(mutation.addedNodes).filter(".comment");
+
+            // If a comment is added, hide the no-comments-found-container
+            if (newComment.length > 0) {
+              $(
+                "#commentModal{{ post.id }} .no-comments-found-container"
+              ).hide();
+            }
+
+            // If no comments exist, show the no-comments-found-container
+            var comments = $(
+              "#commentModal{{ blog_id }} .comments-container .comment"
+            );
+            if (comments.length === 0) {
+              $(
+                "#commentModal{{ blog_id }} .no-comments-found-container"
+              ).show();
+            }
+          }
+        });
+      });
+
+      // Observer configuration: monitor added or removed children
+      var config = { childList: true, subtree: true };
+      observer.observe(targetDiv, config);
+    }
+  });
+</script>

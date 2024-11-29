@@ -1,31 +1,118 @@
 <div>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary coolvetica {% block navbar_variants %} navbar-white navbar-orange navbar-black {% endblock %}">
+  <nav
+    class="navbar navbar-expand-lg bg-body-tertiary coolvetica {% block navbar_variants %} {% endblock %}"
+  >
     <div class="container-fluid ms-2 me-2">
       <a class="navbar-brand" href="{% url 'home' %}">CSS Yearbook</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+      {% if request.user.is_authenticated %}
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/blog">Blogs</a>
+          {% if request.user.is_superuser %}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle active"
+              href="/admin_dashboard"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Manage Users
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="/admin_dashboard/review_acc"
+                  >Unverified Users</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="/admin_dashboard/view_users"
+                  >Verified Users</a
+                >
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/batch">Batch</a>
+            <a class="nav-link active" href="/admin_dashboard/blogs"
+              >Manage Blogs</a
+            >
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="/account" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Account Icon unta
+            <a
+              class="nav-link dropdown-toggle active"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Reports
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="/reports/profiles">Profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/reports/posts">Blog</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/reports/comments">Comment</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/reports/closed">Finished</a>
+              </li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/blog"
+              >Blogs</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/batch_page">Batch</a>
+          </li>
+          {% endif %}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle active"
+              href="/account"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {% if request.user.profile.profile_pic.url %}
+              <img
+                src="{{request.user.profile.profile_pic.url}}"
+                class="img-navbar-icon"
+              />
+              {% else %}
+              <img
+                src="\static\images\default_profile.png"
+                class="img-navbar-icon"
+              />
+              {% endif %}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="/account">Account</a></li>
+              {% if not request.user.is_superuser%}
               <li><a class="dropdown-item" href="/profile">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Log Out</a></li>
+              {% endif %}
+              <li><a class="dropdown-item" href="/logout">Log Out</a></li>
             </ul>
           </li>
         </ul>
       </div>
+      {% endif %}
     </div>
-  </nav>  
+  </nav>
 </div>

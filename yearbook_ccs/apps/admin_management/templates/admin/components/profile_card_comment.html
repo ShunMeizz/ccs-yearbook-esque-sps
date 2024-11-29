@@ -1,0 +1,77 @@
+{% load static %}
+<!-- Modal Structure for Comments | Shanley Mae Sebial component | NO JS -->
+<div
+  class="modal flip"
+  id="commentsModal{{ profile.id }}"
+  tabindex="-1"
+  aria-labelledby="commentsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" id="modalContent">
+      <img src="/static/images/cit_logo.png" alt="Logo" class="logo" />
+
+      <div class="modal-body" id="modalBody">
+        <div class="modal-header position-relative">
+          <div class="modal-title" id="commentsModalLabel">
+            <img
+              class="comment-header-pic"
+              src="{{profile.profile_pic.url}}"
+              alt="{{profile.user_account.username}}'s profile picture"
+              style="object-fit: cover"
+            />
+            <span class="comment-header-username"
+              >{{profile.user_account.username}}</span
+            >
+            <span class="comment-header-name"
+              >{{profile.first_name}} {{profile.last_name}}</span
+            >
+          </div>
+          <button
+            type="button"
+            class="comment-button"
+            data-bs-toggle="modal"
+            data-bs-target="#profileModal{{ profile.id }}"
+            style="position: absolute; right: 0; margin-right: 50px"
+          >
+            View Profile
+          </button>
+        </div>
+        <div class="comment-list" style="display: flex; height: 100%">
+          <link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
+          <div class="comments-container" style="flex: 1">
+            {% with profile_comments=profile.profile_comments.all %}
+            <!-- check if there are comments under this profile -->
+            {% if profile_comments %} {% for comment in profile_comments %}
+            <!-- comment for loop -->
+            {% include 'profile_comment.html' with comment=comment %}
+            <div class="comment-button-group">
+              <form
+                action="{% url 'delete_comment' comment.id %}"
+                method="post"
+                style="width: 0"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="btn-delete-comment"
+                  style="text-align: left; width: 100px"
+                >
+                  · Delete
+                </button>
+              </form>
+            </div>
+            {%endfor%}
+            <!-- else -->
+            {% else %}
+            <div class="no-comments-found-container">
+              <h6>No comments yet.</h6>
+              Be the first to comment.
+            </div>
+            {% endif %} {% endwith %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
