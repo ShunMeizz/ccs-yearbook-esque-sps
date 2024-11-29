@@ -14,6 +14,17 @@
 <div class="admin-page-container">
   <h1>Pending Account Approvals</h1>
   <div class="table-container-wrapper">
+    <div class="search-input-wrapper">
+      <form method="get">
+        <input
+          type="text"
+          id="search-user"
+          name="search"
+          placeholder="Search by username, name, email or ID"
+        />
+      </form>
+      <button class="btn-clear" id="btn-clear-search-user">X</button>
+    </div>
     <form method="POST">
       <div class="table-container">
         {% csrf_token %}

@@ -9,15 +9,6 @@ from .models import Comment
 from .forms import CommentCreationForm, ProfileCommentCreationForm, BlogCommentCreationForm
 
 # Create your views here.
-def comment(request):
-    profile = get_object_or_404(UserProfile, pk = 1)
-    comments = profile.profile_comments.all()
-
-    # blog = get_object_or_404(Blog, pk = 1)
-    # comments = blog.blog_comments.all()
-
-    return render(request, 'comment_test.html', {'comments': comments})
-
 def create_profile_comment(request, profile_id):
     profile_id = get_object_or_404(UserProfile, pk = profile_id)
 
