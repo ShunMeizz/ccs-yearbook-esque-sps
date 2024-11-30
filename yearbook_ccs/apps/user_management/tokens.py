@@ -1,5 +1,7 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils import timezone
+from datetime import timedelta
 import six
 
 class ProfileTokenGenerator(PasswordResetTokenGenerator):
