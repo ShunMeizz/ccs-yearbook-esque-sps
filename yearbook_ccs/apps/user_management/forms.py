@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
+from django.contrib.auth import password_validation
 from django.contrib.auth.hashers import make_password
 
 from .models import UserAccount
@@ -71,12 +72,13 @@ class UpdateUserAccountForm(UserChangeForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if UserAccount.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
-            raise ValidationError('A user with this email already exists.')
+            self.add_error('email', 'A user with this email already exists.')
         return email
+    
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if UserAccount.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
-            raise ValidationError('This username is already taken.')
+            self.add_error('username', 'This username is already taken.')
         return username
 
     def clean(self):
@@ -84,7 +86,14 @@ class UpdateUserAccountForm(UserChangeForm):
         password1 = cleaned_data.get("new_password")
         password2 = cleaned_data.get("confirm_new_password")
 
-        if password1 and password2 and password1 != password2:
+        if password1:
+            try:
+                password_validation.validate_password(password1, user=self.instance)
+            except ValidationError as e:
+                for error in e.messages:
+                    self.add_error('new_password', error)
+
+        if password1 != password2:
             self.add_error('confirm_new_password', "Passwords do not match.")
 
         return cleaned_data
