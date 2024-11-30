@@ -13,6 +13,7 @@
 		<div class="batch-label">BATCH 2026</div>
 	</div>
 </div>
+
 <div class="preview-profile-cover">
 	<div class="preview-profile-label text-style-2">
 		MEET YOUR BATCHMATES
@@ -36,6 +37,7 @@
 </div>
 <div class="recent-blog-cover">
 	<img src="{% static 'images/sketch_assets/DO-Swirl.svg' %}" class="do-swirl-svg"/>
+	<div class="darkorange-box"></div>
 	<div class="recent-blog-label text-style-3">
 		RECENT BLOG POST
 	</div>
@@ -46,16 +48,21 @@
 </div>
 <div class="program-cover">
 	<img src="{% static 'images/sketch_assets/Y-Smile.svg' %}" class="y-smile-svg"/>
-	<img src="{% static 'images/sketch_assets/DO-Arrow1.svg' %}" class="do-arrow1-svg"/>
-	<div class="program2-label text-style-1">
-		PROGRAMS
+	<img src="{% static 'images/sketch_assets/B-Arrow1.svg' %}" class="b-arrow1-svg"/>
+	<div class="program-label-bg">
+		<div class="program2-label text-style-1">
+			<div class="light-orange-tape1"></div>
+			<div class="light-orange-tape2"></div>
+			PROGRAMS
+		</div>
 	</div>
+	
 	<form method="post">
         <div class="row-box">
           {% csrf_token %}
           <div>
             <button type="submit" name="course" value="BSCS">
-              <div class="label white size-40 neg-10 padding-10">
+              <div class="label white text-style-2 size-40 neg-10 padding-10">
                 COMPUTER <br />
                 SCIENCE
               </div>
@@ -63,7 +70,7 @@
           </div>
           <div>
             <button type="submit" name="course" value="BSIT">
-              <div class="label white size-40 pos-10 padding-10">
+              <div class="label white text-style-2 size-40 pos-10 padding-10">
                 INFORMATION <br />
                 TECHNOLOGY
               </div>
