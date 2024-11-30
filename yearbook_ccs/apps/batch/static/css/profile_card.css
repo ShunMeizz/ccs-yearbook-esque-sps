@@ -6,6 +6,7 @@
 .modal-content {
   height: 400px;
   border-radius: 8px;
+  background-color: white;
 }
 .modal-header {
   height: 50px;
@@ -210,14 +211,13 @@
   padding: 0 10px;
   height: 35px;
   display: block;
-  position: sticky;
   top: 0;
 }
 .profile-program-background::before {
   content: "";
   position: absolute;
-  left: -10px;
-  top: 0;
+  left: -20px;
+  top: 10;
   width: 0;
   height: 0;
   border-top: 25px solid transparent;
