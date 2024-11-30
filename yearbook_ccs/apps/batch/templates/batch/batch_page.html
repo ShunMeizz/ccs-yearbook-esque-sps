@@ -10,21 +10,30 @@
 {% block content %}
 <!-- For BATCH PAGE Cover Photo: Based on the current user info or search, or filter, 
 it will change the header to BSIT or BSCS. -->
+
 <div class="batch-cover container-fluid d-flex flex-column justify-content-center position-relative">
-  <h2 class="text-center">
+  <div class="program-label text-style-1">
     {% if request.GET.program == 'BSCS' %}
+      <img src="{% static 'images/sketch_assets/P-Smile.svg' %}" class="p-smile-svg"/>
+      <img src="{% static 'images/sketch_assets/DO-Arrow3.svg' %}" class="do-arrow3-svg"/>
       Bachelor of Computer Science
     {% elif request.GET.program == 'BSIT' %}
+      <img src="{% static 'images/sketch_assets/DO-Star.svg' %}" class="do-star-svg"/>
+      <img src="{% static 'images/sketch_assets/P-Arrow2.svg' %}" class="p-arrow2-svg"/>
       Bachelor of Information Technology
       {% else %}
       {% if user_profile.program == 'BSCS' %}
+        <img src="{% static 'images/sketch_assets/P-Smile.svg' %}" class="p-smile-svg"/>
+        <img src="{% static 'images/sketch_assets/DO-Arrow3.svg' %}" class="do-arrow3-svg"/>
         Bachelor of Computer Science
       {% else %}
+        <img src="{% static 'images/sketch_assets/DO-Star.svg' %}" class="do-star-svg"/>
+        <img src="{% static 'images/sketch_assets/P-Arrow2.svg' %}" class="p-arrow2-svg"/>
         Bachelor of Information Technology
       {% endif %}
     {% endif %}
-  </h2>
-  <div class="orange-rectangle-design"></div>
+  </div>
+   <div class="black-divider"></div>
 
   <!-- Search and Filter -->
   <div class="search-filter position-absolute top-0 end-0 m-3 d-flex align-items-center">
