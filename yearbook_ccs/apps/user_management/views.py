@@ -1,9 +1,8 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordResetConfirmView
 from django.contrib.auth import login, logout, authenticate, get_user_model
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,10 +11,9 @@ from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
 from django.utils.html import format_html, strip_tags
 from django.urls import reverse
-from django.contrib.auth.forms import UserCreationForm
 from .models import UserAccount
 from .forms import SignUpStep1Form, SignUpStep2Form, LogInForm, UpdateUserAccountForm
-from .tokens import profile_token, CustomPasswordResetTokenGenerator
+from .tokens import profile_token
 from django.utils.encoding import force_str
 
 import os
@@ -207,5 +205,27 @@ class CustomPasswordResetView(PasswordResetView):
     html_email_template_name = "email_messages/reset_password_message.html" 
     subject_template_name = "email_messages/reset_password_subject.txt"
 
+
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "registration/password_reset_confirmation.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        uidb64 = kwargs.get('uidb64')  # Extract uidb64 from URL kwargs
+        self.token = kwargs.get('token')   # Extract token from URL kwargs
+        
+        try:
+            # Decode uidb64 and retrieve user
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = get_user_model().objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
+            user = None        
+
+        if not user:
+            messages.error(request, "User not found or UID is invalid.")
+            return redirect('login')  
+        
+        if (not default_token_generator.check_token(user, self.token) and self.token != 'set-password'):
+            messages.error(request, f"Token is invalid or has expired.")
+            return redirect('login')
+    
+        return super().dispatch(request, *args, **kwargs)
