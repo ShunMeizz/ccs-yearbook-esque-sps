@@ -51,6 +51,7 @@ def review_user_verification_requests(request):
             try:
                 user = UserAccount.objects.get(id=user_id)
                 acc_not_verified_email(request, user, user.email)
+                user.delete()
             except UserAccount.DoesNotExist:
                 continue
 

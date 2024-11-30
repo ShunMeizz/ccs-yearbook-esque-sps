@@ -1,19 +1,20 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordResetConfirmView
 from django.contrib.auth import login, logout, authenticate, get_user_model
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
-from django.utils.html import format_html
+from django.utils.html import format_html, strip_tags
 from django.urls import reverse
-from django.contrib.auth.forms import UserCreationForm
 from .models import UserAccount
 from .forms import SignUpStep1Form, SignUpStep2Form, LogInForm, UpdateUserAccountForm
 from .tokens import profile_token
+from django.utils.encoding import force_str
 
 import os
 from uuid import uuid4
@@ -50,7 +51,7 @@ def acc_verified_email(request, user, to_email):
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     email.content_subtype = "html"
-    
+    email.send()
     user.is_active = True
     user.save()
 
@@ -59,7 +60,8 @@ def acc_not_verified_email(request, user, to_email):
     message = render_to_string("email_messages/acc_not_verified_message.html", {
         'user': user.username,
     })
-    EmailMessage(mail_subject, message, to=[to_email])
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    email.send()
 
 
 def signup_step1(request):
@@ -101,8 +103,8 @@ def signup_step2(request):
             del request.session['step1_data']
             del request.session['password1']
             message = "Thank you for signing up!"
-            additional_message = "Your account is under review. We will notify you at your email user.email? inbox (or spam folder) for the verification update."
-            return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
+            additional_message = "Your account is under review. We will notify you at your email inbox (or spam folder) for the verification update."
+            return render(request, 'message.html', {'title': "VERIFYING...", 'message': message, 'additional_message': additional_message})
         else:
              for error in list(form.errors.values()):
                 messages.error(request, error)
@@ -123,10 +125,10 @@ def login_view(request):
         
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                if not user.is_acc_verified:
+                if not user.is_acc_verified and not user.is_superuser:
                     message = "Account still under review"
                     additional_message = "Check your email inbox (or spam folder) for the verification update sent by the admin"
-                    return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
+                    return render(request, 'message.html', {'title': "VERIFYING...", 'message': message, 'additional_message': additional_message})
                 
                 
                 login(request, user)
@@ -174,3 +176,56 @@ def account_view(request):
         form = UpdateUserAccountForm(instance = user)
 
     return render(request, 'user_account/account.html', {'form': form})
+
+# Password Reset Class Views
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'message.html'  # Shared template
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['additional_message'] = "An email with instructions to reset your password has been sent."
+        context['message'] = "Password Reset Requested"
+        context['title'] = "Resetting password..."
+        return context
+
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'message.html'  # Shared template
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['additional_message'] = "Your password has been reset successfully. You can now log in with your new password."
+        context['message'] = "Password Reset Complete"
+        context['title'] = "Resetting password..."
+        return context
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = "registration/password_reset.html"
+    email_template_name = "email_messages/reset_password_message.txt"
+    html_email_template_name = "email_messages/reset_password_message.html" 
+    subject_template_name = "email_messages/reset_password_subject.txt"
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "registration/password_reset_confirmation.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        uidb64 = kwargs.get('uidb64')  # Extract uidb64 from URL kwargs
+        self.token = kwargs.get('token')   # Extract token from URL kwargs
+        
+        try:
+            # Decode uidb64 and retrieve user
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = get_user_model().objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
+            user = None        
+
+        if not user:
+            messages.error(request, "User not found or UID is invalid.")
+            return redirect('login')  
+        
+        if (not default_token_generator.check_token(user, self.token) and self.token != 'set-password'):
+            messages.error(request, f"Token is invalid or has expired.")
+            return redirect('login')
+    
+        return super().dispatch(request, *args, **kwargs)

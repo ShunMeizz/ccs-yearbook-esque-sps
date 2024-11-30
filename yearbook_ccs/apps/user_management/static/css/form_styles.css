@@ -2,12 +2,13 @@
 	width: 65%;
 	height: auto;
 	max-width: 530px;
-	margin: 0 auto;
+	margin: 50px auto;
 	border-radius: 8px;
 	box-shadow: rgba(0, 0, 0, 0.36) 0px 1px 4px;
 	position: relative;
 	margin-bottom: 20px;
 }
+
 .star1-svg,
 .star2-svg,
 .star3-svg,
@@ -17,22 +18,27 @@
 	height: 50px;
 	z-index: 10;
 }
+
 .star1-svg {
 	left: -5%;
 	bottom: 85%;
 }
+
 .star2-svg {
 	left: -5%;
 	bottom: 73%;
 }
+
 .star3-svg {
 	right: -5%;
 	top: 85%;
 }
+
 .star4-svg {
 	right: -5%;
 	top: 73%;
 }
+
 .form-header {
 	display: flex;
 	flex-direction: column;
@@ -99,6 +105,7 @@
 	margin: 0;
 	padding: 20px;
 }
+
 .id-orange-header-signup {
 	padding-bottom: 5px;
 	justify-content: center;
@@ -109,7 +116,7 @@
 	font-weight: 700;
 	text-align: center;
 	align-items: center;
-	font-size: 12px;
+	font-size: 16px;
 	color: #ffff;
 }
 
@@ -126,6 +133,7 @@
 	padding-left: 20px;
 	padding-right: 20px;
 }
+
 .form-container {
 	display: flex;
 	flex-direction: row;
@@ -138,6 +146,7 @@
 	border-bottom-right-radius: 6px;
 	background-color: #fff;
 }
+
 @media (max-width: 865px) {
 	.form-container {
 		flex-direction: column;
@@ -148,17 +157,20 @@ img {
 	width: 130px;
 	height: 130px;
 }
+
 .images-content {
 	flex: 0.75;
 	text-align: center;
 	position: relative;
 }
+
 .images-content p {
 	color: #69625f;
 	font-size: 16px;
 	margin-left: 20px;
 	margin-right: 20px;
 }
+
 .form-content {
 	flex: 1;
 	gap: 1;
@@ -173,10 +185,12 @@ img {
 	width: 100%;
 	padding-bottom: 10px;
 }
+
 .input-group.school input {
 	width: 78%;
 	padding-left: 10px;
 }
+
 .input-group input {
 	display: table-cell;
 	width: 100%;
@@ -185,20 +199,24 @@ img {
 	border-radius: 8px;
 	padding-left: 10px;
 }
+
 .message-container {
 	text-align: center;
 }
+
 .content-message {
 	font-size: 24px;
 	font-weight: 700;
 	margin-top: 10px;
 	margin-bottom: 15px;
 }
+
 .additional-content-message {
 	font-size: 16px;
 	color: #ff9800;
 	margin-bottom: 20px;
 }
+
 button {
 	background-color: #ffbb53;
 	color: white;
@@ -227,6 +245,7 @@ a,
 	font-size: 12px;
 	color: #e26901;
 }
+
 a:hover {
 	text-decoration: underline;
 }
@@ -246,10 +265,12 @@ input::placeholder {
 	font-size: 16px;
 	width: 97%;
 }
+
 .file-label i {
 	font-size: 18px;
 	margin-left: auto;
 }
+
 input[type="file"] {
 	font-size: 13px;
 }
