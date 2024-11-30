@@ -1,19 +1,22 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordResetConfirmView
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
-from django.utils.html import format_html
+from django.utils.html import format_html, strip_tags
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from .models import UserAccount
 from .forms import SignUpStep1Form, SignUpStep2Form, LogInForm, UpdateUserAccountForm
-from .tokens import profile_token
+from .tokens import profile_token, CustomPasswordResetTokenGenerator
+from django.utils.encoding import force_str
 
 import os
 from uuid import uuid4
@@ -103,7 +106,7 @@ def signup_step2(request):
             del request.session['password1']
             message = "Thank you for signing up!"
             additional_message = "Your account is under review. We will notify you at your email inbox (or spam folder) for the verification update."
-            return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
+            return render(request, 'message.html', {'title': "VERIFYING...", 'message': message, 'additional_message': additional_message})
         else:
              for error in list(form.errors.values()):
                 messages.error(request, error)
@@ -127,7 +130,7 @@ def login_view(request):
                 if not user.is_acc_verified and not user.is_superuser:
                     message = "Account still under review"
                     additional_message = "Check your email inbox (or spam folder) for the verification update sent by the admin"
-                    return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
+                    return render(request, 'message.html', {'title': "VERIFYING...", 'message': message, 'additional_message': additional_message})
                 
                 
                 login(request, user)
@@ -175,3 +178,34 @@ def account_view(request):
         form = UpdateUserAccountForm(instance = user)
 
     return render(request, 'user_account/account.html', {'form': form})
+
+# Password Reset Class Views
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'message.html'  # Shared template
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['additional_message'] = "An email with instructions to reset your password has been sent."
+        context['message'] = "Password Reset Requested"
+        context['title'] = "Resetting password..."
+        return context
+
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'message.html'  # Shared template
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['additional_message'] = "Your password has been reset successfully. You can now log in with your new password."
+        context['message'] = "Password Reset Complete"
+        context['title'] = "Resetting password..."
+        return context
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = "registration/password_reset.html"
+    email_template_name = "email_messages/reset_password_message.txt"
+    html_email_template_name = "email_messages/reset_password_message.html" 
+    subject_template_name = "email_messages/reset_password_subject.txt"
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "registration/password_reset_confirmation.html"
