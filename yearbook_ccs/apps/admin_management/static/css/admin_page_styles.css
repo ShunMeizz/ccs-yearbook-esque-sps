@@ -1,0 +1,198 @@
+body {
+  background: none;
+}
+
+main {
+  display: flex;
+}
+
+.admin-page-container {
+  width: 100vw;
+}
+
+/* tables in admin pages */
+
+.table-container {
+  overflow-x: auto;
+}
+
+.admin-page-container,
+.table-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  flex: 1;
+}
+
+.table-container-wrapper {
+  padding: 30px 15px;
+}
+
+.admin-page-container h1 {
+  margin: 50px 0;
+  color: #e26901;
+  text-align: center;
+}
+
+.table-container-wrapper {
+  background: #d1d0d0;
+  border-radius: 20px;
+  gap: 15px;
+}
+
+.table-container form,
+.table-container table {
+  width: 100%;
+  /* min-width: 600px; */
+}
+
+.table-container th,
+.table-container td {
+  padding: 10px 15px;
+  min-width: 100px;
+  text-align: center;
+  border-width: 5px;
+  border-color: #d1d0d0;
+}
+
+.table-container th {
+  color: white;
+  background: #ff912c;
+  border-top: 0;
+}
+
+.table-container td {
+  background: white;
+}
+
+.admin-table tr th:first-child {
+  border-radius: 20px 0 0;
+}
+
+.admin-table tr th:last-child {
+  border-radius: 0 20px 0 0;
+}
+
+.admin-table tr:last-child td:first-child {
+  border-radius: 0 0 0 20px;
+}
+
+.admin-table tr:last-child td:last-child {
+  border-radius: 0 0 20px;
+}
+
+.admin-table tr td:first-child,
+.admin-table tr th:first-child {
+  border-left: 0;
+}
+
+.admin-table tr td:last-child,
+.admin-table tr th:last-child {
+  border-right: 0;
+}
+
+.admin-table td button,
+.btn-submit {
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 8px 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.show-modal-btn {
+  background: white;
+  border: 3px solid #e26901;
+  color: #ff912c;
+  border-radius: 15px;
+  padding: 4.5px 15px;
+}
+
+.show-modal-btn:hover {
+  background: #e26901;
+  color: white;
+}
+
+.btn-submit {
+  margin-top: 15px;
+}
+
+/* cards in home page of admin */
+
+.admin-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  gap: 30px;
+  flex: 1;
+}
+
+.admin-card {
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(226, 105, 1, 0.2);
+  padding: 50px;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  transition: transform 0.3s ease;
+}
+
+.admin-card a {
+  text-decoration: none;
+}
+
+.admin-card:hover {
+  transform: scale(1.05);
+}
+
+/* search in user_verified_page */
+.search-input-wrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-input-wrapper form {
+  flex: 1;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  border-radius: 15px;
+  padding: 5px 10px;
+  border: none;
+}
+
+.btn-clear {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: 5;
+  margin-right: 5px;
+  font-size: x-large;
+  color: black;
+  text-decoration: none;
+  text-align: right;
+  border: none;
+  background: transparent;
+  display: none;
+}
+
+.edit-profile-button {
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  background-color: #ff912c;
+  border: none;
+  margin-right: 15px;
+}
+
+.edit-profile-button a {
+  text-decoration: none;
+  color: white;
+}

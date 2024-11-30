@@ -1,173 +1,190 @@
 /* forms */
 body {
-    min-width: 700px;
+  min-width: 700px;
 }
 .id-card {
-    max-width: none;
-    width: 75%;
+  margin: 20px auto;
+  max-width: none;
+  width: 75%;
+}
+
+form {
+  width: 100%;
 }
 
 .form-content {
-    flex: 1;
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    justify-content: center;
-    gap:10px;
-  }
+  flex: 1;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
 
 .form-content-group {
-    display: flex;
-    justify-content: center;
-    gap:15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 .form-content > img {
-    max-width: 75%;
+  max-width: 75%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
-@media (max-width:820px){
-    #profile-group{
-        flex-direction: column;
-        gap:10px;
-    }
+@media (max-width: 820px) {
+  #profile-group {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .form-content-group {
-        flex-direction: column;
-    }
+  .form-content-group {
+    flex-direction: column;
+  }
 }
 
-input, select, textarea {
-    width: 100%;
-    color: #5B5654;
-    font-size: medium;
-    border-radius: 15px;
-    padding: 10px;
-    border: 1px solid #292929;
-    background: #E7E5E5;
+input,
+select,
+textarea {
+  width: 100%;
+  color: #5b5654;
+  font-size: medium;
+  border-radius: 15px;
+  padding: 10px;
+  border: 1px solid #292929;
+  background: #e7e5e5;
 }
 
-.floating-form-group > input::placeholder,.floating-form-group > textarea::placeholder {
-	opacity: 0;
+.floating-form-group > input::placeholder,
+.floating-form-group > textarea::placeholder {
+  opacity: 0;
 }
 
 textarea {
-    width: 100%;
-    display: table-cell;
-    box-sizing: border-box;
+  width: 100%;
+  display: table-cell;
+  box-sizing: border-box;
 }
 
 select {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .update-form-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    gap:5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 5px;
 }
 
-.update-form-content > label{
-    color:#FF912C;
-    font-size: normal;
+.update-form-content > label {
+  color: #ff912c;
+  font-size: normal;
 }
 
 label {
-    color: #292929;
-    font-size: medium;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    align-content: space-around;
+  color: #292929;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  align-content: space-around;
 }
 
 .floating-form-group > label {
-    pointer-events: none;
-    position: absolute;
-    left: var(--pad);
-    top: var(--pad);
-    padding-inline: .3em;
-    transition: transform 200ms;
-    transform-origin: left;
-    translate: -.3em;
-    background: var(--bg);
+  pointer-events: none;
+  position: absolute;
+  left: var(--pad);
+  top: var(--pad);
+  padding-inline: 0.3em;
+  transition: transform 200ms;
+  transform-origin: left;
+  translate: -0.3em;
+  background: var(--bg);
 }
 
 .floating-form-group {
-    flex-grow: 1;
-    --pad: .75rem;
-    position: relative;
+  flex-grow: 1;
+  --pad: 0.75rem;
+  position: relative;
 }
 
-input:focus + label, input:not(:placeholder-shown) + label, 
-textarea:focus + label, textarea:not(:placeholder-shown) + label{
-    transform: translateY(calc(-50% - var(--pad))) scale(.8);
-    color:  #E26901;
-    margin-left: 5px;
-    background: linear-gradient(180deg, white 50%, #E7E5E5 50%);
+input:focus + label,
+input:not(:placeholder-shown) + label,
+textarea:focus + label,
+textarea:not(:placeholder-shown) + label {
+  transform: translateY(calc(-50% - var(--pad))) scale(0.8);
+  color: #e26901;
+  margin-left: 5px;
+  background: linear-gradient(180deg, white 50%, #e7e5e5 50%);
 }
 
 .profile-button {
-    border-radius: 30px;
-    padding: 5px 10px;
-    font-weight: bold;
-    display: inline-block;
+  border-radius: 30px;
+  padding: 5px 10px;
+  font-weight: bold;
+  display: inline-block;
 }
 
 .light-orange-btn {
-    border: 3px solid #FFBB53;
-    background: #FFBB53;
-    color: #f8f8f8;
+  border: 3px solid #ffbb53;
+  background: #ffbb53;
+  color: #f8f8f8;
 }
 
 .orange-btn {
-    border: 3px solid #FF912C;
-    background: #FF912C;
-    color: #f8f8f8;
+  border: 3px solid #ff912c;
+  background: #ff912c;
+  color: #f8f8f8;
 }
 
 .button-group-container {
-    display: flex;
-    justify-content: flex-end;
-    gap:15px;
-    width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  width: 100%;
 }
 
 .button-group-container > button {
-    color: white;
-    border-color: transparent;
+  color: white;
+  border-color: transparent;
 }
 
 .form-link-input-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .floating-form-group > input {
-    min-width: 75%;
+  min-width: 75%;
 }
 
 .black-orange-btn {
-    border: 3px solid #000100;
-    background: #F8F8F8;
-    color: #FF912C;
+  border: 3px solid #000100;
+  background: #f8f8f8;
+  color: #ff912c;
 }
 
 .orange-orange-btn {
-    border: 3px solid #FF912C;
-    background: #F8F8F8;
-    color:#FF912C;
+  border: 3px solid #ff912c;
+  background: #f8f8f8;
+  color: #ff912c;
 }
 
 .dark-orange-btn {
-    background: #E26901;
-    color: #F8F8F8;
+  background: #e26901;
+  color: #f8f8f8;
 }
 
 .black-btn {
-    background: #473F3B;
+  background: #473f3b;
+}
+
+.error-message {
+  margin-left: 50px;
+  color: red;
 }

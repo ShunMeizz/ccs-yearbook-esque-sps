@@ -1,0 +1,46 @@
+{% load static %}
+<!-- Modal Structure for Comments -->
+<div
+  class="modal flip"
+  id="commentsModal"
+  tabindex="-1"
+  aria-labelledby="commentsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" id="modalContent">
+      <img src="/static/images/cit_logo.png" alt="Logo" class="logo" />
+
+      <div class="modal-body" id="modalBody">
+        <div class="modal-header position-relative">
+          <button
+            id="prevCommentProfileBtn"
+            class="btn btn-prev position-absolute"
+            style="left: 20px; font-size: 20px"
+          >
+            &lt;
+          </button>
+          <div class="modal-title" id="commentsModalLabel"></div>
+
+          <button
+            type="button"
+            class="comment-button"
+            id="viewProfileBtn"
+            style="position: absolute; right: 0; margin-right: 50px"
+          >
+            View Profile
+          </button>
+
+          <button
+            id="nextCommentProfileBtn"
+            class="btn btn-next position-absolute"
+            style="right: 10px; font-size: 20px"
+          >
+            &gt;
+          </button>
+        </div>
+        <div class="comment-list"></div>
+      </div>
+    </div>
+  </div>
+</div>

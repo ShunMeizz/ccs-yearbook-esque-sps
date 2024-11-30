@@ -1,5 +1,5 @@
 from django import forms
-from .models import Blog, Comment
+from .models import Blog
 from django.forms import ClearableFileInput
 
 class BlogForm(forms.ModelForm):
@@ -11,15 +11,7 @@ class BlogForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'placeholder': 'What\'s on your mind?', 'class': 'form-control m-1'}),
             'media': ClearableFileInput(attrs={'class': 'form-control m-1'}),
         }
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ('comment',)
-        widgets = {
-            'comment': forms.TextInput(attrs={'placeholder':'Write a comment'}),
-        }
-
+        
 PROGRAM = (
     ("BSCS","Computer Science"),
     ("BSIT","Information Technology")

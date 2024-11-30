@@ -3,22 +3,16 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
 from apps.profiles.models import UserProfile
-from .models import Blog, Comment
+from .models import Blog
 
-from .forms import BlogForm, CommentForm, FilterForm
+from .forms import BlogForm, FilterForm
 
 @login_required
 def blog_home(request):
     print("blog post")
-
-    posts = get_post(None)
-    posts, filterform = filter_post(request) # Get posts without filters
-    # filterform, filtered_data = filter_post(request)  # Get the filter form and filtered data
-    # if filtered_data:
-    #     posts = get_post(filtered_data)
-
+    posts = get_post()
     action = request.POST.get('action')
-    
+    filterform = FilterForm()    
     if request.method == "POST":
         form = BlogForm(request.POST, request.FILES)
         if action == 'create':
@@ -42,39 +36,22 @@ def blog_home(request):
 
             blogpost.save()
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-        if action == "report":
-            post_id = request.POST.get('post_id')
-            blogpost = get_object_or_404(Blog, id=post_id)
-
-            print("report")
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         if action == "filter":
             print("filter")
-
+            filterform, posts = filter_post(request) # Get posts without filters
     else:
         form = BlogForm()
-
+        
     return render(request, "blog/blog_home.html", {'form': form, 'posts': posts, 'filterform': filterform})
 
-
-def comment_section(request):
-    comments = Comment.objects.all()
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.blog_id = 10
-            comment.user_id = request.user.id
-
-# TEMP TO SHOW ALL BLOGS WITHOUT FILTER FROM ISAPPROVED. 
-# TO BE DELETED AFTER ISAPPROVED FILTERS ARE WORKING AND DONE
-def get_post(filter):
+def get_post():
+    print("all posts",Blog.objects.all().order_by("-date"))
     return Blog.objects.all().order_by("-date")
 
 def intermediary(request):
     return render(request, "blog/test.html")
 
-def pending_post(request):
+def my_post(request, user_id):
     user = request.user.username
     pending = Blog.objects.filter(user=request.user).order_by("-date")
     action = request.POST.get('action')
@@ -96,9 +73,9 @@ def pending_post(request):
             blogpost.save()
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
-            return render(request,"blog/blog_pending.html",{'pending':pending,'user':user})
+            return render(request,"blog/blog_user.html",{'pending':pending,'user':user})
     else:
-        return render(request,"blog/blog_pending.html",{'pending':pending,'user':user})
+        return render(request,"blog/blog_user.html",{'pending':pending,'user':user})
 
 def view_post(request, post_id):
     post = get_object_or_404(Blog, id=post_id)
@@ -119,17 +96,20 @@ def filter_post(request):
         filterform = FilterForm(request.POST)
         if filterform.is_valid():
             program = filterform.cleaned_data.get('prog')
-            print(program) #is g
-            user_prog = UserProfile.objects.filter(program__in=program).values_list("user_account", flat=True)
-            # print("all:")
-            # print(UserProfile.objects.filter(program__in=[program]).values_list("user_account", flat=True))
-            print(user_prog)
-            
-            filtered_program = Blog.objects.filter(user_id__in=list(user_prog)).order_by("-date")
-            
-            return filterform, filtered_program
+            if not program:
+                return FilterForm(), get_post()
+            else:
+                user_prog = UserProfile.objects.filter(program__in=program).values_list("user_account", flat=True)
+                filtered_program = Blog.objects.filter(user_id__in=list(user_prog)).order_by("-date")
+                # print(filtered_program)
+                return filterform, filtered_program
     else:
         filterform = FilterForm()
 
-    # Return the form and no filters if not a POST request
-    return filterform, get_post(None)
+    return filterform, None
+
+# comments part huehue
+def load_comments(request,post_id):
+    post = get_object_or_404(UserProfile, id=post_id)
+    comments = post.blog_comments.all()
+    return render(request,"blog/components/blog_post_comment.html",{'comments':comments})

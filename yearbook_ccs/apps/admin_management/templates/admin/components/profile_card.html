@@ -1,0 +1,160 @@
+<!--THIS INCLUDES the Profle COMMENT modal | Shanley Sebial Component from Batch App | NO JS -->
+{% load static %} {% block profile_modal %}
+<!-- Modal Structure -->
+<div
+  class="modal fade"
+  id="profileModal{{ profile.id }}"
+  tabindex="-1"
+  aria-labelledby="profileModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" id="modalContent">
+      <img src="/static/images/cit_logo.png" alt="Logo" class="logo" />
+
+      {% if profile %}
+      <div class="modal-body d-flex" id="modalBody">
+        <!-- Left Column -->
+        <div class="left-column d-flex flex-column align-items-center">
+          <div
+            class="profile-circle-wrapper d-flex align-items-center justify-content-center position-relative"
+          >
+            <p>
+              <span id="profileUsername" style="text-transform: uppercase"
+                >{{ profile.user_account.username }}</span
+              >
+            </p>
+            <img
+              id="profileImage"
+              class="img-fluid rounded-circle"
+              src="{{ profile.profile_pic.url }}"
+              style="
+                width: 160px;
+                height: 160px;
+                position: relative;
+                z-index: 2;
+                object-fit: cover;
+              "
+              alt="Profile Image"
+            />
+            <img
+              id="profileFrame"
+              class="img-fluid rounded-circle"
+              style="width: 210px; height: 200px; position: absolute"
+              src="{% static 'images/profile_frame.png' %}"
+              alt="Profile Frame"
+            />
+          </div>
+          <p class="profile-batch">
+            <strong>BATCH</strong>
+            <span id="profileBatchYear"
+              ><strong>{{profile.batch_year }}</strong></span
+            >
+          </p>
+          <!-- prettier-ignore -->
+          {% if not profile.github_link_hidden or not profile.facebook_link_hidden or not profile.linkedin_link_hidden or not profile.instagram_link_hidden%}
+          <div id="socialContainer">
+            <p style="margin: 1px; font-size: 12px; color: #e26901">
+              Connect with me on
+            </p>
+            <div id="socialIconsContainer" class="social-icons">
+              {% if not profile.facebook_link_hidden %}
+              <a href="{{ profile.facebook_link }}" target="_blank">
+                <img
+                  src="{% static 'images/facebook_logo.png' %}"
+                  alt="Facebook Icon"
+                />
+              </a>
+              {% endif %} {% if not profile.github_link_hidden %}
+              <a
+                href="{{ profile.github_link }}"
+                target="_blank"
+                style="color: black"
+              >
+                <img
+                  src="{% static 'images/github_logo.png' %}"
+                  alt="GitHub Icon"
+                />
+              </a>
+              {% endif %} {% if not profile.linkedin_link_hidden %}
+              <a href="{{ profile.linkedin_link }}" target="_blank">
+                <img
+                  src="{% static 'images/linkedin_logo.png' %}"
+                  alt="LinkedIn Icon"
+                />
+              </a>
+              {% endif %} {% if not profile.instagram_link_hidden %}
+              <a href="{{ profile.instagram_link }}" target="_blank">
+                <img
+                  src="{% static 'images/instagram_logo.png' %}"
+                  alt="Instagram Icon"
+                />
+              </a>
+              {% endif %}
+            </div>
+          </div>
+          {%endif%}
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <h5 id="profileModalLabel">
+          {{ profile.first_name }} {{ profile.last_name }}
+        </h5>
+        <div class="profile-program-background">
+          <p class="profile-program-text">
+            <span>
+              Bachelor of Science in
+
+              <!--  program == bscs -->
+              {% if profile.program == 'BSCS' %} COMPUTER SCIENCE
+              <!-- program == bsit -->
+              {% elif profile.program == 'BSIT' %} INFORMATION TECHNOLOGY
+              {%endif%}
+            </span>
+            <span id="profileProgram" style="text-transform: uppercase"></span>
+          </p>
+        </div>
+        <strong style="margin: 5px 0">Quote:</strong>
+        <div class="profile-quote-box">
+          <span id="profileQuote">{{ profile.quote }}</span>
+        </div>
+        <strong style="margin: 5px 0">Hobbies:</strong>
+        <div class="profile-hobbies-box">
+          <span id="profileHobbies">{{ profile.hobbies }}</span>
+        </div>
+        <div class="d-flex justify-content-end mt-2 me-3">
+          {% if request.user.is_superuser %}
+          <button class="edit-profile-button">
+            <a href="/admin_dashboard/profile/{{ profile.id }}">
+              Edit Profile
+            </a>
+          </button>
+          <button class="edit-profile-button return-profile-default">
+            <a href="/admin_dashboard/profile/default/{{ profile.id }}">
+              Set to default Profile
+            </a>
+          </button>
+          {% endif %}
+          <button
+            class="comment-button"
+            data-bs-toggle="modal"
+            data-bs-target="#commentsModal{{ profile.id }}"
+          >
+            View Comment
+          </button>
+        </div>
+      </div>
+      {% else %}
+      <div class="modal-body d-flex" id="modalBody">
+        <h5 style="align-content: center; text-align: center; flex: 1">
+          No Profile Yet
+        </h5>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% include 'admin/components/profile_card_comment.html' %} {% endblock %}

@@ -1,73 +1,106 @@
+.home {
+  padding-top: 140px;
+  padding-bottom: 140px;
+}
+
 .home-banner {
-    height: 500px;
-    flex-shrink: 0;
-    background: #FF912C;
-    box-shadow: 0px 4px 10px 5px rgba(0, 0, 0, 0.25);
+  height: 500px;
+  flex-shrink: 0;
+  background: #ff912c;
+  box-shadow: 0px 4px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.home-padding {
+  display: flex;
+  padding: 140px;
+}
+
+.sub-home-padding {
+  display: flex;
+  padding: 90px;
 }
 
 .blog-banner {
-    width: 700px;
-    height: 200px;
-    transform: rotate(-4deg);
-    flex-shrink: 0;
+  width: 700px;
+  height: 200px;
+  transform: rotate(-4deg);
+  flex-shrink: 0;
 }
 
 .blog-margin {
-    margin: 100px;
+  margin: 100px;
 }
 
-.tape{
-    width: 500px;
-    height: 90px;
-    transform: rotate(-6deg);
-    flex-shrink: 0;
+.blog-section {
+  background-color: #ffc875;
+  box-shadow: 0px 10px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 100px;
 }
 
-.tape2{
-    width: 765px;
-    height: 90px;
-    flex-shrink: 0;
-    background-color:#FF912C;;
+.tape {
+  width: 500px;
+  height: 90px;
+  transform: rotate(-6deg);
+  flex-shrink: 0;
 }
 
-.temp-profile{
-    display: flex;
-    width: 800px;
-    height: 500px;
-    transform: rotate(-6.9deg);
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    background-color:#292929;
-    margin:100px;  
+.tape2 {
+  width: 765px;
+  height: 90px;
+  flex-shrink: 0;
+  background-color: #ff912c;
+}
+
+.temp-profile {
+  display: flex;
+  width: 800px;
+  height: 500px;
+  transform: rotate(-6.9deg);
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: #292929;
+  margin: 100px;
 }
 
 .label {
-    font-family: fatpen;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-  
-.home-padding {
-    display: flex;
-    padding: 140px;
+  font-family: fatpen;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .home-margin {
-    margin: 140px;
+  margin: 140px;
 }
 
 .row-box {
-    display: flex;
-    flex-direction: row;
-    justify-content:space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .margin-30 {
-    margin: 30px;
+  margin: 30px;
 }
 
 .margin-20 {
-    margin: 20px;
+  margin: 20px;
+}
+
+.remove-link-style {
+  text-decoration: none;
+  color: inherit;
+}
+
+.img-error {
+  height: auto;
+  width: 293px;
+}
+
+.img-navbar-icon {
+  height: 25px;
+  width: 25px;
+  border-radius: 300px;
+  object-fit: cover;
 }

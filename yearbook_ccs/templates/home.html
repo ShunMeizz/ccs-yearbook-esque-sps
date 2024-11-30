@@ -1,62 +1,82 @@
-{% extends 'base.html' %} {% block title %}Home - Yearbook CCS{% endblock %}
-{%block content %}
+{% extends 'base.html' %} 
+{% block title %}Home - Yearbook CCS
+{% endblock %}
+{% block content %} {%load static%}
+<link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
+<link rel="stylesheet" href="{% static 'css/profile_card.css' %}" />
 
-<div class="home-banner center">
-
-  <hr>
-  <div>
-    <div class="label size-100 outline-white black">COMPUTER SCIENCE</div>
-    <div class="tape bg-light-yellow center">
-      <div class="fatpen black size-50">
-        BATCH 2026
-      </div>
-    </div>
-  </div>
-
-  <hr>
+<div class="home-cover container-fluid d-flex flex-column justify-content-center position-relative">
+	<div class="light-orange-rectangle-design">
+		<img src="{% static 'images/sketch_assets/B-Star.svg' %}" class="b-star-svg"/>
+		<img src="{% static 'images/sketch_assets/Y-Star2.svg' %}" class="y-star-svg"/>
+		<div class="program-label text-style-1 size-80">{{course}}</div>
+		<div class="batch-label">BATCH 2026</div>
+	</div>
 </div>
 
-<div class="home-padding center">
-  <div>
-    <div class="label size-50 orange center">MEET YOUR BATCHMATES</div>
-    <div class="temp-profile center">
-      <div class="white">test</div>
-    </div>
-  </div>
+<div class="preview-profile-cover">
+	<div class="preview-profile-label text-style-2">
+		MEET YOUR BATCHMATES
+	</div>
+	
+	<div class="orange-box"></div>
+	<div class="lightorange-box"></div>
+	<img src="{% static 'images/sketch_assets/P-Swirl2.svg' %}" class="p-swirl2-svg"/>
+	<img src="{% static 'images/sketch_assets/B-Swirl.svg' %}" class="b-swirl-svg"/>
+	<img src="{% static 'images/sketch_assets/DO-Crown.svg' %}" class="do-crown-svg"/>
+	<img src="{% static 'images/sketch_assets/Y-Star1.svg' %}" class="y-star1-svg"/>
+	<img src="{% static 'images/sketch_assets/B-Exclamation.svg' %}" class="b-exclamation-svg"/>
+	<img src="{% static 'images/sketch_assets/DO-Arrow2.svg' %}" class="do-arrow-svg"/>
+	<img src="{% static 'images/sketch_assets/P-Heart2.svg' %}" class="p-heart-svg"/>
+	<div class="preview-profile-pictures">
+		{% include "admin/components/profile_card_detail.html" with profile=random_profile %}
+	</div>
+	<div class="label size-24" style="padding: 60px;">
+    	<a href="{% url 'batch_page' %}" class="orange">VIEW BATCH PAGE ></a>
+	</div>
 </div>
-
-<div class="blog-section">
-  <div class="center">
-    <div class="label size-50 black">RECENT BLOG POST</div>
-    
-  </div>
+<div class="recent-blog-cover">
+	<img src="{% static 'images/sketch_assets/DO-Swirl.svg' %}" class="do-swirl-svg"/>
+	<div class="darkorange-box"></div>
+	<div class="recent-blog-label text-style-3">
+		RECENT BLOG POST
+	</div>
+	<div class="recent-blog-post">
+		{% if recent_blog %}
+			{% include "blog/components/blog_post.html" with post=recent_blog %} {% else %} No posts! {% endif %}
+	</div>
 </div>
-
-<div class="center">
-  <div>
-    <div class="home-margin tape2 center">
-      <div class="label black size-50">PROGRAMS</div>
-    </div>
-    
-    <div class="row-box">
-      <div class="label orange size-50 neg-10">
-        <div>COMPUTER</div>
-        <div>SCIENCE</div>
-      </div>
-      <div class="label orange size-50 pos-10">
-        <div>INFORMATION</div>
-        <div>TECHNOLOGY</div>
-      </div>
-    </div>
-
-  </div>
+<div class="program-cover">
+	<img src="{% static 'images/sketch_assets/Y-Smile.svg' %}" class="y-smile-svg"/>
+	<img src="{% static 'images/sketch_assets/B-Arrow1.svg' %}" class="b-arrow1-svg"/>
+	<div class="program-label-bg">
+		<div class="program2-label text-style-1">
+			<div class="light-orange-tape1"></div>
+			<div class="light-orange-tape2"></div>
+			PROGRAMS
+		</div>
+	</div>
+	
+	<form method="post">
+        <div class="row-box">
+          {% csrf_token %}
+          <div>
+            <button type="submit" name="course" value="BSCS">
+              <div class="label white text-style-2 size-40 neg-10 padding-10">
+                COMPUTER <br />
+                SCIENCE
+              </div>
+            </button>
+          </div>
+          <div>
+            <button type="submit" name="course" value="BSIT">
+              <div class="label white text-style-2 size-40 pos-10 padding-10">
+                INFORMATION <br />
+                TECHNOLOGY
+              </div>
+            </button>
+          </div>
+        </div>
+      </form>
 </div>
-
-
-<!--Logout should be performed via POST request-->
-<form method="POST" action="{% url 'logout' %}">
-  {% csrf_token %}
-  <button type="submit">Logout</button>
-</form>
-
 {% endblock %}

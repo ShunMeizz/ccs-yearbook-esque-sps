@@ -53,21 +53,21 @@ header nav ul li a:hover {
 }
 
 .coolvetica {
-  font-family: coolvetica, sans-serif;
-  font-style: normal;
-  font-weight: 100;
+	font-family: coolvetica, sans-serif;
+	font-style: normal;
+	font-weight: 100;
 }
 
-.navbar-white{
-  background-color: #F8F8F8;
+.navbar-white {
+	background-color: #f8f8f8;
 }
 
-.navbar-orange{
-  background-color: #FF912C;
+.navbar-orange {
+	background-color: #ff912c;
 }
 
-.navbar-black{
-  background-color: #292929;
+.navbar-black {
+	background-color: #292929;
 }
 
 .navbar-dropdown {

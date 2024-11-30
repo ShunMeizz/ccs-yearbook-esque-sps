@@ -1,30 +1,47 @@
 {% extends 'base.html' %} {% load static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
 
-{% endblock extra_styles %} 
-
-{% block before-main %}
-<div class="form-header" style="margin-top: 20px;">
+{% endblock extra_styles %} {% block before-main %}
+<div class="form-header" style="margin-top: 20px">
   <div class="ribbon-container"></div>
   <div class="orange-box"></div>
   <div class="light-box"></div>
   <h1>WELCOME BACK!</h1>
 </div>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="id-card">
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star1-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star2-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star3-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star4-svg"
+  />
   <div class="id-orange-header"></div>
   <div class="outer-wrapper">
     <div class="form-container">
-      <img src="{% static 'images/default_graduate.png' %}" alt="" />
+      <div class="images-content">
+        <img src="{% static 'images/default_graduate.png' %}" alt="" />
+      </div>
       <div class="form-content">
         <form method="POST">
           {% csrf_token %}
           <div class="input-group">{{ form.username }}</div>
           <div class="input-group">{{ form.password }}</div>
           <button type="submit">LOGIN</button>
-          <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+          <div class="switch-page-message">
+            Don't have an account?
+            <a href="{% url 'signup_step1' %}">Sign up</a>
+          </div>
         </form>
       </div>
     </div>

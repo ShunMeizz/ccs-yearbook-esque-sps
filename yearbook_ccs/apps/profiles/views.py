@@ -49,6 +49,9 @@ def setup_profile_view(request, uidb64, token):
     return redirect('signup')
 
 def setup_profile_2_view(request):
+    if hasattr(request.user, 'profile'):
+        return redirect('home')
+    
     User = get_user_model()
     user = User.objects.get(pk=request.user.id)
     if (request.method == "POST"):
@@ -65,3 +68,5 @@ def setup_profile_2_view(request):
         form = ProfileCreationForm()
             
     return render(request, 'profiles/setup_profile.html', {'form': form})
+
+

@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% load static %} {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/form_styles.css' %}" />
+
+{% endblock extra_styles %} {% block before-main %}
+<div class="form-header" style="margin-top: 20px">
+  <div class="ribbon-container"></div>
+  <div class="orange-box"></div>
+  <h1>SIGN UP!</h1>
+</div>
+{% endblock %} {% block content %}
+<div class="id-card">
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star1-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star2-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star3-svg"
+  />
+  <img
+    src="{% static 'images/sketch_assets/Y-Star1.svg' %}"
+    class="star4-svg"
+  />
+  <div class="id-orange-header-signup">
+    <span class="command-messages">FILL UP THE FORM - STEP 1</span>
+  </div>
+
+  <div class="outer-wrapper">
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="form-container">
+        <div class="images-content">
+          <img src="{% static 'images/default_graduate2.png' %}" alt="" />
+
+          <div class="input-group school">
+            <span class="info-label">School ID Number</span>
+            <input
+              type="text"
+              name="school_id_number"
+              id="{{ form.school_id_number.id }}"
+              placeholder="School ID Number"
+            />
+          </div>
+          <div class="switch-page-message">Already have an account?</div>
+          <a href="{% url 'login' %}">Log in</a>
+        </div>
+        <div class="form-content">
+          <span class="info-label">Email</span>
+          <div class="input-group">{{ form.email }}</div>
+          <span class="info-label">Username</span>
+          <div class="input-group">{{ form.username }}</div>
+          <span class="info-label">Password</span>
+          <div class="input-group">
+            <input
+              type="password"
+              name="password1"
+              id="{{ form.password1.id }}"
+              placeholder="Password"
+            />
+          </div>
+          <span class="info-label">Confirm Password</span>
+          <div class="input-group">
+            <input
+              type="password"
+              name="password2"
+              id="{{ form.password2.id }}"
+              placeholder="Confirm Password"
+            />
+          </div>
+          <button type="submit">NEXT</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
