@@ -42,7 +42,7 @@
 }
 
 .pos-10 {
-	transform: rotate(7deg);
+	transform: rotate(6deg);
 }
 
 .coolvetica {
@@ -70,12 +70,21 @@
 	font-size: 50px;
 }
 
+.size-40 {
+	font-size: 40px;
+}
 .size-24 {
 	font-size: 24px;
 }
 
 .size-18 {
 	font-size: 18;
+}
+
+.padding-10{
+	padding-right: 70px;
+	padding-left: 70px;
+	padding-top: 20px;
 }
 
 .bg-black {
