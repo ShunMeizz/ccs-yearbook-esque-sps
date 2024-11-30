@@ -110,7 +110,9 @@ def set_default_profile(request, profile_id):
             if isinstance(field, ForeignKey):
                 continue
 
-            if field.default != NOT_PROVIDED:
+            if field.name == "program" or field.name == "batch_year":
+                continue
+            elif field.default != NOT_PROVIDED:
                 field_value = field.get_default() if callable(field.get_default) else field.default
             elif field.null and isinstance(field, (CharField, TextField)) and (field.name != "first_name" or field.name != "last_name"):
                 field_value = ""
