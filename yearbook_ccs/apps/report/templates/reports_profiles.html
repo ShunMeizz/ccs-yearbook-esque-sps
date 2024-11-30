@@ -1,0 +1,21 @@
+{% extends "reports_home.html" %}
+<!-- prettier-ignore -->
+{% block report_type_title %} Profile Reports {% endblock %} 
+
+{% block report_content %}
+{% if profile_reports %}
+{% for report in profile_reports %}
+    {% include 'component/report.html' with report=report%}
+{% endfor %} 
+
+{% for pr in reported_profiles %}
+    {% include 'admin/components/profile_card.html' with profile=pr %}
+{% endfor %} 
+{% else %}
+<td>-</td>
+<td>-</td>
+<td>No reports found.</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+{% endif %} {% endblock %}

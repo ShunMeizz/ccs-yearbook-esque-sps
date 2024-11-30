@@ -9,17 +9,13 @@
 
 <script src="{% static 'js/profile_card_script.js' %}"></script>
 {% endblock extra_styles %} {% block content %}
-<div
-  class="search-cover container-fluid d-flex flex-column justify-content-center position-relative"
->
-  <a
-    href="{% url 'batch_page' %}"
-    class="back-icon position-absolute top-0 start-0 m-3"
-  >
-    <i class="bi bi-arrow-left-circle"></i>
+
+<div class="search-cover container-fluid d-flex flex-column justify-content-center position-relative">
+  <a href="{% url 'batch_page' %}" class="back-icon position-absolute top-0 start-0 m-3"> 
+    <i class="bi bi-arrow-left-circle"></i> 
   </a>
-  <h2 class="text-center">CCS Yearbook Profiles</h2>
-  <div class="orange-rectangle-design"></div>
+  <div class="program-label text-style-1"> CCS Yearbook Profiles </div>
+  <div class="black-divider"></div>
 </div>
 
 <div class="title-container">
@@ -88,6 +84,7 @@
 {% include 'profile_card/profile_card_detail.html' %}
 <!-- profile comment -->
 {% include 'profile_card/profile_card_comment.html' %}
-
+<!-- report moda -->
+{% include "component/report_modal.html" %}
 <!-- end -->
 {% endblock %}

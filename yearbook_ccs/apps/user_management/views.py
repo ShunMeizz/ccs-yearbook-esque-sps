@@ -50,7 +50,7 @@ def acc_verified_email(request, user, to_email):
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     email.content_subtype = "html"
-    
+    email.send()
     user.is_active = True
     user.save()
 
@@ -59,7 +59,8 @@ def acc_not_verified_email(request, user, to_email):
     message = render_to_string("email_messages/acc_not_verified_message.html", {
         'user': user.username,
     })
-    EmailMessage(mail_subject, message, to=[to_email])
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    email.send()
 
 
 def signup_step1(request):
@@ -101,7 +102,7 @@ def signup_step2(request):
             del request.session['step1_data']
             del request.session['password1']
             message = "Thank you for signing up!"
-            additional_message = "Your account is under review. We will notify you at your email user.email? inbox (or spam folder) for the verification update."
+            additional_message = "Your account is under review. We will notify you at your email inbox (or spam folder) for the verification update."
             return render(request, 'message.html', {'message': message, 'additional_message': additional_message})
         else:
              for error in list(form.errors.values()):
@@ -123,7 +124,7 @@ def login_view(request):
         
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                if not user.is_acc_verified:
+                if not user.is_acc_verified and not user.is_superuser:
                     message = "Account still under review"
                     additional_message = "Check your email inbox (or spam folder) for the verification update sent by the admin"
                     return render(request, 'message.html', {'message': message, 'additional_message': additional_message})

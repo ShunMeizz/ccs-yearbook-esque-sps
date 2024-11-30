@@ -9,6 +9,7 @@
 	aria-hidden="true"
 >
 	<div class="modal-dialog modal-dialog-centered">
+		<img src="{% static 'images/sketch_assets/Y-Star1.svg' %}" class="y-star1-svg"/>
 		<div class="modal-content" id="modalContent">
 			<img src="/static/images/cit_logo.png" alt="Logo" class="logo" /> 
 			<div class="modal-body d-flex" id="modalBody">
@@ -23,7 +24,7 @@
 					<img
         				id="profileImage"
         				class="img-fluid rounded-circle"
-        				style="width: 160px; height: 160px; position: relative; z-index: 2;"
+        				style="width: 160px; height: 160px; position: relative; z-index: 2; object-fit: cover;"
         				alt="Profile Image"
     				/>
     				<img
@@ -52,12 +53,15 @@
 							<span id="profileProgram" style="text-transform: uppercase;"></span>
 						</p>
 					</div>
+					{{request.user.profile.id}}
 					<strong style="margin: 5px 0;">Quote:</strong><div class="profile-quote-box"><span id="profileQuote"></span></div>
 					<strong style="margin: 5px 0;">Hobbies:</strong><div class="profile-hobbies-box"><span id="profileHobbies"></span></div>
 					<div class="d-flex justify-content-end mt-2 me-3" >
                         <button id="viewCommentBtn" class="comment-button">View Comment</button>
 						<!-- add if profile is not request.user -->
-						<button class="reportBtn profile_report" id="profile_report">Report</button>
+						<div class="profile-report-div" data-curr-user="{{request.user.profile.id}}" style="display:none">
+							<button class="reportBtn profile_report" id="profile_report">Report</button>
+						</div>
                     </div>
 				</div>	
 			</div>

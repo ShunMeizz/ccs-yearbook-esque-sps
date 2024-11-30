@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% load static %}
+<!-- page title -->
+{% block title %}CCS Yearbook Admin - Blogs{% endblock %}
+<!-- extra styles -->
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
+<link rel="stylesheet" href="{% static 'js/styles.js' %}" />
+<link rel="stylesheet" href="{% static 'css/admin_page_styles.css' %}" />
+{% endblock extra_styles %}
+<!-- before main block -->
+{% block before-main %}{% endblock %}
+
+<!-- main content -->
+{% block content %}
+<div class="admin-page-container">
+  <div class="coolvetica center size-50 orange">Blogs</div>
+  <section>
+    {% include 'blog/components/blog_list.html' with blogs=posts %}
+  </section>
+</div>
+{% endblock %}
+
+<!-- after main block -->
+{% block after-main %}{% endblock %}

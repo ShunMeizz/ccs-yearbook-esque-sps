@@ -11,15 +11,53 @@
 <!-- main content -->
 {% block content %}
 <div class="admin-page-container">
-  <section id="latest-user-verification-request">
-    <!-- insert recent user verification request -->
-  </section>
-  <section id="latest-blog-report">
-    <!-- insert recent blog report -->
-  </section>
-  <section id="latest-comment-report">
-    <!-- insert recent comment report -->
-  </section>
+    <div class="admin-card-container">
+        <div class="admin-card">
+            <div class="card-title">
+                <h3>Users</h3>
+                <h6>Verified</h6>
+            </div>
+            <a class="card-body" href="/admin_dashboard/view_users"
+                ><h1>{{ user_verified_count }}</h1></a
+            >
+        </div>
+        <div class="admin-card">
+            <div class="card-title">
+                <h3>Users</h3>
+                <h6>Unverified</h6>
+            </div>
+            <a class="card-body" href="/admin_dashboard/review_acc">
+                <h1>{{ user_unverified_count }}</h1>
+            </a>
+        </div>
+        <div class="admin-card">
+            <div class="card-title">
+                <h3>Reports</h3>
+                <h6>Blogs</h6>
+            </div>
+            <a class="card-body" href="/reports/posts">
+                <h1>{{ blog_reports_count }}</h1>
+            </a>
+        </div>
+        <div class="admin-card">
+            <div class="card-title">
+                <h3>Reports</h3>
+                <h6>Profile</h6>
+            </div>
+            <a class="card-body" href="/reports/profiles">
+                <h1>{{ profile_reports_count }}</h1>
+            </a>
+        </div>
+        <div class="admin-card">
+            <div class="card-title">
+                <h3>Reports</h3>
+                <h6>Comments</h6>
+            </div>
+            <a class="card-body" href="/reports/comments">
+                <h1>{{ comment_reports_count }}</h1>
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
