@@ -2,7 +2,23 @@
 <link rel="stylesheet" href="{% static 'css/profile_form_styles.css' %}" />
 <link rel="stylesheet" href="{% static 'css/ribbon_header.css' %}" />
 <link rel="stylesheet" href="{% static 'css/id_card_styles.css' %}" />
-{% endblock extra_styles %} {% block before-main %}
+{% endblock extra_styles %} {% block before-main %}{% if form.errors %}
+<div class="messages">
+  <ul>
+    {% for field in form %} {% for error in field.errors %}
+    <li class="alert error">
+      {{ error|escape}}
+      <span class="close">&times;</span>
+    </li>
+    {% endfor %} {% endfor %} {% for error in form.non_field_errors %} <
+    <li class="alert error">
+      {{ error|escape}}
+      <span class="close">&times;</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
 <div class="ribbon-container">
   <div class="orange-box"></div>
   <div class="light-box"></div>
@@ -18,52 +34,44 @@
       <div class="form-content" style="gap: 5px">
         <form method="POST">
           {% csrf_token %}
-          <div class="update-form-content">
-            <label for="{{ form.username.id_for_label }}"
-              >{{ form.username.label }}</label
-            >
-            {{ form.username }}
+          <div class="form-content">
+            <div class="update-form-content">
+              <label for="{{ form.username.id_for_label }}">
+                {{ form.username.label }}
+              </label>
+              {{ form.username }}
+            </div>
+            <div class="update-form-content">
+              <label for="{{ form.email.id_for_label }}">
+                {{ form.email.label }}
+              </label>
+              {{ form.email }}
+            </div>
+            <div class="update-form-content">
+              <label for="{{ form.new_password.id_for_label }}">
+                {{ form.new_password.label }}
+              </label>
+              {{ form.new_password }}
+            </div>
+            <div class="update-form-content">
+              <label for="{{ form.confirm_new_password.id_for_label }}">
+                {{ form.confirm_new_password.label }}
+              </label>
+              {{ form.confirm_new_password }}
+            </div>
           </div>
-          {% if form.username.errors %} {% for error in form.username.errors %}
-          <span class="error-message">{{error}}</span>
-          {% endfor %} {% endif %}
-          <div class="update-form-content">
-            <label for="{{ form.email.id_for_label }}"
-              >{{ form.email.label }}</label
-            >
-            {{ form.email }}
-          </div>
-          {% if form.email.errors %} {% for error in form.email.errors %}
-          <span class="error-message">{{error}}</span>
-          {% endfor %} {% endif %}
-          <div class="update-form-content">
-            <label for="{{ form.new_password.id_for_label }}"
-              >{{ form.new_password.label }}</label
-            >
-            {{ form.new_password }}
-          </div>
-          <div class="update-form-content">
-            <label for="{{ form.confirm_new_password.id_for_label }}"
-              >{{ form.confirm_new_password.label }}</label
-            >
-            {{ form.confirm_new_password }}
-          </div>
-          {% if form.confirm_new_password.errors %}
-          <!-- for loop -->
-          {% for error in form.confirm_new_password.errors %}
-          <span class="error-message">{{error}}</span>
-          {% endfor %} {% endif %}
           <div class="button-group-container" style="margin-top: 30px">
             <button type="submit" class="profile-button orange-btn">
               UPDATE
             </button>
-            <button
+            <a
               type="button"
-              onClick="window.location.reload()"
+              href="{% url 'account' %}"
               class="profile-button black-btn"
+              style="text-decoration: none; color: white; align-content: center"
             >
               CANCEL
-            </button>
+            </a>
           </div>
         </form>
       </div>
