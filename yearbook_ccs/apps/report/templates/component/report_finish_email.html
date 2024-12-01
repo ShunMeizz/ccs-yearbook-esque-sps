@@ -1,0 +1,13 @@
+{% autoescape off %}
+<pre>
+  Dear <b>{{ username }}</b>,
+
+  Your report on a {{ reported_content }} for "{{ report_reason }}" has been finished. 
+  Please review the action taken by the admins below:
+  
+  <em>{{ report_action }}</em>
+  
+  Regards,
+  CCS Yearbook-esque Admin
+</pre>
+{% endautoescape %}

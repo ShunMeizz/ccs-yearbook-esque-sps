@@ -54,12 +54,13 @@
     </form>
     {% endif %} {% if request.user == comment.author %}
     <button class="btn-edit-comment" value="{{ comment.id }}">· Edit</button>
+    {% elif not request.user.is_superuser %}
     <button
       name="post_id"
       value="{{comment.id}}"
       class="reportBtn comment_report"
     >
-      Report
+      · Report
     </button>
     {% endif %}
   </div>

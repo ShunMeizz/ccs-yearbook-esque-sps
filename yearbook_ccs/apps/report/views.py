@@ -6,6 +6,8 @@ from apps.report.forms import ReportForm
 from apps.user_management.models import UserAccount
 from apps.profiles.models import UserProfile
 from .models import Report
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 
 # def report_home(request):
 #     # tapol ko so ang paglabay og multiple forms sa ni
@@ -61,9 +63,24 @@ def finished_report(request):
         report.save()
         print('Finished report')
         print(report_id)
+        send_finish_report_mail(request, report_id)
     
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def closed_report(request):
     closed_reports = Report.objects.filter(status=1).all()
     return render(request, 'reports_closed.html', {'closed_reports':closed_reports})
+
+def send_finish_report_mail(request, report_id):
+    report = get_object_or_404(Report, pk=report_id)
+    user = UserAccount.objects.get(id=report.user_reported_id)
+    mail_subject = "CCS Yearbook Report: " + report.get_reason_display()
+    message = render_to_string("component/report_finish_email.html", {
+        'username': user.username,
+        'reported_content': (report.get_report_type_display()).lower(),
+        'report_reason': report.get_reason_display(),
+        'report_action': report.report_description,
+    })
+    email = EmailMessage(mail_subject, message, to=[user.email])
+    email.content_subtype = "html"
+    email.send()
