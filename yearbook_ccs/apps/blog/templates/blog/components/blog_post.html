@@ -1,7 +1,7 @@
 {% load static %} {% block extra_styles %} {% endblock extra_styles %}
 <!-- prettier-ignore -->
 <link rel="stylesheet" href="{% static 'css/comment_styles.css' %}" />
-{% load humanize %} {% block blog_post %} {% if post %}
+{% load custom_filters %} {% block blog_post %} {% if post %}
 <div>
   <div class="blog-post bg-white mt-4 p-3">
     <div class="coolvetica size-18 d-flex justify-content-between">
@@ -9,7 +9,7 @@
         <div>{{post.user.username}}</div>
       </div>
       <div class="row-layout">
-        <div class="m-auto">{{post.date|naturaltime}}</div>
+        <div class="m-auto">{{post.date|show_date_or_naturaltime }}</div>
         <div class="dropdown" style="margin-left: 15px">
           <button
             class="btn btn-outline-dark dropdown-toggle"

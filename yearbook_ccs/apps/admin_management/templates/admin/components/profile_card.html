@@ -2,18 +2,18 @@
 {% load static %} {% block profile_modal %}
 <!-- Modal Structure -->
 <div
-  class="modal fade"
+  class="modal modal-profile fade"
   id="profileModal{{ profile.id }}"
   tabindex="-1"
   aria-labelledby="profileModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" id="modalContent">
+    <div class="modal-content modal-content-profile" id="modalContent">
       <img src="/static/images/cit_logo.png" alt="Logo" class="logo" />
 
       {% if profile %}
-      <div class="modal-body d-flex" id="modalBody">
+      <div class="modal-body modal-body-profile d-flex" id="modalBody">
         <!-- Left Column -->
         <div class="left-column d-flex flex-column align-items-center">
           <div

@@ -23,7 +23,7 @@
         {% include 'create_blog_comment.html' with blog_id=post.id %}
         {% endif %}
 
-        <div class="comments-container">
+        <div class="comments-container" style="height: 60vh">
           <!-- accessing all comments under this post -->
           {% if post.blog_comments.all %}
           <!-- for loop comments -->

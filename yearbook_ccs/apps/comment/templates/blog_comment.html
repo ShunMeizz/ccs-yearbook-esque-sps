@@ -17,7 +17,7 @@
     </div>
     <h2 class="comment-author">{{ comment.author.username }}</h2>
     <h4 class="comment-date">
-      · {{ comment.date_created|timesince_first_part }} ago
+      · {{ comment.date_created|timesince_first_part }}
     </h4>
     {% if comment.date_created != comment.date_updated %}
     <h4 class="comment-date">(edited)</h4>

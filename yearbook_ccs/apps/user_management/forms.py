@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth import password_validation
 from django.contrib.auth.hashers import make_password
+import re
 
 from .models import UserAccount
 
@@ -31,8 +32,18 @@ class SignUpStep1Form(UserCreationForm):
 
             if password1 and password2 and password1 != password2:
                 self.add_error('password2', "Passwords do not match.")
-
+                
             return cleaned_data
+    def clean_school_id_number(self):
+        school_id_number = self.cleaned_data.get('school_id_number')
+
+        # Regex pattern to match the desired format
+        pattern = r"^\d{2}-\d{4}-\d{4}$"
+
+        if not re.match(pattern, school_id_number):
+            raise forms.ValidationError("Invalid ID number format. Expected format: 12-3456-7890")
+        
+        return school_id_number
 
 class SignUpStep2Form(forms.ModelForm):
     class Meta:
