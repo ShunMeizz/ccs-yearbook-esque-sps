@@ -1,17 +1,21 @@
 {% load static %}
 <!-- Modal Structure for Comments | Shanley Mae Sebial component | NO JS -->
 <div
-  class="modal flip"
+  class="modal modal-profile flip"
   id="commentsModal{{ profile.id }}"
   tabindex="-1"
   aria-labelledby="commentsModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" id="modalContent">
+    <div
+      class="modal-content modal-content-profile"
+      id="modalContent"
+      style="height: auto"
+    >
       <img src="/static/images/cit_logo.png" alt="Logo" class="logo" />
 
-      <div class="modal-body" id="modalBody">
+      <div class="modal-body modal-body-profile" id="modalBody">
         <div class="modal-header position-relative">
           <div class="modal-title" id="commentsModalLabel">
             <img
