@@ -44,10 +44,11 @@ class SignUpStep1Form(UserCreationForm):
         school_id_number = self.cleaned_data.get('school_id_number')
 
         # Regex pattern to match the desired format
-        pattern = r"^\d{2}-\d{4}-\d{4}$"
+        pattern1 = r"^\d{2}-\d{4}-\d{3}$" 
+        pattern2 = r"^\d{4}-\d{5}$"
 
-        if not re.match(pattern, school_id_number):
-            raise forms.ValidationError("Invalid ID number format. Expected format: 12-3456-7890")
+        if not re.match(pattern1, school_id_number) and not re.match(pattern2, school_id_number):
+            raise forms.ValidationError("Invalid ID number format. Expected format: 12-3456-789 or 1234-56789")
         
         return school_id_number
 
