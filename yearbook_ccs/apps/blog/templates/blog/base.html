@@ -1,23 +1,76 @@
 {% extends 'base.html' %} {% load static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
 <link rel="stylesheet" href="{% static 'js/styles.js' %}" />
+<link rel="stylesheet" href="{% static 'css/batch_page.css' %}" />
+
 {% endblock extra_styles %} {% load humanize %}
 <!-- prettier-ignore -->
 {% block navbar_variants %}
 navbar-black
 {% endblock %}{% block content %}
 <div>
-  <div class="blog-margin center">
-    <div class="blog-banner bg-orange center outline-white">
-      <div class="label size-100">BLOGS</div>
+  
+<div class="blog-cover container-fluid d-flex flex-column justify-content-center position-relative">
+  <div class="blog-label">
+     <div class="blog-orange-box2">
+        {% if request.GET.program == 'BSCS' %}
+          CS FEED
+        {% elif request.GET.program == 'BSIT' %}
+          IT FEED
+        {% else %}
+          BLOGS
+        {% endif %}
     </div>
   </div>
-
-  <div class="bar bg-black"></div>
-
-  <div class="bg-white home-padding col-layout">
-    {% block blog_content %} {% endblock %}
+   <div class="black-divider"></div>
+   <div class="search-filter position-absolute top-0 end-0 m-3 d-flex align-items-center">
+    <form method="GET" action="{% url 'blog_search' %}" class="me-3">
+      <input type="text" class="form-control" name="search" placeholder="Search by Name" />
+    </form>
+    <form method="GET" action="{% url 'blog_home' %}" class="d-flex align-items-center">
+    <div class="dropdown me-2">
+        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Filter</button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+                <select name="year" class="form-select">
+                    <option value="">Batch Year</option>
+                    {% for year in all_batch_years %}
+                    <option value="{{ year }}" {% if year == request.GET.year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </li>
+            <li>
+                <select name="program" class="form-select">
+                    <option value="">Program</option>
+                    {% for program in available_programs %}
+                    <option value="{{ program }}" {% if program == request.GET.program %}selected{% endif %}>{{ program }}</option>
+                    {% endfor %}
+                </select>
+            </li>
+            <li class="text-center">
+                <button type="submit" class="btn btn-light btn-sm" name="action" value="filter">Apply Filters</button>
+            </li>
+        </ul>
+    </div>
+  </form>
   </div>
 </div>
+
+<div class="bg-light-gray blog-padding col-layout">
+    <div class="bg-light-gray blog-container center col-layout pb-5">
+        <div class="title-container">
+            <div class="circle"></div>
+            <div class="circle right-circle"></div>
+            <h2 class="batch-title">
+              {{ request.GET.year }}
+            </h2>
+            <div class="circle"></div>
+            <div class="circle right-circle"></div>
+        </div>
+        {% block blog_content %} {% endblock %}
+    </div>
+</div>
+
+
 
 {% endblock %}

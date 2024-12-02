@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %} {% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
+<link rel="stylesheet" href="{% static 'js/styles.js' %}" />
+<link rel="stylesheet" href="{% static 'css/batch_page.css' %}" />
+
+{% endblock extra_styles %} {% load humanize %}
+<!-- prettier-ignore -->
+{% block navbar_variants %}
+navbar-black
+{% endblock %}{% block content %}
+<div>
+  
+<div class="blog-cover container-fluid d-flex flex-column justify-content-center position-relative">
+  <div class="blog-label">
+     <div class="blog-orange-box2">
+        BLOGS
+      </div>
+    <img src="{% static 'images/sketch_assets/Y-Star3.svg' %}" class="p-smile-svg"/>
+  </div>
+   <div class="black-divider"></div>
+</div>
+
+<div class="bg-light-gray blog-padding col-layout">
+    <div class="bg-light-gray blog-container">
+        {% block blog_content %} {% endblock %}
+    </div>
+</div>
+
+
+
+{% endblock %}
