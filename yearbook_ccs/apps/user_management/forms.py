@@ -25,6 +25,12 @@ class SignUpStep1Form(UserCreationForm):
                 if field not in ['confirm_password']:
                     self.fields[field].widget.attrs['placeholder'] = field.capitalize()
 
+        def clean_email(self):
+            email = self.cleaned_data.get('email')
+            if UserAccount.objects.filter(email=email).exists():
+                self.add_error('email', 'A user with this email already exists.')
+            return email
+    
         def clean(self):
             cleaned_data = super().clean()
             password1 = cleaned_data.get("password1")
