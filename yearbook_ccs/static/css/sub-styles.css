@@ -98,7 +98,9 @@
 .bg-dark-gray {
 	background-color: #473f3b;
 }
-
+.bg-gray{
+	background-color: #dddddd;
+}
 .dark-gray {
 	color: #473f3b;
 }

@@ -1,8 +1,9 @@
-{% extends 'blog/base.html' %} {% block title %}Blog Home{% endblock %}
+{% extends 'blog/blog_search_base.html' %} {% block title %}Blog Home{% endblock %}
 <!-- BLOGS -->
 {% load static %} {% block extra_styles %}
 <link rel="stylesheet" href="{% static 'css/blogs.css' %}" />
 {% endblock extra_styles %} {% load humanize %} {% block blog_content %}
+
 <div>
   <div class="mt-4">
     <a href="{% url 'blog_home' %}" class="remove-link-style">
@@ -10,20 +11,25 @@
       Back
     </a>
   </div>
-  <div class="bg-light-gray blog-padding">
-    <div class="bg-gray blog-container">
+  
         <div class="title-container">
             <div class="circle"></div>
             <div class="circle right-circle"></div>
             <h2 class="batch-title">
-                {{user}}'s Posts
+                {{query}}'s Posts
             </h2>
             <div class="circle"></div>
             <div class="circle right-circle"></div>
         </div>
-    </div>
+    {% if posts %}
+        {% include 'blog/components/blog_list.html' with blogs=posts %}
+    {% else %}
+        {% include 'blog/components/blog_list.html' with blogs=posts %}
+        <civ class="center" style="padding-bottom: 20px;">No blog posts found for this query.</div>
+    {% endif %}
   </div>
-  <div>{% include 'blog/components/blog_list.html' with blogs=pending %}</div>
 </div>
 
 {% endblock %}
+
+
