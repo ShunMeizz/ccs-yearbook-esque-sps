@@ -61,6 +61,7 @@ The functional aspects of the system include:
 7. Report System
 
 - ### ERD
+<img src="ProjectDocumentation/ERD_CSS_Yearbook_esque.png" width="80" height="80">
 
 - ### Gantt Chart
 
