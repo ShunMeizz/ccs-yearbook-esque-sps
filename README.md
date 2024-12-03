@@ -45,8 +45,13 @@
 The CCS Yearbook-esque Student Profile System is designed to provide a digital platform for students in the College of Computer Studies (CCS) to create and manage profiles, interact through comments, and engage in a blogging system.
 
 - ### UI/UX
+[UI/UX](ProjectDocumentation\FigmaUI_CCS_Yearbook_esque.pdf)
+<div style="display: flex; gap: 10px;">
+<img src="ProjectDocumentation\CCS_Yearbook_esque_Blog_Batch.png" alt="Figma Design 1" width="200"/>
+<img src="ProjectDocumentation/CCS_Yearbook_esque_Home.png" alt="Figma Design 2" width="200"/>
+<img src="ProjectDocumentation\CCS_Yearbook_esque_Profile.png" alt="Figma Design 3" width="200"/>
+</div>
 
-Details about the user interface and user experience design go here. Include screenshots, wireframes, or design concepts if available.
 
 - ### Functional Requirements
 
@@ -60,10 +65,14 @@ The functional aspects of the system include:
 6. Administrative Management
 7. Report System
 
+Detail Information of the functional requirements can be read here:
+[Functional Requirements](ProjectDocumentation\FigmaUI_CCS_Yearbook_esque.pdf)
+
 - ### ERD
-<img src="ProjectDocumentation/ERD_CSS_Yearbook_esque.png" width="80" height="80">
+<img src="ProjectDocumentation\ERD_CCS_Yearbook_esque.png" width="700">
 
 - ### Gantt Chart
+ [Gantt Chart](ProjectDocumentation\GanttChart_CCS_Yearbook-esque_Student_Profile.pdf)
 
 - ### Built With
 
