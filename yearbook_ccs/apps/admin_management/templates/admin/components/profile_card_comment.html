@@ -59,7 +59,7 @@
             <!-- comment for loop -->
             {% include 'profile_comment.html' with comment=comment %}
             <!-- delete comment button for admin -->
-            {% if profile.user_account.is_superuser %}
+            {% if request.user.is_superuser %}
             <div class="comment-button-group">
               <form
                 action="{% url 'delete_comment' comment.id %}"
